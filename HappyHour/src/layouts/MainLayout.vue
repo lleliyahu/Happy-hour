@@ -3,6 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-btn
+          side
           flat
           dense
           round
@@ -10,12 +11,17 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
+        <image src="../../public/icons/home_pic.jpg"/>
         <q-toolbar-title>
-          Quasar App
+          HAPPYHOUR
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          flat
+          round
+          icon="logout"
+        />
+
       </q-toolbar>
     </q-header>
 
@@ -51,7 +57,7 @@ import EssentialLink from 'components/EssentialLink.vue';
 
 const linksList = [
   {
-    title: 'Docs',
+    title: 'Deals',
     caption: 'quasar.dev',
     icon: 'school',
     link: 'https://quasar.dev',
