@@ -21,7 +21,6 @@
               v-model="search"
               debounce="1000"
               filled
-              item-aligned
               placeholder="Search in HappyHour"
             >
             <template v-slot:append>
