@@ -1,0 +1,148 @@
+<template>
+  <q-layout view="lHh Lpr lFf">
+    <q-header elevated>
+      <q-toolbar>
+        <q-btn
+          side
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
+        <image src="../../public/icons/home_pic.jpg"/>
+        <q-toolbar-title>
+          <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
+        </q-toolbar-title>
+        <div class="q-pa-md" style="max-width: 350px">
+          <div class="q-gutter-md">
+            <q-input
+              v-model="search"
+              debounce="1000"
+              filled
+              placeholder="Search in HappyHour"
+            >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+            </q-input>
+          </div>
+        </div>
+        <div class="gt-sm">
+          <q-btn flat rounded label="sign up"></q-btn>
+        </div>
+        <div class="gt-sm">
+          <q-btn flat rounded label="log in"></q-btn>
+        </div>
+        <div class="lt-md">
+          <q-btn
+          flat
+          round
+          icon="account_circle"
+        />
+        </div>
+
+      </q-toolbar>
+    </q-header>
+    <q-footer elevated>
+        <q-toolbar>
+          <q-space/>
+            &copy; HappyHour
+          <q-space/>
+        </q-toolbar>
+      </q-footer>
+    <q-drawer
+      v-model="leftDrawerOpen"
+      bordered
+    >
+      <q-list>
+        <q-item-label
+          header
+        >
+          Essential Links
+        </q-item-label>
+
+        <EssentialLink
+          v-for="link in essentialLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+      </q-list>
+    </q-drawer>
+
+    <q-page-container>
+      <router-view/>
+    </q-page-container>
+  </q-layout>
+</template>
+
+<script>
+import { defineComponent, ref } from 'vue';
+import EssentialLink from 'components/EssentialLink.vue';
+
+const linksList = [
+  {
+    title: 'Deals',
+    caption: 'quasar.dev',
+    icon: 'school',
+    link: 'https://quasar.dev',
+  },
+  {
+    title: 'Github',
+    caption: 'github.com/quasarframework',
+    icon: 'code',
+    link: 'https://github.com/quasarframework',
+  },
+  {
+    title: 'Discord Chat Channel',
+    caption: 'chat.quasar.dev',
+    icon: 'chat',
+    link: 'https://chat.quasar.dev',
+  },
+  {
+    title: 'Forum',
+    caption: 'forum.quasar.dev',
+    icon: 'record_voice_over',
+    link: 'https://forum.quasar.dev',
+  },
+  {
+    title: 'Twitter',
+    caption: '@quasarframework',
+    icon: 'rss_feed',
+    link: 'https://twitter.quasar.dev',
+  },
+  {
+    title: 'Facebook',
+    caption: '@QuasarFramework',
+    icon: 'public',
+    link: 'https://facebook.quasar.dev',
+  },
+  {
+    title: 'Quasar Awesome',
+    caption: 'Community Quasar projects',
+    icon: 'favorite',
+    link: 'https://awesome.quasar.dev',
+  },
+];
+
+export default defineComponent({
+  name: 'MainLayout',
+
+  components: {
+    EssentialLink,
+  },
+
+  setup() {
+    const leftDrawerOpen = ref(false);
+
+    return {
+      essentialLinks: linksList,
+      leftDrawerOpen,
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+    };
+  },
+});
+</script>
