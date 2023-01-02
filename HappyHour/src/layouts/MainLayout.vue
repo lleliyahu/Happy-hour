@@ -30,10 +30,16 @@
           </div>
         </div>
         <div class="gt-sm">
-          <q-btn flat rounded label="sign up"></q-btn>
+          <q-btn label="sign up" color="primary" @click="regdialog = true" />
+             <q-dialog v-model="regdialog">
+              <RegistraTion ></RegistraTion>
+             </q-dialog>
         </div>
         <div class="gt-sm">
-          <q-btn flat rounded label="log in"></q-btn>
+          <q-btn label="log in" color="primary" @click="logindialog = true" />
+            <q-dialog v-model="logindialog">
+              <logIn></logIn>
+          </q-dialog>
         </div>
         <div class="lt-md">
           <q-btn
@@ -80,6 +86,8 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
+import RegistraTion from 'components/Registration.vue';
+import logIn from 'components/Login.vue';
 
 const linksList = [
   {
@@ -131,12 +139,16 @@ export default defineComponent({
 
   components: {
     EssentialLink,
+    RegistraTion,
+    logIn,
   },
 
   setup() {
     const leftDrawerOpen = ref(false);
 
     return {
+      regdialog: ref(false),
+      logindialog: ref(false),
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
