@@ -2,77 +2,60 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          side
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-        <image src="../../public/icons/home_pic.jpg"/>
+        <q-btn side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <image src="../../public/icons/home_pic.jpg" />
         <q-toolbar-title>
           <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
         </q-toolbar-title>
+        <div>
+          <q-btn flat round icon="location_on">
+          </q-btn>
+        </div>
         <div class="q-pa-md" style="max-width: 350px">
           <div class="q-gutter-md">
-            <q-input
-              v-model="search"
-              debounce="1000"
-              filled
-              placeholder="Search in HappyHour"
-            >
-            <template v-slot:append>
-              <q-icon name="search" />
-            </template>
+            <q-input v-model="search" debounce="1000" filled placeholder="Search in HappyHour">
+              <template v-slot:append>
+                <q-icon name="search" />
+              </template>
             </q-input>
           </div>
         </div>
         <div class="gt-sm">
-          <q-btn flat rounded label="sign up"></q-btn>
+          <q-btn label="log in" color="primary" @click="logindialog = true" />
+          <q-dialog v-model="logindialog">
+            <logIn></logIn>
+          </q-dialog>
         </div>
         <div class="gt-sm">
-          <q-btn flat rounded label="log in"></q-btn>
+          <q-btn label="sign up" color="primary" @click="regdialog = true" />
+          <q-dialog v-model="regdialog">
+            <RegistraTion></RegistraTion>
+          </q-dialog>
         </div>
         <div class="lt-md">
-          <q-btn
-          flat
-          round
-          icon="account_circle"
-        />
+          <q-btn flat round icon="account_circle" />
         </div>
-
       </q-toolbar>
     </q-header>
     <q-footer elevated>
-        <q-toolbar>
-          <q-space/>
-            &copy; HappyHour
-          <q-space/>
-        </q-toolbar>
-      </q-footer>
-    <q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-    >
+      <q-toolbar>
+        <q-space />
+        &copy; HappyHour
+        <q-space />
+      </q-toolbar>
+    </q-footer>
+    <q-drawer v-model="leftDrawerOpen" bordered>
       <q-list>
-        <q-item-label
-          header
-        >
+        <q-item-label header>
           Essential Links
         </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
     <q-page-container>
-      <router-view/>
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
@@ -80,6 +63,8 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
+import RegistraTion from 'components/Registration.vue';
+import logIn from 'components/Login.vue';
 
 const linksList = [
   {
@@ -131,12 +116,16 @@ export default defineComponent({
 
   components: {
     EssentialLink,
+    RegistraTion,
+    logIn,
   },
 
   setup() {
     const leftDrawerOpen = ref(false);
 
     return {
+      regdialog: ref(false),
+      logindialog: ref(false),
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
