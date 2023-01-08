@@ -1,14 +1,19 @@
+<!-- eslint-disable max-len -->
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        <image src="../../public/icons/home_pic.jpg" />
+        <div class="lt-md">
+          <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        </div>
         <q-toolbar-title>
           <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
         </q-toolbar-title>
         <div>
-          <q-btn flat round icon="location_on">
+          <q-btn class="bg-cyan-8" flat round icon="location_on">
+          </q-btn>
+          <span>Delviery to</span>
+          <q-btn flat round icon="arrow_drop_down">
           </q-btn>
         </div>
         <div class="q-pa-md" style="max-width: 350px">
@@ -20,24 +25,25 @@
             </q-input>
           </div>
         </div>
+        <q-space />
         <div class="gt-sm">
-          <q-btn label="log in" color="primary" @click="logindialog = true" />
+          <q-btn label="log in" class="bg-grey-8" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
             <logIn></logIn>
           </q-dialog>
         </div>
         <div class="gt-sm">
-          <q-btn label="sign up" color="primary" @click="regdialog = true" />
+          <q-btn label="sign up" class="bg-cyan-8" @click="regdialog = true" />
           <q-dialog v-model="regdialog">
             <RegistraTion></RegistraTion>
           </q-dialog>
         </div>
         <div class="lt-md">
-          <q-btn flat round icon="account_circle" />
+          <q-btn class="bg-cyan-4" flat round icon="account_circle" />
         </div>
       </q-toolbar>
     </q-header>
-    <q-footer elevated>
+    <q-footer class="bg-grey-10" elevated>
       <q-toolbar>
         <q-space />
         &copy; HappyHour

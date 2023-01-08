@@ -3,12 +3,21 @@
   <div class="column q-pa-lg">
     <div class="row">
       <q-card square class="shadow-24" style="width:300px;height:485px;">
+<<<<<<< HEAD
         <q-card-section class="bg-blue-grey-10" >
           <h4 class="text-h5 text-white q-my-md">Mail &amp; Pass</h4>
           <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
             <q-btn fab icon="add" color= grey label=""/>
            </div>
           </q-card-section>
+=======
+        <q-card-section class="bg-red-10">
+          <h4 class="text-h5 text-white q-my-md">Company &amp; Co</h4>
+          <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
+            <q-btn fab icon="add" color="red-10" />
+          </div>
+        </q-card-section>
+>>>>>>> 0402d7c2cf93a1c062106fb45b134ec2dd6ac56e
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
             <q-input square clearable v-model="email" type="email" label="Email">
@@ -46,7 +55,6 @@ export default {
   },
 };
 </script>
-
-<style>
+<style scoped>
 
 </style>
