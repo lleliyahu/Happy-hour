@@ -12,9 +12,9 @@
         <div>
           <q-btn class="bg-cyan-8" flat round icon="location_on">
           </q-btn>
-          <span>Delviery to</span>
+          <!-- <span>Delviery to</span>
           <q-btn flat round icon="arrow_drop_down">
-          </q-btn>
+          </q-btn> -->
         </div>
         <div class="q-pa-md" style="max-width: 350px">
           <div class="q-gutter-md">
