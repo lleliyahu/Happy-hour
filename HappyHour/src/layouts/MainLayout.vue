@@ -27,7 +27,7 @@
         </div>
         <q-space />
         <div class="gt-sm">
-          <q-btn label="log in" class="bg-grey-8" @click="logindialog = true" />
+          <q-btn label="log in" class="bg-grey-8" style="margin-right: 5px;" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
             <logIn></logIn>
           </q-dialog>

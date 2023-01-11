@@ -23,6 +23,41 @@ router.get('/all', function(req, res, next) {
         "message": "bbbb  hi hi"
       },
       {
+        "store": "ddddd",
+        "start_time": "01.01.2222",
+        "end_time": "01.01.2222",
+        "discount": 10,
+        "message": "bbbb  hi hi"
+      },
+      {
+        "store": "bbbbb",
+        "start_time": "01.01.2222",
+        "end_time": "01.01.2222",
+        "discount": 10,
+        "message": "bbbb  hi hi"
+      },
+      {
+        "store": "bbbbb",
+        "start_time": "01.01.2222",
+        "end_time": "01.01.2222",
+        "discount": 10,
+        "message": "bbbb  hi hi"
+      },
+      {
+        "store": "bbbbb",
+        "start_time": "01.01.2222",
+        "end_time": "01.01.2222",
+        "discount": 10,
+        "message": "bbbb  hi hi"
+      },
+      {
+        "store": "bbbbb",
+        "start_time": "01.01.2222",
+        "end_time": "01.01.2222",
+        "discount": 10,
+        "message": "bbbb  hi hi"
+      },
+      {
         "store": "cccc",
         "start_time": "01.01.2222",
         "end_time": "01.01.2222",
