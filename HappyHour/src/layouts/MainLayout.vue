@@ -3,9 +3,9 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <div class="lt-md">
+        <!-- <div class="lt-md">
           <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        </div>
+        </div> -->
         <q-toolbar-title>
           <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
         </q-toolbar-title>
@@ -16,7 +16,7 @@
           <q-btn flat round icon="arrow_drop_down">
           </q-btn> -->
         </div>
-        <div class="q-pa-md" style="max-width: 350px">
+        <div class="q-pa-md" style="max-width: 150px">
           <div class="q-gutter-md">
             <q-input v-model="search" debounce="1000" filled placeholder="Search in HappyHour">
               <template v-slot:append>

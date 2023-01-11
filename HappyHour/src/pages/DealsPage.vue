@@ -1,28 +1,21 @@
 <template>
 <div class="q-pa-md">
   <div class="row q-col-gutter-sm">
-    <div class="col-4"  v-for="deal in deals" :key="deal.store">
-    <q-card class="my-card my-content">
-    <div class="my-content">
-        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
-          <div class="absolute-bottom text-h6">
-            {{ deal.store }}
-          </div>
-        </q-img>
-        <q-card-section>
-        {{ deal.message }}
-        </q-card-section>
+      <div class="col-xs-12 col-sm-6 col-md-4"  v-for="deal in deals" :key="deal.store">
+         <cardDeal :store="deal.store"  :message="deal.message"></cardDeal>
       </div>
-    </q-card>
-  </div>
     </div>
   </div>
 </template>
 <script>
 import axios from 'axios';
+import cardDeal from 'components/cardDeal.vue';
 
 export default {
   name: 'DealsPage',
+  components: {
+    cardDeal,
+  },
   data: () => ({
     deals: [],
   }),
@@ -40,8 +33,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.my-content
-  padding: 10px 15px
-  background: rgba(86,61,124,.15)
-  border: 1px solid rgba(86,61,124,.2)
+
 </style>

@@ -63,7 +63,15 @@ router.get('/all', function(req, res, next) {
         "end_time": "01.01.2222",
         "discount": 10,
         "message": "cccc hi hi"
-      } ];
+      },
+      {
+        "store": "cccc",
+        "start_time": "01.01.2222",
+        "end_time": "01.01.2222",
+        "discount": 10,
+        "message": "cccc hi hi"
+      }
+    ];
 
     res.send( message);
   });
