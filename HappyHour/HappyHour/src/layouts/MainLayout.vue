@@ -39,16 +39,34 @@
           </q-dialog>
         </div>
         <div class="lt-md">
-          <q-btn class="bg-cyan-8" flat round icon="account_circle" />
+          <q-btn class="bg-cyan-8" flat round icon="account_circle" @click="logindialog = true" />
+          <q-dialog v-model="logindialog">
+            <logIn></logIn>
+          </q-dialog>
         </div>
       </q-toolbar>
     </q-header>
-    <q-footer class="bg-grey-10" elevated>
-      <q-toolbar>
-        <q-space />
-        &copy; HappyHour
-        <q-space />
-      </q-toolbar>
+    <q-footer class="bg-grey-9" reveal elevated>
+      <div class="gt-sm">
+        <q-toolbar>
+          <q-space />
+          &copy; HappyHour
+          <q-space />
+        </q-toolbar>
+      </div>
+      <div class="lt-md">
+        <q-toolbar>
+          <div class="q-pa-md">
+            <q-footer bordered class="bg-grey-9 text-primary">
+              <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-grey" v-model="tab">
+                <q-tab name="explore" label="Explore" icon="travel_explore" />
+                <q-tab name="restaurants" label="Restaurants" icon="restaurant" />
+                <q-tab name="stores" label="Stores" icon="store" />
+              </q-tabs>
+            </q-footer>
+          </div>
+        </q-toolbar>
+      </div>
     </q-footer>
     <q-drawer v-model="leftDrawerOpen" bordered>
       <q-list>
@@ -152,6 +170,7 @@ export default defineComponent({
       logindialog: ref(false),
       essentialLinks: linksList,
       leftDrawerOpen,
+      tab: ref('images'),
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
