@@ -10,8 +10,8 @@ router.get('/', function (req, res, next) {
 router.post('/add', function (req, res, next) {
   console.log(req.body);
   var myobj = req.body;
-  DbClient.getDb()
-    .collection("shopItemsData")
+  db.getDb()
+    .collection("users")
     .insertOne(myobj, function (err, res) {
       if (err) {
         console.log(err);
