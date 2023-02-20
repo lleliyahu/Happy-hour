@@ -4,13 +4,11 @@
     <div class="row">
       <q-card square class="shadow-24" style="width:300px;height:485px;">
         <q-card-section class="bg-blue-grey-10">
-          <h4 class="text-h5 text-white q-my-md">Mail &amp; Pass</h4>
-          <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-            <q-btn fab icon="add" color=grey label="" />
-          </div>
+          <h4 class="text-h5 text-white q-my-md">Filter</h4>
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
+            <q-btn>Alchol</q-btn>
             <q-input square clearable v-model="email" type="email" label="Email">
               <template v-slot:prepend>
                 <q-icon name="email" />
