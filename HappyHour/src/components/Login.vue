@@ -11,7 +11,7 @@
           </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
-            <q-input square clearable v-model="email" type="email" label="Email">
+            <q-input square clearable v-model="email" type="email"  :rules="[val => !!val || 'Email is missing', isValidEmail]" label="Email">
               <template v-slot:prepend>
                 <q-icon name="email" />
               </template>
