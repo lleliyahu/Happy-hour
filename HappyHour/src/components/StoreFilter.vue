@@ -3,15 +3,13 @@
   <div class="column q-pa-lg">
     <div class="row">
       <q-card square class="shadow-24" style="width:300px;height:485px;">
-          <q-card-section class="bg-blue-grey-10" >
-          <h4 class="text-h5 text-white q-my-md">Mail &amp; Pass</h4>
-          <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-            <q-btn fab icon="add" @click="goReg()" color= grey label=""/>
-           </div>
-          </q-card-section>
+        <q-card-section class="bg-blue-grey-10">
+          <h4 class="text-h5 text-white q-my-md">Filter</h4>
+        </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
-            <q-input square clearable v-model="email" type="email"  :rules="[val => !!val || 'Email is missing', isValidEmail]" label="Email">
+            <q-btn>Alchol</q-btn>
+            <q-input square clearable v-model="email" type="email" label="Email">
               <template v-slot:prepend>
                 <q-icon name="email" />
               </template>
@@ -35,25 +33,15 @@
 </template>
 <script>
 export default {
-  name: 'logIn',
-  props: {
-    goReg:
-            {
-              type: Function,
-              default() { return console.log('Default function'); },
-            },
-  },
+
+  name: 'storeFilter',
+
   data() {
     return {
       email: '',
       username: '',
       password: '',
     };
-  },
-  methods: {
-    mgoReg() {
-      console.log('go reg');
-    },
   },
 };
 </script>
