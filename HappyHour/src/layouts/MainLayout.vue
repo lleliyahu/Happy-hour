@@ -29,7 +29,7 @@
         <div class="gt-sm">
           <q-btn label="log in" class="bg-grey-8" style="margin-right: 5px;" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn></logIn>
+            <logIn :goReg="goReg"></logIn>
           </q-dialog>
         </div>
         <div class="gt-sm">
@@ -125,7 +125,12 @@ export default defineComponent({
     RegistraTion,
     logIn,
   },
-
+  methods: {
+    goReg() {
+      this.logindialog = false;
+      this.regdialog = true;
+    },
+  },
   setup() {
     const leftDrawerOpen = ref(false);
 

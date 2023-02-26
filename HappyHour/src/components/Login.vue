@@ -6,7 +6,7 @@
           <q-card-section class="bg-blue-grey-10" >
           <h4 class="text-h5 text-white q-my-md">Mail &amp; Pass</h4>
           <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-            <q-btn fab icon="add" color= grey label=""/>
+            <q-btn fab icon="add" @click="goReg()" color= grey label=""/>
            </div>
           </q-card-section>
         <q-card-section>
@@ -36,13 +36,24 @@
 <script>
 export default {
   name: 'logIn',
-
+  props: {
+    goReg:
+            {
+              type: Function,
+              default() { return console.log('Default function'); },
+            },
+  },
   data() {
     return {
       email: '',
       username: '',
       password: '',
     };
+  },
+  methods: {
+    mgoReg() {
+      console.log('go reg');
+    },
   },
 };
 </script>
