@@ -26,22 +26,22 @@
           </div>
         </div>
         <q-space />
-        <div class="gt-sm">
+        <div class="gt-sm"  v-if=" isUserConnect" >
           <q-btn label="log in" class="bg-grey-8" style="margin-right: 5px;" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn></logIn>
+            <logIn :goReg="goReg" ></logIn>
           </q-dialog>
         </div>
-        <div class="gt-sm">
+        <div class="gt-sm"  v-if=" isUserConnect" >
           <q-btn label="sign up" class="bg-cyan-8" @click="regdialog = true" />
           <q-dialog v-model="regdialog">
             <RegistraTion></RegistraTion>
           </q-dialog>
         </div>
-        <div class="lt-md">
+        <div class="lt-md"  v-if=" isUserConnect" >
           <q-btn class="bg-cyan-8" flat round icon="account_circle" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn></logIn>
+            <logIn :isUserConnect="isUserConnect"  :goReg="goReg" ></logIn>
           </q-dialog>
         </div>
       </q-toolbar>
@@ -162,6 +162,18 @@ export default defineComponent({
     logIn,
   },
 
+  data() {
+    return {
+
+    };
+  },
+
+  methods: {
+    goReg() {
+      this.logindialog = false;
+      this.regdialog = true;
+    },
+  },
   setup() {
     const leftDrawerOpen = ref(false);
 
@@ -174,6 +186,8 @@ export default defineComponent({
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
+       isUserConnect: ref(false),
+      user: {},
     };
   },
 });

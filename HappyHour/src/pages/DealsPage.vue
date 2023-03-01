@@ -1,5 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
+  <div>
   <div class="q-pa-md gt-sm">
     <div class="q-pa-md q-gutter-sm row justify-center">
       <q-btn align="center" class="btn-fixed-width" color="cyan-8" label="Explore" icon="travel_explore" />
@@ -24,6 +25,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 <script>
 import { ref } from 'vue';

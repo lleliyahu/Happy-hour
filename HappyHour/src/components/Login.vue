@@ -6,8 +6,8 @@
           <q-card-section class="bg-blue-grey-10" >
           <h4 class="text-h5 text-white q-my-md">Log-In</h4>
           <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-           <q-btn  fab icon="add" color= grey label=""/>
-           </div>
+            <q-btn fab icon="add" @click="goReg" color= grey label=""/>
+          </div>
           </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
@@ -24,7 +24,7 @@
           </q-form>
         </q-card-section>
         <q-card-actions class="q-px-lg">
-          <q-btn unelevated size="lg" color="blue-grey-10" class="full-width text-white" label="Sign In" />
+          <q-btn unelevated size="lg" color="blue-grey-10" class="full-width text-white" label="Sign In"  @click="checkuser"/>
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
         </q-card-section>
@@ -33,15 +33,38 @@
   </div>
 </template>
 <script>
+// import axios from 'axios';
 export default {
   name: 'logIn',
-
+  props: {
+    goReg:
+            {
+              type: Function,
+              default() { return console.log('Default function aa'); },
+            },
+    isUserConnect: {
+      type: Boolean,
+    },
+  },
   data() {
     return {
       email: '',
       username: '',
       password: '',
     };
+  },
+  methods: {
+    checkuser() {
+      const newUser = {};
+      newUser.email = this.email;
+      newUser.password = this.password;
+      console.log(newUser);
+      // axios.get('http://localhost:3000/users/Checkuser', { params: { newUser } }).then((response) => {
+      //   console.log('checkuser', response);
+      //   alert('You have seccessfuly sing in');
+      // });
+      this.$emit(true, this.isUserConnect);
+    },
   },
 };
 </script>
