@@ -4,9 +4,9 @@
     <div class="row">
       <q-card square class="shadow-24" style="width:300px;height:485px;">
           <q-card-section class="bg-blue-grey-10" >
-          <h4 class="text-h5 text-white q-my-md">Mail &amp; Pass</h4>
+          <h4 class="text-h5 text-white q-my-md">Log-In</h4>
           <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-            <q-btn fab icon="add" color= grey label=""/>
+           <q-btn  fab icon="add" color= grey label=""/>
            </div>
           </q-card-section>
         <q-card-section>
@@ -27,7 +27,6 @@
           <q-btn unelevated size="lg" color="blue-grey-10" class="full-width text-white" label="Sign In" />
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
-          <p class="text-grey-6"><a style="text-decoration:none" href="#">forget your Password</a></p>
         </q-card-section>
       </q-card>
     </div>
