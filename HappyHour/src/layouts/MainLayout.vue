@@ -29,7 +29,7 @@
         <div class="gt-sm">
           <q-btn label="log in" class="bg-grey-8" style="margin-right: 5px;" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn :goReg="goReg"></logIn>
+            <logIn :goReg="goReg" ></logIn>
           </q-dialog>
         </div>
         <div class="gt-sm">
@@ -41,7 +41,7 @@
         <div class="lt-md">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn></logIn>
+            <logIn :goReg="goReg" ></logIn>
           </q-dialog>
         </div>
       </q-toolbar>
@@ -161,6 +161,13 @@ export default defineComponent({
     RegistraTion,
     logIn,
   },
+
+  data() {
+    return {
+
+    };
+  },
+
   methods: {
     goReg() {
       this.logindialog = false;
