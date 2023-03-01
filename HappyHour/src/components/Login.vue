@@ -33,7 +33,8 @@
   </div>
 </template>
 <script>
-// import axios from 'axios';
+import axios from 'axios';
+
 export default {
   name: 'logIn',
   props: {
@@ -55,15 +56,14 @@ export default {
   },
   methods: {
     checkuser() {
-      const newUser = {};
-      newUser.email = this.email;
-      newUser.password = this.password;
-      console.log(newUser);
-      // axios.get('http://localhost:3000/users/Checkuser', { params: { newUser } }).then((response) => {
-      //   console.log('checkuser', response);
-      //   alert('You have seccessfuly sing in');
-      // });
-      this.$emit(true, this.isUserConnect);
+      const user = {};
+      user.email = this.email;
+      user.password = this.password;
+      axios.get('http://localhost:3000/users/Checkuser', { params: { user } }).then((response) => {
+        console.log('checkuser', response);
+        alert('You have seccessfuly sing in');
+        // this.isUserConnect = true;
+      });
     },
   },
 };

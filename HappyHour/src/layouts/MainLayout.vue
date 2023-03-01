@@ -186,7 +186,7 @@ export default defineComponent({
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
-       isUserConnect: ref(false),
+      isUserConnect: ref(true),
       user: {},
     };
   },

@@ -1,3 +1,4 @@
+const { json } = require("express");
 var express = require("express");
 var router = express.Router();
 var db = require("../DB/DbClient.js");
@@ -25,19 +26,12 @@ router.post("/add", function (req, res, next) {
 });
 
 router.get("/Checkuser", async (req, res, next) => {
-  var user = req.query.newUser;
-  console.log(user);
-  console.log(user["email"]);
-  console.log(user["aaa@aa.aa"]);
-
-  var query = {
-    email: req.query.newUser.email,
-    password: req.query.newUser.password,
-  };
+  var query = JSON.parse(req.query.user);
+  console.log(query);
 
   db.getDb()
     .collection("users")
-    .find(user)
+    .find(query)
     .toArray(function (err, result) {
       console.log(result);
       if (result.length === 0) {
