@@ -8,7 +8,12 @@
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
-            <q-btn>Alchol</q-btn>
+            <q-btn>Alcohol</q-btn>
+            <q-btn>Asain</q-btn>
+            <q-btn>American</q-btn>
+            <q-btn>Bakery</q-btn>
+            <q-btn>BBQ</q-btn>
+            <q-btn>Bowl</q-btn>
             <q-input square clearable v-model="email" type="email" label="Email">
               <template v-slot:prepend>
                 <q-icon name="email" />
@@ -45,6 +50,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

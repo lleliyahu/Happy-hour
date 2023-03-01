@@ -3,20 +3,20 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <!-- <div class="lt-md">
+      <!-- <div class="lt-md">
           <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        </div> -->
+                          </div> -->
         <q-toolbar-title>
           <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
         </q-toolbar-title>
         <div>
           <q-btn class="bg-cyan-8" flat round icon="location_on">
           </q-btn>
-          <!-- <span>Delviery to</span>
+        <!-- <span>Delviery to</span>
           <q-btn flat round icon="arrow_drop_down">
-          </q-btn> -->
+                            </q-btn> -->
         </div>
-        <div class="q-pa-md" style="max-width: 150px">
+        <div class="q-pa-md gt-sm" style="max-width: 150px">
           <div class="q-gutter-md">
             <q-input v-model="search" debounce="1000" filled placeholder="Search in HappyHour">
               <template v-slot:append>
@@ -26,22 +26,22 @@
           </div>
         </div>
         <q-space />
-        <div class="gt-sm"  v-if=" isUserConnect" >
+        <div class="gt-sm" v-if="isUserConnect">
           <q-btn label="log in" class="bg-grey-8" style="margin-right: 5px;" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn :goReg="goReg" ></logIn>
+            <logIn :goReg="goReg"></logIn>
           </q-dialog>
         </div>
-        <div class="gt-sm"  v-if=" isUserConnect" >
+        <div class="gt-sm" v-if="isUserConnect">
           <q-btn label="sign up" class="bg-cyan-8" @click="regdialog = true" />
           <q-dialog v-model="regdialog">
             <RegistraTion></RegistraTion>
           </q-dialog>
         </div>
-        <div class="lt-md"  v-if=" isUserConnect" >
+        <div class="lt-md" v-if="isUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn :isUserConnect="isUserConnect"  :goReg="goReg" ></logIn>
+            <logIn :isUserConnect="isUserConnect" :goReg="goReg"></logIn>
           </q-dialog>
         </div>
       </q-toolbar>
@@ -62,6 +62,8 @@
                 <q-tab name="explore" label="Explore" icon="travel_explore" />
                 <q-tab name="restaurants" label="Restaurants" icon="restaurant" />
                 <q-tab name="stores" label="Stores" icon="store" />
+                <q-tab name="dealbreaker" label="Deal Breaker" icon="local_fire_department" />
+                <q-tab name="search" label="search" icon="search" />
               </q-tabs>
             </q-footer>
           </div>
@@ -99,7 +101,6 @@
       <router-view />
     </q-page-container>
   </q-layout>
-
 </template>
 
 <script>
