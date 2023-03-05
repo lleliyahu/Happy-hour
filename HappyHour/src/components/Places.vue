@@ -34,38 +34,20 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
-  name: 'logIn',
+  name: 'PlacesSelection',
   props: {
-    goReg:
-    {
-      type: Function,
-      default() { return console.log('Default function aa'); },
-    },
     isUserConnect: {
       type: Boolean,
     },
   },
   data() {
-    return {
-      email: '',
-      username: '',
-      password: '',
-    };
+
   },
   methods: {
-    checkuser() {
-      const user = {};
-      user.email = this.email;
-      user.password = this.password;
-      axios.get('http://localhost:3000/users/Checkuser', { params: { user } }).then((response) => {
-        console.log('checkuser', response);
-        alert('You have seccessfuly sing in');
-        // this.isUserConnect = true;
-      });
-    },
+
   },
 };
 </script>

@@ -12,7 +12,7 @@
         <h4><b>Stores near me:</b></h4>
         <q-space />
         <div class="q-pa-md q-gutter-sm">
-          <q-btn label="Filter" color="grey-8" icon="filter_alt" @click="filterdialog = true" />
+          <q-btn label="Filter" color="blue-grey-8" icon="filter_alt" @click="filterdialog = true" />
           <q-dialog v-model="filterdialog">
             <storeFilter></storeFilter>
           </q-dialog>

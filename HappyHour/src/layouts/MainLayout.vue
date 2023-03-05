@@ -5,18 +5,21 @@
       <q-toolbar>
       <!-- <div class="lt-md">
           <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-                          </div> -->
+                                                            </div> -->
         <q-toolbar-title>
           <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
         </q-toolbar-title>
         <div>
           <q-btn class="bg-cyan-8" flat round icon="location_on">
+            <q-dialog v-model="placesdialog">
+              <PlacesSelection></PlacesSelection>
+            </q-dialog>
           </q-btn>
         <!-- <span>Delviery to</span>
           <q-btn flat round icon="arrow_drop_down">
-                            </q-btn> -->
+                                                              </q-btn> -->
         </div>
-        <div class="q-pa-md gt-sm" style="max-width: 150px">
+        <div class="q-pa-md gt-sm" style="max-width: 300px">
           <div class="q-gutter-md">
             <q-input v-model="search" debounce="1000" filled placeholder="Search in HappyHour">
               <template v-slot:append>
@@ -27,7 +30,7 @@
         </div>
         <q-space />
         <div class="gt-sm" v-if="isUserConnect">
-          <q-btn label="log in" class="bg-grey-8" style="margin-right: 5px;" @click="logindialog = true" />
+          <q-btn label="log in" class="bg-blue-grey-8" style="margin-right: 5px;" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
             <logIn :goReg="goReg"></logIn>
           </q-dialog>
@@ -46,7 +49,7 @@
         </div>
       </q-toolbar>
     </q-header>
-    <q-footer class="bg-grey-9" reveal elevated>
+    <q-footer class="bg-blue-grey-9" reveal elevated>
       <div class="gt-sm">
         <q-toolbar>
           <q-space />
@@ -57,7 +60,7 @@
       <div class="lt-md">
         <q-toolbar>
           <div class="q-pa-md">
-            <q-footer bordered class="bg-grey-9 text-primary">
+            <q-footer bordered class="bg-blue-grey-9 text-primary">
               <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-grey" v-model="tab">
                 <q-tab name="explore" label="Explore" icon="travel_explore" />
                 <q-tab name="restaurants" label="Restaurants" icon="restaurant" />
@@ -75,7 +78,6 @@
         <q-item-label header>
           Essential Links
         </q-item-label>
-
         <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
       <div class="q-pa-md">
@@ -96,7 +98,6 @@
         </div>
       </div>
     </q-drawer>
-
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -108,6 +109,7 @@ import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 import RegistraTion from 'components/Registration.vue';
 import logIn from 'components/Login.vue';
+import PlacesSelection from 'components/Places.vue';
 
 const linksList = [
   {
@@ -161,6 +163,7 @@ export default defineComponent({
     EssentialLink,
     RegistraTion,
     logIn,
+    PlacesSelection,
   },
 
   data() {
@@ -181,6 +184,7 @@ export default defineComponent({
     return {
       regdialog: ref(false),
       logindialog: ref(false),
+      placesdialog: ref(false),
       essentialLinks: linksList,
       leftDrawerOpen,
       tab: ref('images'),

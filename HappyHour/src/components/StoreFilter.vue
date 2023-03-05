@@ -2,36 +2,30 @@
 <template>
   <div class="column q-pa-lg">
     <div class="row">
-      <q-card square class="shadow-24" style="width:300px;height:485px;">
-        <q-card-section class="bg-blue-grey-10">
+      <q-card square class="shadow-24" style="width:500px;height:720px;">
+        <q-card-section class="bg-blue-grey-9">
           <h4 class="text-h5 text-white q-my-md">Filter</h4>
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
-            <q-btn>Alcohol</q-btn>
-            <q-btn>Asain</q-btn>
-            <q-btn>American</q-btn>
-            <q-btn>Bakery</q-btn>
-            <q-btn>BBQ</q-btn>
-            <q-btn>Bowl</q-btn>
-            <q-input square clearable v-model="email" type="email" label="Email">
-              <template v-slot:prepend>
-                <q-icon name="email" />
-              </template>
-            </q-input>
-            <q-input square clearable v-model="password" type="password" label="Password">
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
-            </q-input>
+            <q-btn :color="btnColor" label="Alcohol" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <q-btn :color="btnColor" label="Asian" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <q-btn :color="btnColor" label="American" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <q-btn :color="btnColor" label="Bakery" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <q-btn :color="btnColor" label="BBQ" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <q-btn :color="btnColor" label="Bowl" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <hr>
+            <h5>Price</h5>
+            <q-btn :color="btnColor" label="$" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <q-btn :color="btnColor" label="$$" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <q-btn :color="btnColor" label="$$$" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
+            <q-btn :color="btnColor" label="$$$$" @click="changeMe" class="q-ma-sm" unelevated rounded></q-btn>
           </q-form>
+          <hr>
         </q-card-section>
         <q-card-actions class="q-px-lg">
-          <q-btn unelevated size="lg" color="blue-grey-10" class="full-width text-white" label="Sign In" />
+          <q-btn unelevated size="lg" color="blue-grey-9" class="full-width text-white" label="Close" v-close-popup />
         </q-card-actions>
-        <q-card-section class="text-center q-pa-sm">
-          <p class="text-grey-6"><a style="text-decoration:none" href="#">forget your Password</a></p>
-        </q-card-section>
       </q-card>
     </div>
   </div>
@@ -46,7 +40,15 @@ export default {
       email: '',
       username: '',
       password: '',
+      btnColor: 'blue-2',
+      btnIcon: 'warning',
     };
+  },
+  methods: {
+    changeMe() {
+      this.btnColor = 'blue';
+      this.regdialog = 'done';
+    },
   },
 };
 </script>
