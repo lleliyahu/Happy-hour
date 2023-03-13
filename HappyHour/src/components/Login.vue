@@ -44,8 +44,9 @@ export default {
       type: Function,
       default() { return console.log('Default function aa'); },
     },
-    isUserConnect: {
-      type: Boolean,
+    UserConnect: {
+      type: Function,
+      default() { return console.log('Default function aa'); },
     },
   },
   data() {
@@ -61,9 +62,11 @@ export default {
       user.email = this.email;
       user.password = this.password;
       axios.get('http://localhost:3000/users/Checkuser', { params: { user } }).then((response) => {
-        console.log('checkuser', response);
+        console.log('checkuser', response.data[0].username);
+        localStorage.setItem('user', response.data[0].username);
         alert('You have seccessfuly sing in');
         // this.isUserConnect = true;
+        this.UserConnect();
       });
     },
   },

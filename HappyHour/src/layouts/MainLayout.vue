@@ -29,23 +29,26 @@
           </div>
         </div>
         <q-space />
-        <div class="gt-sm" v-if="isUserConnect">
+        <div class="gt-sm" v-if="isNotUserConnect">
           <q-btn label="log in" class="bg-blue-grey-8" style="margin-right: 5px;" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn :goReg="goReg"></logIn>
+            <logIn :UserConnect="UserConnect" :goReg="goReg"></logIn>
           </q-dialog>
         </div>
-        <div class="gt-sm" v-if="isUserConnect">
+        <div class="gt-sm" v-if="isNotUserConnect">
           <q-btn label="sign up" class="bg-cyan-8" @click="regdialog = true" />
           <q-dialog v-model="regdialog">
             <RegistraTion></RegistraTion>
           </q-dialog>
         </div>
-        <div class="lt-md" v-if="isUserConnect">
+        <div class="lt-md" v-if="isNotUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
-            <logIn :isUserConnect="isUserConnect" :goReg="goReg"></logIn>
+            <logIn :UserConnect="UserConnect" :goReg="goReg"></logIn>
           </q-dialog>
+        </div>
+        <div v-if="!isNotUserConnect">
+          <q-btn color="primary" :label=username> </q-btn>
         </div>
       </q-toolbar>
     </q-header>
@@ -110,6 +113,7 @@ import EssentialLink from 'components/EssentialLink.vue';
 import RegistraTion from 'components/Registration.vue';
 import logIn from 'components/Login.vue';
 import PlacesSelection from 'components/Places.vue';
+// import { tsImportEqualsDeclaration } from '@babel/types';
 
 const linksList = [
   {
@@ -168,7 +172,7 @@ export default defineComponent({
 
   data() {
     return {
-
+      username: '',
     };
   },
 
@@ -176,6 +180,12 @@ export default defineComponent({
     goReg() {
       this.logindialog = false;
       this.regdialog = true;
+    },
+    UserConnect() {
+      this.logindialog = false;
+      this.isNotUserConnect = false;
+      console.log('user', localStorage.getItem('user'));
+      this.username = localStorage.getItem('user');
     },
   },
   setup() {
@@ -191,7 +201,7 @@ export default defineComponent({
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
-      isUserConnect: ref(true),
+      isNotUserConnect: ref(true),
       user: {},
     };
   },
