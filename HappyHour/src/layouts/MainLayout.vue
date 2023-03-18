@@ -5,19 +5,18 @@
       <q-toolbar>
       <!-- <div class="lt-md">
           <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-                                                            </div> -->
+                                                                    </div> -->
         <q-toolbar-title>
           <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
         </q-toolbar-title>
         <div>
-          <q-btn class="bg-cyan-8" flat round icon="location_on">
+          <q-btn class="bg-cyan-8" flat round icon="location_on" @click="placesdialog = true">
             <q-dialog v-model="placesdialog">
               <PlacesSelection></PlacesSelection>
             </q-dialog>
           </q-btn>
         <!-- <span>Delviery to</span>
-          <q-btn flat round icon="arrow_drop_down">
-                                                              </q-btn> -->
+                <q-btn flat round icon="arrow_drop_down"></q-btn> -->
         </div>
         <div class="q-pa-md gt-sm" style="max-width: 300px">
           <div class="q-gutter-md">
@@ -65,7 +64,7 @@
           <div class="q-pa-md">
             <q-footer bordered class="bg-blue-grey-9 text-primary">
               <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-grey" v-model="tab">
-                <q-tab name="explore" label="Explore" icon="travel_explore" />
+                <!-- <q-tab name="explore" label="Explore" icon="travel_explore" /> -->
                 <q-tab name="restaurants" label="Restaurants" icon="restaurant" />
                 <q-tab name="stores" label="Stores" icon="store" />
                 <q-tab name="dealbreaker" label="Deal Breaker" icon="local_fire_department" />
