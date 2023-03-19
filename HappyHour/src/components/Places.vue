@@ -63,7 +63,8 @@
           </q-form>
         </q-card-section>
         <q-card-actions class="q-px-lg">
-          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Continue" @click="checkuser" />
+          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Continue" @click="checkuser"
+            v-close-popup />
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
         </q-card-section>

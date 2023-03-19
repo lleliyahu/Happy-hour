@@ -5,8 +5,8 @@
       <q-toolbar>
       <!-- <div class="lt-md">
           <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-                                                                    </div> -->
-        <q-toolbar-title>
+                                                                                                  </div> -->
+        <q-toolbar-title class="gt-sm">
           <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
         </q-toolbar-title>
         <div>
@@ -16,11 +16,15 @@
             </q-dialog>
           </q-btn>
         <!-- <span>Delviery to</span>
-                <q-btn flat round icon="arrow_drop_down"></q-btn> -->
+                                              <q-btn flat round icon="arrow_drop_down"></q-btn> -->
         </div>
+        <q-space class="lt-md"></q-space>
+        <q-toolbar-title class="lt-md">
+          <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
+        </q-toolbar-title>
         <div class="q-pa-md gt-sm" style="max-width: 300px">
           <div class="q-gutter-md">
-            <q-input v-model="search" debounce="1000" filled placeholder="Search in HappyHour">
+            <q-input v-model="search" debounce="1000" filled placeholder="Search in Happy Hour">
               <template v-slot:append>
                 <q-icon name="search" />
               </template>
@@ -37,7 +41,7 @@
         <div class="gt-sm" v-if="isNotUserConnect">
           <q-btn label="sign up" class="bg-cyan-8" @click="regdialog = true" />
           <q-dialog v-model="regdialog">
-            <RegistraTion></RegistraTion>
+            <RegistraTion :goLogIn="goLogIn"></RegistraTion>
           </q-dialog>
         </div>
         <div class="lt-md" v-if="isNotUserConnect">
@@ -55,7 +59,7 @@
       <div class="gt-sm">
         <q-toolbar>
           <q-space />
-          &copy; HappyHour
+          &copy; Happy Hour
           <q-space />
         </q-toolbar>
       </div>
@@ -68,7 +72,8 @@
                 <q-tab name="restaurants" label="Restaurants" icon="restaurant" />
                 <q-tab name="stores" label="Stores" icon="store" />
                 <q-tab name="dealbreaker" label="Deal Breaker" icon="local_fire_department" />
-                <q-tab name="search" label="search" icon="search" />
+                <q-tab name="search" label="Search" icon="search" />
+                <q-tab name="Profile" label="Profile" icon="account_circle" />
               </q-tabs>
             </q-footer>
           </div>
@@ -179,6 +184,10 @@ export default defineComponent({
     goReg() {
       this.logindialog = false;
       this.regdialog = true;
+    },
+    goLogIn() {
+      this.logindialog = true;
+      this.regdialog = false;
     },
     UserConnect() {
       this.logindialog = false;

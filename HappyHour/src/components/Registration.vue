@@ -2,7 +2,7 @@
 <template>
   <div class="column q-pa-lg">
     <div class="row">
-      <q-card square class="shadow-24" style="width:300px;height:485px;">
+      <q-card square class="shadow-24" style="width:300px;height:520px;">
         <q-card-section class="bg-blue-grey-9">
           <h4 class="text-h5 text-white q-my-md">Create an account</h4>
           <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
@@ -33,7 +33,7 @@
           <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" @click="addUser" label="Get Started" />
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
-          <p class="text-grey-6">Return to login</p>
+          <q-btn outline rounded color="blue-grey-9" label="Return to login" @click="goLogIn" />
         </q-card-section>
       </q-card>
     </div>
@@ -45,6 +45,13 @@ import axios from 'axios';
 export default {
   name: 'RegistraTion',
 
+  props: {
+    goLogIn:
+    {
+      type: Function,
+      default() { return console.log('Default function aa'); },
+    },
+  },
   data() {
     return {
       email: '',
