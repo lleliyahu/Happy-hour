@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
@@ -44,14 +43,14 @@
             <RegistraTion :goLogIn="goLogIn"></RegistraTion>
           </q-dialog>
         </div>
-        <div class="lt-md" v-if="isNotUserConnect">
+        <!-- <div class="lt-md" v-if="isNotUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
             <logIn :UserConnect="UserConnect" :goReg="goReg"></logIn>
           </q-dialog>
-        </div>
+        </div> -->
         <div v-if="!isNotUserConnect">
-          <q-btn color="primary" :label=username> </q-btn>
+          <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
         </div>
       </q-toolbar>
     </q-header>
@@ -73,7 +72,10 @@
                 <q-tab name="stores" label="Stores" icon="store" />
                 <q-tab name="dealbreaker" label="Deal Breaker" icon="local_fire_department" />
                 <q-tab name="search" label="Search" icon="search" />
-                <q-tab name="Profile" label="Profile" icon="account_circle" />
+                <q-tab name="Profile" label="Profile" icon="account_circle" @click="logindialog = true" />
+                <q-dialog v-model="logindialog">
+                  <logIn :UserConnect="UserConnect" :goReg="goReg"></logIn>
+                </q-dialog>
               </q-tabs>
             </q-footer>
           </div>
