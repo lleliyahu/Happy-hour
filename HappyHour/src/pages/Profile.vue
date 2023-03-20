@@ -19,7 +19,7 @@
                     <q-btn label="Add Photo" class="text-capitalize" rounded color="info"
                            style="max-width: 120px"></q-btn>
                            <q-btn label="Create store" class="text-capitalize" rounded color="info"
-                           style="max-width: 120px"></q-btn>
+                           style="max-width: 120px" @click="createstordialog = true"></q-btn>
                   </q-item-section>
                 </q-item>
                  <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -151,18 +151,18 @@
         </div>
       </div>
       <q-dialog v-model="createstordialog">
-              <PlacesSelection></PlacesSelection>
+              <CreateStore></CreateStore>
     </q-dialog>
     </q-page>
   </template>
 <script>
 import { defineComponent, ref } from 'vue';
-import PlacesSelection from 'components/Places.vue';
+import CreateStore from 'components/CreateStore.vue';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
-    PlacesSelection,
+    CreateStore,
   },
   setup() {
     return {
