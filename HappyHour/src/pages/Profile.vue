@@ -17,8 +17,6 @@
                   </q-avatar>
                 </q-item-section>
                 <q-item-section>
-                  <q-btn label="Add Photo" class="text-capitalize" rounded color="cyan-8"
-                    style="max-width: 120px"></q-btn>
                   <q-btn label="Create store" class="text-capitalize" rounded color="cyan-8" style="max-width: 120px"
                     @click="createstordialog = true"></q-btn>
                 </q-item-section>
@@ -56,11 +54,6 @@
               <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <q-item-section>
                   <q-input dark color="white" dense v-model="user_details.post_code" label="Postal Code" />
-                </q-item-section>
-              </q-item>
-              <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <q-item-section>
-                  <q-input dark color="white" type="textarea" dense v-model="user_details.about" label="About" />
                 </q-item-section>
               </q-item>
             </q-list>

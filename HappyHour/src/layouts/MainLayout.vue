@@ -5,9 +5,11 @@
       <q-toolbar>
       <!-- <div class="lt-md">
           <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-                                                                                                  </div> -->
+                                                                                                      </div> -->
         <q-toolbar-title class="gt-sm">
-          <q-img src="../../public/icons/happyhouricon.png" style="width:100px"></q-img>
+          <q-btn to="/" flat round @click="goHomePage">
+            <q-img src="../../public/icons/happyhouricon.png" style="width:100px" />
+          </q-btn>
         </q-toolbar-title>
         <div>
           <q-btn class="bg-cyan-8" flat round icon="location_on" @click="placesdialog = true">
@@ -16,7 +18,7 @@
             </q-dialog>
           </q-btn>
         <!-- <span>Delviery to</span>
-                                              <q-btn flat round icon="arrow_drop_down"></q-btn> -->
+                                                  <q-btn flat round icon="arrow_drop_down"></q-btn> -->
         </div>
         <q-space class="lt-md"></q-space>
         <q-toolbar-title class="lt-md">
@@ -44,12 +46,12 @@
             <RegistraTion :goLogIn="goLogIn"></RegistraTion>
           </q-dialog>
         </div>
-        <!-- <div class="lt-md" v-if="isNotUserConnect">
+      <!-- <div class="lt-md" v-if="isNotUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
             <logIn :UserConnect="UserConnect" :goReg="goReg"></logIn>
           </q-dialog>
-        </div> -->
+            </div> -->
         <div v-if="!isNotUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
         </div>
@@ -197,6 +199,9 @@ export default defineComponent({
       this.isNotUserConnect = false;
       console.log('user', localStorage.getItem('user'));
       this.username = localStorage.getItem('user');
+    },
+    goHomePage() {
+      this.$router.push('/');
     },
   },
   setup() {

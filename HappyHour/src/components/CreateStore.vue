@@ -1,5 +1,6 @@
+<!-- eslint-disable max-len -->
 <template>
-    <div class="column q-pa-lg">
+  <div class="column q-pa-lg">
     <div class="row">
       <q-card square class="shadow-24" style="width:300px;height:485px;">
         <q-card-section class="bg-blue-grey-9">
@@ -15,15 +16,14 @@
           </q-form>
         </q-card-section>
         <q-card-actions class="q-px-lg">
-          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white"
-           label="Create" @click="createstoer" />
+          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="createstore" />
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
         </q-card-section>
       </q-card>
     </div>
   </div>
-  </template>
+</template>
 
 <script>
 import axios from 'axios';
@@ -44,7 +44,7 @@ export default {
     };
   },
   methods: {
-    createstoer() {
+    createstore() {
       const newStor = {};
       newStor.storename = this.storename;
       newStor.username = localStorage.getItem('user');
