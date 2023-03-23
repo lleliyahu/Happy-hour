@@ -66,10 +66,10 @@
       <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
         <q-card class="bg-blue-grey-9 card-bg text-white no-shadow" bordered>
           <q-card-section class="text-center bg-transparent">
-            <q-avatar size="100px" class="shadow-10">
+            <q-avatar size="120px" class="shadow-10">
               <img src="../../public/icons/store.png">
             </q-avatar>
-            <div class="text-h6 q-mt-lg">My Stores:</div>
+            <div class="text-h6 q-mt-lg">My Stores</div>
           </q-card-section>
           <q-card-section>
             <div class="text-body2 text-justify">
@@ -92,6 +92,20 @@
                   <q-item clickable v-ripple>
                     <q-item-section>
                       Store 3
+                    </q-item-section>
+                    <q-btn flat rounded icon="edit"></q-btn>
+                  </q-item>
+
+                  <q-item clickable v-ripple>
+                    <q-item-section>
+                      Store 4
+                    </q-item-section>
+                    <q-btn flat rounded icon="edit"></q-btn>
+                  </q-item>
+
+                  <q-item clickable v-ripple>
+                    <q-item-section>
+                      Store 5
                     </q-item-section>
                     <q-btn flat rounded icon="edit"></q-btn>
                   </q-item>
@@ -142,9 +156,40 @@
             </q-item>
           </q-card-section>
           <q-card-actions align="right">
-            <q-btn class="text-capitalize bg-info text-white">
+            <q-btn class="text-capitalize text-white" color="cyan-8">
               Change Password</q-btn>
           </q-card-actions>
+        </q-card>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+        <q-card class="bg-blue-grey-9 card-bg text-white no-shadow" bordered>
+          <q-card-section class="text-center bg-transparent">
+            <q-avatar size="120px" class="shadow-10">
+              <img src="../../public/icons/discount.png">
+            </q-avatar>
+            <div class="text-h6 q-mt-lg">My Deals</div>
+          </q-card-section>
+          <q-card-section>
+            <div class="text-body2 text-justify">
+              <div class="q-pa-md" style="max-width: 600px">
+                <q-list dense bordered padding class="rounded-borders">
+                  <q-item clickable v-ripple>
+                    <q-item-section>
+                      Deal 1
+                    </q-item-section>
+                    <q-btn flat rounded icon="edit"></q-btn>
+                  </q-item>
+
+                  <q-item clickable v-ripple>
+                    <q-item-section>
+                      Deal 2
+                    </q-item-section>
+                    <q-btn flat rounded icon="edit"></q-btn>
+                  </q-item>
+                </q-list>
+              </div>
+            </div>
+          </q-card-section>
         </q-card>
       </div>
     </div>
