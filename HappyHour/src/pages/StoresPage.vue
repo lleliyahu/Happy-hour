@@ -11,7 +11,7 @@
           icon="local_fire_department" />
       </div>
       <div class="q-gutter-md row">
-        <h4><b>Restaurants near me:</b></h4>
+        <h4><b>Stores near me:</b></h4>
         <q-space />
         <div class="q-pa-md q-gutter-sm">
           <q-btn label="Filter" color="blue-grey-8" icon="filter_alt" @click="filterdialog = true" />
@@ -38,7 +38,7 @@ import storeFilter from 'components/StoreFilter.vue';
 // import { useQuasar } from 'quasar';
 
 export default {
-  name: 'DealsPage',
+  name: 'StoresPage',
   components: {
     cardDeal,
     storeFilter,
@@ -47,7 +47,9 @@ export default {
     deals: [],
   }),
   methods: {
-
+    goRestaurantsPage() {
+      this.$router.push('/Restaurants');
+    },
   },
   mounted() {
     axios.get('http://localhost:3000/deals/all').then((response) => {

@@ -16,10 +16,6 @@
                     <img src="https://cdn.quasar.dev/img/boy-avatar.png">
                   </q-avatar>
                 </q-item-section>
-                <q-item-section>
-                  <q-btn label="Create store" class="text-capitalize" rounded color="cyan-8" style="max-width: 120px"
-                    @click="createstordialog = true"></q-btn>
-                </q-item-section>
               </q-item>
               <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <q-item-section>
@@ -59,7 +55,7 @@
             </q-list>
           </q-card-section>
           <q-card-actions align="right">
-            <q-btn class="text-capitalize text-white" color="cyan-8">Update User Info</q-btn>
+            <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note">Update User Info</q-btn>
           </q-card-actions>
         </q-card>
       </div>
@@ -71,6 +67,12 @@
             </q-avatar>
             <div class="text-h6 q-mt-lg">My Stores</div>
           </q-card-section>
+          <q-item-section>
+            <q-card-actions align="center">
+              <q-btn label="New store" class="text-capitalize" rounded color="cyan-8" icon="add" style="max-width: 120px"
+                @click="createstordialog = true"></q-btn>
+            </q-card-actions>
+          </q-item-section>
           <q-card-section>
             <div class="text-body2 text-justify">
               <div class="q-pa-md" style="max-width: 600px">
@@ -114,6 +116,9 @@
             </div>
           </q-card-section>
         </q-card>
+        <q-dialog v-model="createstordialog">
+          <CreateStore></CreateStore>
+        </q-dialog>
       </div>
       <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
         <q-card class="bg-blue-grey-9 card-bg text-white no-shadow" bordered>
@@ -156,7 +161,7 @@
             </q-item>
           </q-card-section>
           <q-card-actions align="right">
-            <q-btn class="text-capitalize text-white" color="cyan-8">
+            <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="lock">
               Change Password</q-btn>
           </q-card-actions>
         </q-card>
@@ -169,6 +174,12 @@
             </q-avatar>
             <div class="text-h6 q-mt-lg">My Deals</div>
           </q-card-section>
+          <q-item-section>
+            <q-card-actions align="center">
+              <q-btn label="New deal" class="text-capitalize" rounded color="cyan-8" icon="add" style="max-width: 120px"
+                @click="choseedealtypedialog = true"></q-btn>
+            </q-card-actions>
+          </q-item-section>
           <q-card-section>
             <div class="text-body2 text-justify">
               <div class="q-pa-md" style="max-width: 600px">
@@ -193,19 +204,21 @@
         </q-card>
       </div>
     </div>
-    <q-dialog v-model="createstordialog">
-      <CreateStore></CreateStore>
+    <q-dialog v-model="choseedealtypedialog">
+      <ChooseDealType></ChooseDealType>
     </q-dialog>
   </q-page>
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
 import CreateStore from 'components/CreateStore.vue';
+import ChooseDealType from 'src/components/ChooseDealType.vue';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
     CreateStore,
+    ChooseDealType,
   },
   setup() {
     return {

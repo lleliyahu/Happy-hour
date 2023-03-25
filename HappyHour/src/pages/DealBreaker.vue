@@ -4,15 +4,17 @@
     <div class="q-pa-md gt-sm">
       <div class="q-pa-md q-gutter-sm row justify-center">
         <!-- <q-btn align="center" class="btn-fixed-width" color="cyan-8" label="Explore" icon="travel_explore" /> -->
-        <q-btn align="right" class="btn-fixed-width" color="cyan-8" label="Restaurants" icon="restaurant" />
-        <q-btn align="between" class="btn-fixed-width" color="cyan-8" label="Stores" icon="store" />
-        <q-btn align="between" class="btn-fixed-width" color="red-6" label="Deal Breaker" icon="local_fire_department" />
+        <q-btn to="/Restaurants" align="right" class="btn-fixed-width" color="cyan-8" label="Restaurants"
+          icon="restaurant" />
+        <q-btn to="/Stores" align="between" class="btn-fixed-width" color="cyan-8" label="Stores" icon="store" />
+        <q-btn to="/DealBreaker" align="between" class="btn-fixed-width" color="red-6" label="Deal Breaker"
+          icon="local_fire_department" />
       </div>
       <div class="q-gutter-md row">
-        <h4><b>Stores near me:</b></h4>
+        <h4><b>SUPER HOT DEALS:</b></h4>
         <q-space />
         <div class="q-pa-md q-gutter-sm">
-          <q-btn label="Filter" color="blue-grey-8" icon="filter_alt" @click="filterdialog = true" />
+          <q-btn class="text-red" label="Filter" color="blue-grey-9" icon="filter_alt" @click="filterdialog = true" />
           <q-dialog v-model="filterdialog">
             <storeFilter></storeFilter>
           </q-dialog>
@@ -45,10 +47,12 @@ export default {
     deals: [],
   }),
   methods: {
-
+    goRestaurantsPage() {
+      this.$router.push('/Restaurants');
+    },
   },
   mounted() {
-    axios.get('http://localhost:3000/stores/all').then((response) => {
+    axios.get('http://localhost:3000/deals/all').then((response) => {
       this.deals = response.data;
     });
     // console.log(this.deals);
@@ -63,5 +67,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
+div
+  color: $red-6
+  background-color: $grey-10
 </style>
