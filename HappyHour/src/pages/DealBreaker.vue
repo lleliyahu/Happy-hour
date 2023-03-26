@@ -11,7 +11,11 @@
           icon="local_fire_department" />
       </div>
       <div class="q-gutter-md row">
-        <h4><b>SUPER HOT DEALS:</b></h4>
+        <h4>
+          <b>
+            &#128293;SUPER HOT DEALS&#128293;
+          </b>
+        </h4>
         <q-space />
         <div class="q-pa-md q-gutter-sm">
           <q-btn class="text-red" label="Filter" color="blue-grey-9" icon="filter_alt" @click="filterdialog = true" />
