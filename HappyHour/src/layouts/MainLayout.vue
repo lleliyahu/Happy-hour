@@ -59,10 +59,10 @@
         </div>
       </q-toolbar>
     </q-header>
-    <q-footer class="bg-blue-grey-9" reveal elevated>
-      <div class="gt-sm">
+    <q-footer id="footer" class="bg-blue-grey-9" reveal elevated>
+  <div id="footer" class="gt-sm">
         <q-toolbar>
-          <q-space />
+          <q-space/>
           &copy; Happy Hour
           <q-space />
         </q-toolbar>
@@ -170,7 +170,6 @@ const linksList = [
     link: 'https://awesome.quasar.dev',
   },
 ];
-
 export default defineComponent({
   name: 'MainLayout',
 
@@ -180,13 +179,11 @@ export default defineComponent({
     logIn,
     PlacesSelection,
   },
-
   data() {
     return {
       username: '',
     };
   },
-
   methods: {
     goReg() {
       this.logindialog = false;
@@ -205,7 +202,6 @@ export default defineComponent({
   },
   setup() {
     const leftDrawerOpen = ref(false);
-
     return {
       regdialog: ref(false),
       logindialog: ref(false),
@@ -222,3 +218,13 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+ #footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgb(15, 13, 13);
+}
+</style>
