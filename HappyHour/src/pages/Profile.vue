@@ -77,40 +77,14 @@
             <div class="text-body2 text-justify">
               <div class="q-pa-md" style="max-width: 600px">
                 <q-list dense bordered padding class="rounded-borders">
-                  <q-item clickable v-ripple>
-                    <q-item-section>
-                      Store 1
-                    </q-item-section>
-                    <q-btn flat rounded icon="edit"></q-btn>
-                  </q-item>
-
-                  <q-item clickable v-ripple>
-                    <q-item-section>
-                      Store 2
-                    </q-item-section>
-                    <q-btn flat rounded icon="edit"></q-btn>
-                  </q-item>
-
-                  <q-item clickable v-ripple>
-                    <q-item-section>
-                      Store 3
-                    </q-item-section>
-                    <q-btn flat rounded icon="edit"></q-btn>
-                  </q-item>
-
-                  <q-item clickable v-ripple>
-                    <q-item-section>
-                      Store 4
-                    </q-item-section>
-                    <q-btn flat rounded icon="edit"></q-btn>
-                  </q-item>
-
-                  <q-item clickable v-ripple>
-                    <q-item-section>
-                      Store 5
-                    </q-item-section>
-                    <q-btn flat rounded icon="edit"></q-btn>
-                  </q-item>
+                  <div v-for="store in stores" :key="store.storename">
+                    <q-item clickable v-ripple  >
+                      <q-item-section>
+                        {{ store.storename  }}
+                      </q-item-section>
+                      <q-btn flat rounded icon="edit"></q-btn>
+                    </q-item>
+                 </div>
                 </q-list>
               </div>
             </div>
@@ -213,6 +187,7 @@
 import { defineComponent, ref } from 'vue';
 import CreateStore from 'components/CreateStore.vue';
 import ChooseDealType from 'src/components/ChooseDealType.vue';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'UserProfile',
@@ -220,12 +195,25 @@ export default defineComponent({
     CreateStore,
     ChooseDealType,
   },
+  data: () => ({
+    stores: [],
+  }),
   setup() {
     return {
       user_details: {},
       password_dict: {},
       createstordialog: ref(false),
     };
+  },
+  mounted() {
+    const body = {};
+    body.username = localStorage.getItem('user');
+    console.log('body', body);
+    axios.get('http://localhost:3000/store/getStore', body).then((response) => {
+      this.stores = response.data;
+      console.log(this.stores);
+    });
+    // console.log(this.deals);
   },
 });
 </script>

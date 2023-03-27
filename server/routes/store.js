@@ -4,8 +4,21 @@ var router = express.Router();
 var db = require("../DB/DbClient.js");
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
+router.get("/getStore", function (req, res, next) {
+  var query = {};
+  console.log("user", req.body);
+  query.username = req.body.username;
+  db.getDb()
+    .collection("store")
+    .find(query)
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(400).send("Error fetching listing");
+        console.log(result);
+      } else {
+        res.send(result);
+      }
+    });
 });
 
 router.post("/create", function (req, res, next) {
