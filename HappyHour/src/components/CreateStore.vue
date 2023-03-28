@@ -16,7 +16,8 @@
           </q-form>
         </q-card-section>
         <q-card-actions class="q-px-lg">
-          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="createstore" />
+          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="createstore"
+          v-close-popup />
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
         </q-card-section>
@@ -32,7 +33,7 @@ export default {
   name: 'RegistraTion',
 
   props: {
-    goLogIn:
+    refreshStore:
     {
       type: Function,
       default() { return console.log('Default function aa'); },
@@ -49,9 +50,9 @@ export default {
       newStor.storename = this.storename;
       newStor.username = localStorage.getItem('user');
       console.log('new store', newStor);
-      axios.post('http://localhost:3000/store/create', newStor).then((response) => {
-        console.log('User add', response);
-        alert('You have seccessfuly registration');
+      axios.post('http://localhost:3000/store/create', newStor).then(() => {
+        alert('Store created');
+        this.refreshStore();
       });
       return true;
     },

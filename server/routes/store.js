@@ -4,9 +4,9 @@ var router = express.Router();
 var db = require("../DB/DbClient.js");
 
 /* GET users listing. */
-router.get("/getStore", function (req, res, next) {
+router.post("/getStore", function (req, res, next) {
   var query = {};
-  console.log("user", req.body);
+  console.log("user", req);
   query.username = req.body.username;
   db.getDb()
     .collection("store")
@@ -17,6 +17,7 @@ router.get("/getStore", function (req, res, next) {
         console.log(result);
       } else {
         res.send(result);
+        console.log(result);
       }
     });
 });

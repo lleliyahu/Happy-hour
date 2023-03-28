@@ -91,7 +91,7 @@
           </q-card-section>
         </q-card>
         <q-dialog v-model="createstordialog">
-          <CreateStore></CreateStore>
+          <CreateStore :refreshStore="refreshStore"></CreateStore>
         </q-dialog>
       </div>
       <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
@@ -205,14 +205,19 @@ export default defineComponent({
       createstordialog: ref(false),
     };
   },
+  methods: {
+    refreshStore() {
+      const body = {};
+      body.username = localStorage.getItem('user');
+      console.log('body', body);
+      axios.post('http://localhost:3000/store/getStore', body).then((response) => {
+        this.stores = response.data;
+        console.log('test', response.data);
+      });
+    },
+  },
   mounted() {
-    const body = {};
-    body.username = localStorage.getItem('user');
-    console.log('body', body);
-    axios.get('http://localhost:3000/store/getStore', body).then((response) => {
-      this.stores = response.data;
-      console.log(this.stores);
-    });
+    this.refreshStore();
     // console.log(this.deals);
   },
 });
