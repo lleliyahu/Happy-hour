@@ -78,13 +78,14 @@
               <div class="q-pa-md" style="max-width: 600px">
                 <q-list dense bordered padding class="rounded-borders">
                   <div v-for="store in stores" :key="store.storename">
-                    <q-item clickable v-ripple  >
+                    <q-item clickable v-ripple>
                       <q-item-section>
-                        {{ store.storename  }}
+                        {{ store.storename }}
                       </q-item-section>
                       <q-btn flat rounded icon="edit"></q-btn>
+                      <q-btn flat rounded icon="delete"></q-btn>
                     </q-item>
-                 </div>
+                  </div>
                 </q-list>
               </div>
             </div>
@@ -163,13 +164,7 @@
                       Deal 1
                     </q-item-section>
                     <q-btn flat rounded icon="edit"></q-btn>
-                  </q-item>
-
-                  <q-item clickable v-ripple>
-                    <q-item-section>
-                      Deal 2
-                    </q-item-section>
-                    <q-btn flat rounded icon="edit"></q-btn>
+                    <q-btn flat rounded icon="delete"></q-btn>
                   </q-item>
                 </q-list>
               </div>
