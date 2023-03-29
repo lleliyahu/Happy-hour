@@ -9,6 +9,7 @@ const routes = [
       { path: 'Stores', component: () => import('src/pages/StoresPage.vue') },
       { path: 'DealBreaker', component: () => import('src/pages/DealBreaker.vue') },
       { path: 'tempPage', component: () => import('src/pages/tempPage.vue') },
+      { path: 'EditStore', component: () => import('src/pages/storeEditPage.vue') },
     ],
   },
 
