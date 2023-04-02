@@ -1,39 +1,101 @@
 <!-- eslint-disable max-len -->
 <template>
-      <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
-        <q-card class="bg-blue-grey-9 card-bg text-white no-shadow" bordered>
-          <q-card-section class="text-center bg-transparent">
-            <q-avatar size="120px" class="shadow-10">
-              <img src="../../public/icons/discount.png">
-            </q-avatar>
-            <div class="text-h6 q-mt-lg">My Deals</div>
-          </q-card-section>
-          <q-item-section>
-            <q-card-actions align="center">
-              <q-btn label="New deal" class="text-capitalize" rounded color="cyan-8" icon="add" style="max-width: 120px"
-                @click="choseedealtypedialog = true"></q-btn>
-            </q-card-actions>
+  <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+    <q-card class="bg-blue-grey-9 card-bg text-white no-shadow" bordered>
+      <q-card-section class="text-center bg-transparent">
+        <q-avatar size="120px" class="shadow-10">
+          <img src="../../public/icons/store.png">
+        </q-avatar>
+        <div class="text-h6 q-mt-lg">Edit Store</div>
+      </q-card-section>
+      <q-item-section>
+        <q-card-actions align="center">
+        </q-card-actions>
+        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section icon="store">
+            <q-input dark color="white" dense v-model="store_details.store_name" label="Store Name"
+              style="max-width: 600px" />
           </q-item-section>
-          <q-card-section>
-            <div class="text-body2 text-justify">
-              <div class="q-pa-md" style="max-width: 600px">
-                <q-list dense bordered padding class="rounded-borders">
-                  <q-item clickable v-ripple>
-                    <q-item-section>
-                      Deal 1
-                    </q-item-section>
-                    <q-btn flat rounded icon="edit"></q-btn>
-                    <q-btn flat rounded icon="delete"></q-btn>
-                  </q-item>
-                </q-list>
-              </div>
+        </q-item>
+        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section>
+            <q-input dark color="white" dense v-model="store_details.store_city_address" label="City Address"
+              style="max-width: 600px" />
+          </q-item-section>
+        </q-item>
+        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section>
+            <q-input dark color="white" dense v-model="store_details.store_street_address" label="Street Address"
+              style="max-width: 600px" />
+          </q-item-section>
+        </q-item>
+        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section>
+            <q-input dark color="white" dense v-model="store_details.post_code" label="Postal Code"
+              style="max-width: 600px" />
+          </q-item-section>
+        </q-item>
+        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section>
+            <q-input dark color="white" dense v-model="store_details.store_phone" label="Store Phone"
+              style="max-width: 600px" />
+          </q-item-section>
+        </q-item>
+        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section>
+            <q-input dark color="white" dense v-model="time" label="Set Opening Hour" style="max-width: 600px">
+              <template #append>
+                <q-icon class="cursor-pointer" name="access_time">
+                  <q-popup-proxy cover>
+                    <q-time v-model="time" now-btn format24h color="cyan-8">
+                      <div class="row justify-end">
+                        <q-btn v-close-popup flat label="close"></q-btn>
+                        <q-btn v-close-popup type="submit" flat label="Submit"></q-btn>
+                      </div>
+                    </q-time>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </q-item-section>
+        </q-item>
+        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section>
+            <q-input dark color="white" dense v-model="model1" label="Set Closing Hour" style="max-width: 600px">
+              <template #append>
+                <q-icon class="cursor-pointer" name="access_time">
+                  <q-popup-proxy cover>
+                    <q-time v-model="model1" now-btn format24h color="cyan-8">
+                      <div class="row justify-end">
+                        <q-btn v-close-popup flat label="close"></q-btn>
+                        <q-btn v-close-popup type="submit" flat label="Submit"></q-btn>
+                      </div>
+                    </q-time>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </q-item-section>
+        </q-item>
+      <!-- <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section>
+            <div class="q-pa-md">
+              <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
-          </q-card-section>
-        </q-card>
-      </div>
-    <q-dialog v-model="choseedealtypedialog">
-      <ChooseDealType></ChooseDealType>
-    </q-dialog>
+          </q-item-section>
+                                                      </q-item> -->
+        <q-card-actions align="right">
+          <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note">Update Store Info</q-btn>
+        </q-card-actions>
+        <q-card-actions align="right">
+          <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
+        </q-card-actions>
+      </q-item-section>
+    </q-card>
+  </div>
+  <q-dialog v-model="choseedealtypedialog">
+    <ChooseDealType></ChooseDealType>
+  </q-dialog>
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
@@ -50,9 +112,10 @@ export default defineComponent({
   }),
   setup() {
     return {
-      user_details: {},
+      store_details: {},
       password_dict: {},
       createstordialog: ref(false),
+      time: ref('00:00'),
     };
   },
   methods: {
