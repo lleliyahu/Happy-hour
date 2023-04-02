@@ -61,11 +61,11 @@
         </q-item>
         <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
-            <q-input dark color="white" dense v-model="model1" label="Set Closing Hour" style="max-width: 600px">
+            <q-input dark color="white" dense v-model="time2" label="Set Closing Hour" style="max-width: 600px">
               <template #append>
                 <q-icon class="cursor-pointer" name="access_time">
                   <q-popup-proxy cover>
-                    <q-time v-model="model1" now-btn format24h color="cyan-8">
+                    <q-time v-model="time2" now-btn format24h color="cyan-8">
                       <div class="row justify-end">
                         <q-btn v-close-popup flat label="close"></q-btn>
                         <q-btn v-close-popup type="submit" flat label="Submit"></q-btn>
@@ -77,13 +77,32 @@
             </q-input>
           </q-item-section>
         </q-item>
+        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-item-section>
+            <div class="q-pa-md" style="max-width: 300px">
+              <q-input filled v-model="date" mask="date" :rules="['date']">
+                <template v-slot:append>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+                      <q-date v-model="date">
+                        <div class="row items-center justify-end">
+                          <q-btn v-close-popup label="Close" color="primary" flat />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+          </q-item-section>
+        </q-item>
       <!-- <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
           </q-item-section>
-                                                      </q-item> -->
+                                                                </q-item> -->
         <q-card-actions align="right">
           <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note">Update Store Info</q-btn>
         </q-card-actions>
@@ -116,6 +135,8 @@ export default defineComponent({
       password_dict: {},
       createstordialog: ref(false),
       time: ref('00:00'),
+      time2: ref('00:00'),
+      date: ref('2023/04/01'),
     };
   },
   methods: {
