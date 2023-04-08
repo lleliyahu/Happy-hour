@@ -4,46 +4,28 @@
     <q-card class="bg-blue-grey-9 card-bg text-white no-shadow" bordered>
       <q-card-section class="text-center bg-transparent">
         <q-avatar size="120px" class="shadow-10">
-          <img src="../../public/icons/store.png">
+          <img src="../../public/icons/discount.png">
         </q-avatar>
-        <div class="text-h6 q-mt-lg">Edit Store</div>
+        <div class="text-h6 q-mt-lg">Edit Deal</div>
       </q-card-section>
       <q-item-section>
         <q-card-actions align="center">
         </q-card-actions>
         <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section icon="store">
-            <q-input dark color="white" dense v-model="store_details.store_name" label="Store Name"
+            <q-input dark color="white" dense v-model="store_details.store_name" label="Deal For {{ Item }}"
               style="max-width: 600px" />
           </q-item-section>
         </q-item>
         <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
-            <q-input dark color="white" dense v-model="store_details.store_city_address" label="City Address"
-              style="max-width: 600px" />
+            <q-slider class="q-mt-xl" v-model="model" color="cyan-8" markers :marker-labels="fnMarkerLabel" :min="1"
+              :max="9" />
           </q-item-section>
         </q-item>
         <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
-            <q-input dark color="white" dense v-model="store_details.store_street_address" label="Street Address"
-              style="max-width: 600px" />
-          </q-item-section>
-        </q-item>
-        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <q-item-section>
-            <q-input dark color="white" dense v-model="store_details.post_code" label="Postal Code"
-              style="max-width: 600px" />
-          </q-item-section>
-        </q-item>
-        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <q-item-section>
-            <q-input dark color="white" dense v-model="store_details.store_phone" label="Store Phone"
-              style="max-width: 600px" />
-          </q-item-section>
-        </q-item>
-        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <q-item-section>
-            <q-input dark color="white" dense v-model="time" label="Set Opening Hour" style="max-width: 600px">
+            <q-input dark color="white" dense v-model="time" label="Set Opening Deal Hour" style="max-width: 600px">
               <template #append>
                 <q-icon class="cursor-pointer" name="access_time">
                   <q-popup-proxy cover>
@@ -61,7 +43,7 @@
         </q-item>
         <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
-            <q-input dark color="white" dense v-model="time2" label="Set Closing Hour" style="max-width: 600px">
+            <q-input dark color="white" dense v-model="time2" label="Set Closing Deal Hour" style="max-width: 600px">
               <template #append>
                 <q-icon class="cursor-pointer" name="access_time">
                   <q-popup-proxy cover>
@@ -79,7 +61,7 @@
         </q-item>
         <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
-            <q-input dark color="white" dense v-model="days" label="Set Opening Dates" style="max-width: 600px"
+            <q-input dark color="white" dense v-model="days" label="Set Deal Dates" style="max-width: 600px"
               :rules="['days']">
               <template #append>
                 <q-icon class="cursor-pointer" name="event">
@@ -101,12 +83,12 @@
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
           </q-item-section>
-                                                                                                        </q-item> -->
+                                                                                                                                                                                                                </q-item> -->
         <q-card-actions align="right">
-          <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note">Update Store Info</q-btn>
+          <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done">Start Deal</q-btn>
         </q-card-actions>
         <q-card-actions align="right">
-          <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
+          <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Deal</q-btn>
         </q-card-actions>
       </q-item-section>
     </q-card>
@@ -129,7 +111,11 @@ export default defineComponent({
     stores: [],
   }),
   setup() {
+    const model = ref(2);
+    // const priceModel = ref(4);
     return {
+      model,
+      fnMarkerLabel: (val) => `${5 * val}%`,
       store_details: {},
       password_dict: {},
       createstordialog: ref(false),
