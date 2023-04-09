@@ -66,7 +66,7 @@
               <template #append>
                 <q-icon class="cursor-pointer" name="event">
                   <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                    <q-date v-model="days" multiple color="cyan-8">
+                    <q-date v-model="days" range multiple color="cyan-8">
                       <div class="row items-center justify-end">
                         <q-btn v-close-popup label="Close" color="primary" flat />
                       </div>
@@ -82,10 +82,11 @@
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
-          </q-item-section>
-                                                                                                                                                                                                                </q-item> -->
+                                      </q-item-section>                                                                                                                                                          </q-item> -->
         <q-card-actions align="right">
-          <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done">Start Deal</q-btn>
+          <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done"
+            @click="startdealdialog = true">Start Deal
+          </q-btn>
         </q-card-actions>
         <q-card-actions align="right">
           <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Deal</q-btn>
@@ -93,26 +94,25 @@
       </q-item-section>
     </q-card>
   </div>
-  <q-dialog v-model="choseedealtypedialog">
-    <ChooseDealType></ChooseDealType>
+  <q-dialog v-model="startdealdialog">
+    <StartDeal></StartDeal>
   </q-dialog>
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
-import ChooseDealType from 'src/components/ChooseDealType.vue';
+import StartDeal from 'src/components/StartDeal.vue';
 import axios from 'axios';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
-    ChooseDealType,
+    StartDeal,
   },
   data: () => ({
     stores: [],
   }),
   setup() {
     const model = ref(2);
-    // const priceModel = ref(4);
     return {
       model,
       fnMarkerLabel: (val) => `${5 * val}%`,
@@ -122,7 +122,10 @@ export default defineComponent({
       time: ref('00:00'),
       time2: ref('00:00'),
       date: ref('2023/04/01'),
-      days: ref(['2023/01/01', '2023/12/31']),
+      days: ref([
+        { from: '2023/04/01', to: '2023/04/10' },
+        { from: '2023/04/21', to: '2020/04/25' },
+      ]),
     };
   },
   methods: {

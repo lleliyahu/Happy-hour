@@ -159,11 +159,11 @@
             <div class="text-body2 text-justify">
               <div class="q-pa-md" style="max-width: 600px">
                 <q-list dense bordered padding class="rounded-borders">
-                  <q-item clickable v-ripple>
+                  <q-item clickable v-ripple to="/EditDeal">
                     <q-item-section>
                       Deal 1
                     </q-item-section>
-                    <q-btn flat rounded icon="edit"></q-btn>
+                    <q-btn flat rounded icon="edit" to="/EditDeal"></q-btn>
                     <q-btn flat rounded icon="delete"></q-btn>
                   </q-item>
                 </q-list>
