@@ -82,7 +82,7 @@
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
-                                      </q-item-section>                                                                                                                                                          </q-item> -->
+                                                </q-item-section>                                                                                                                                                          </q-item> -->
         <q-card-actions align="right">
           <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done"
             @click="startdealdialog = true">Start Deal
@@ -97,16 +97,22 @@
   <q-dialog v-model="startdealdialog">
     <StartDeal></StartDeal>
   </q-dialog>
+<!-- <q-dialog v-model="startdealdialog">
+    <DeleteDeal ></DeleteDeal>
+      </q-dialog> -->
+  <q-dialog></q-dialog>
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
 import StartDeal from 'src/components/StartDeal.vue';
+// import DeleteDeal from 'src/components/DeleteDeal.vue';
 import axios from 'axios';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
     StartDeal,
+    // DeleteDeal,
   },
   data: () => ({
     stores: [],

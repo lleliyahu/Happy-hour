@@ -166,6 +166,13 @@
                     <q-btn flat rounded icon="edit" to="/EditDeal"></q-btn>
                     <q-btn flat rounded icon="delete"></q-btn>
                   </q-item>
+                  <q-item clickable v-ripple to="/EditDealBreaker">
+                    <q-item-section>
+                      DealBreaker 1
+                    </q-item-section>
+                    <q-btn flat rounded icon="edit" to="/EditDealBreaker"></q-btn>
+                    <q-btn flat rounded icon="delete"></q-btn>
+                  </q-item>
                 </q-list>
               </div>
             </div>
