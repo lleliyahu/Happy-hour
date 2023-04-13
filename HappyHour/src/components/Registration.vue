@@ -82,4 +82,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="sass" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap')
+
+div
+  font-family: 'Carter One', cursive
+
+</style>

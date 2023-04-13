@@ -71,7 +71,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap')
+
 div
   color: $red-6
   background-color: $grey-10
+  font-family: 'Carter One', cursive
 </style>

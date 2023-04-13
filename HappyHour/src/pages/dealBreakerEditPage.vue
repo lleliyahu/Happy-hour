@@ -84,7 +84,7 @@
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
-                                                                        </q-item-section>                                                                                                                                                          </q-item> -->
+                                                                            </q-item-section>                                                                                                                                                          </q-item> -->
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done"
                 @click="startdealdialog = true">Start Deal
@@ -153,7 +153,9 @@ export default defineComponent({
 });
 </script>
 <style lang="sass" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap')
+
 div
-  color: $red-6
-  background-color: $grey-10
+  font-family: 'Carter One', cursive
+
 </style>

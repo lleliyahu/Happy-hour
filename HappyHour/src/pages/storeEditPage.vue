@@ -101,7 +101,7 @@
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
           </q-item-section>
-                                                                                                        </q-item> -->
+                                                                                                          </q-item> -->
         <q-card-actions align="right">
           <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note">Update Store Info</q-btn>
         </q-card-actions>
@@ -156,3 +156,10 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="sass" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap')
+
+div
+  font-family: 'Carter One', cursive
+
+</style>

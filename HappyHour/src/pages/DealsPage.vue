@@ -1,5 +1,8 @@
 <!-- eslint-disable max-len -->
 <template>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@700&display=swap" rel="stylesheet">
   <div>
     <div class="q-pa-md gt-sm">
       <div class="q-pa-md q-gutter-sm row justify-center">
@@ -65,5 +68,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap')
+
+div
+  font-family: 'Carter One', cursive
 
 </style>
