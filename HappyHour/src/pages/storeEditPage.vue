@@ -95,6 +95,9 @@
             </q-input>
           </q-item-section>
         </q-item>
+        <q-card-actions align="left">
+          <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit" @click="EditMenudialog = true">Edit Menu</q-btn>
+        </q-card-actions>
       <!-- <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
             <div class="q-pa-md">
@@ -102,28 +105,57 @@
             </div>
           </q-item-section>
                                                                                                           </q-item> -->
-        <q-card-actions align="right">
+
+    <div class="q-pa-md">
+     <q-table
+      title="Treats"
+      :rows="rows"
+      :columns="columns"
+      row-key="id"
+      :filter="filter"
+      :loading="loading"
+     >
+
+      <template v-slot:top>
+        <q-btn color="primary" :disable="loading" label="Add row" @click="addRow" />
+        <q-btn class="q-ml-sm" color="primary" :disable="loading" label="Remove row" @click="removeRow" />
+        <q-space />
+        <q-input borderless dense debounce="300" color="primary" v-model="filter">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
+
+    </q-table>
+  </div>
+       <q-card-actions align="right">
           <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note">Update Store Info</q-btn>
         </q-card-actions>
         <q-card-actions align="right">
           <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
         </q-card-actions>
       </q-item-section>
-    </q-card>
+
+     </q-card>
+    <q-dialog v-model="EditMenudialog">
+      <EditMenu></EditMenu>
+    </q-dialog>
   </div>
-  <q-dialog v-model="choseedealtypedialog">
+  <!-- <q-dialog v-model="choseedealtypedialog">
     <ChooseDealType></ChooseDealType>
-  </q-dialog>
+  </q-dialog> -->
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
-import ChooseDealType from 'src/components/ChooseDealType.vue';
+// import ChooseDealType from 'src/components/ChooseDealType.vue';
+import EditMenu from 'src/components/EditMenu.vue';
 import axios from 'axios';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
-    ChooseDealType,
+    EditMenu,
   },
   data: () => ({
     stores: [],
@@ -137,6 +169,7 @@ export default defineComponent({
       time2: ref('00:00'),
       date: ref('2023/04/01'),
       days: ref(['2023/01/01', '2023/12/31']),
+      EditMenudialog: ref(false),
     };
   },
   methods: {
