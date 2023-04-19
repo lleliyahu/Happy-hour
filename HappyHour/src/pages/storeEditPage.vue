@@ -135,7 +135,7 @@
                                                                                                     </q-table> -->
               <q-table class="no-shadow" :rows="data3" :columns="column" hide-bottom>
                 <template v-slot:top>
-                  <q-btn color="green-8" :disable="loading" label="Add row" @click="addRow" />
+                  <q-btn color="green-8" :disable="loading" label="Add row" @click="AddItemMenudialog = true" />
                   <q-btn class="q-ml-sm" color="red-8" :disable="loading" label="Remove row" @click="removeRow" />
                   <q-space />
                   <q-input borderless dense debounce="300" color="black-8" v-model="filter">
@@ -208,6 +208,9 @@
     <q-dialog v-model="EditMenudialog">
       <EditMenu></EditMenu>
     </q-dialog>
+    <q-dialog v-model="AddItemMenudialog">
+      <AddItemMenu></AddItemMenu>
+    </q-dialog>
   </div>
 <!-- <q-dialog v-model="choseedealtypedialog">
     <ChooseDealType></ChooseDealType>
@@ -218,6 +221,7 @@ import { defineComponent, ref } from 'vue';
 // import ChooseDealType from 'src/components/ChooseDealType.vue';
 import EditMenu from 'src/components/EditMenu.vue';
 import axios from 'axios';
+import AddItemMenu from 'src/components/AddItemMenu.vue';
 
 const column = [
   {
@@ -272,6 +276,7 @@ const data3 = [
 export default defineComponent({
   name: 'UserProfile',
   components: {
+    AddItemMenu,
     EditMenu,
   },
   data: () => ({
@@ -292,6 +297,7 @@ export default defineComponent({
       date: ref('2023/04/01'),
       days: ref(['2023/01/01', '2023/12/31']),
       EditMenudialog: ref(false),
+      AddItemMenudialog: ref(false),
       column,
       data3,
       getColor(val) {

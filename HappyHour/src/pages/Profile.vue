@@ -83,7 +83,7 @@
                         <q-item-section>
                           {{ store.storename }}
                         </q-item-section>
-                        <q-btn flat rounded icon="edit" to="/EditStore"></q-btn>
+                        <q-btn flat rounded icon="edit" to="`{ name: '/EditStore', params: { storename:` + store.storename + `}}' } }"></q-btn>
                         <q-btn flat rounded icon="delete"></q-btn>
                       </q-item>
                     </div>
