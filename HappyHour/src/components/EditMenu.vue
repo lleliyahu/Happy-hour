@@ -183,7 +183,7 @@ export default {
       }
       axios.post('http://localhost:3000/users/add', newUser).then((response) => {
         console.log('User add', response);
-        alert('You have seccessfuly registration');
+        alert('You have successfully registered');
       });
       return true;
     },
