@@ -2,8 +2,8 @@
 <template>
   <div>
     <router-link to="/nouvelle-page">
-    <q-card class="my-card">
-      <q-btn @click="handleImageClick">
+    <q-card class="my-card" @click="handleImageClick">
+
         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
         <q-card-section>
           <q-btn
@@ -42,7 +42,6 @@
           <q-btn v-close-popup flat color="primary" label="Reserve" />
           <q-btn v-close-popup flat color="primary" round icon="event" />
         </q-card-actions> -->
-        </q-btn>
        </q-card>
        </router-link>
 
