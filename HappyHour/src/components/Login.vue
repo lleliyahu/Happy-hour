@@ -65,7 +65,7 @@ export default {
       axios.get('http://localhost:3000/users/Checkuser', { params: { user } }).then((response) => {
         console.log('checkuser', response.data[0].username);
         localStorage.setItem('user', response.data[0].username);
-        alert('You have seccessfuly sing in');
+        alert('You have successfully sign in');
         // this.isUserConnect = true;
         this.UserConnect();
       });
