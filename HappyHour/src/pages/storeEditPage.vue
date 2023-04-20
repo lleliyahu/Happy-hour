@@ -15,8 +15,8 @@
             </q-card-actions>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section icon="store">
-                <q-input dark color="white" dense v-model="store_details.store_name" label="Store Name"
-                  style="max-width: 600px" />
+                <q-input dark color="white" dense v-model="storename" label="Store Name"
+                  style="max-width: 600px"/>
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -274,14 +274,17 @@ export default defineComponent({
   components: {
     EditMenu,
   },
+  props: ['storeName'],
   data: () => ({
     stores: [],
+    storename: '',
   }),
   setup() {
     // const loading = ref(false);
     // const filter = ref('');
     // const rowCount = ref(10);
     // const rows = ref([...originalRows]);
+    // console.log(this.storeName);
 
     return {
       store_details: {},
@@ -350,7 +353,8 @@ export default defineComponent({
   },
   mounted() {
     this.refreshStore();
-    // console.log(this.deals);
+    console.log('storeName', this.storeName);
+    this.storename = this.storeName;
   },
 });
 </script>

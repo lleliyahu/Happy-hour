@@ -1,3 +1,8 @@
+// const EditStore = {
+//   // make sure to add a prop named exactly like the route param
+//   props: ['storeName'],
+//   template: () => import('src/pages/storeEditPage.vue'),
+// };
 const routes = [
   {
     path: '/',
@@ -10,7 +15,12 @@ const routes = [
       { path: 'nouvelle-page', component: () => import('src/pages/AllStorePageDetails.vue') },
       { path: 'DealBreaker', component: () => import('src/pages/DealBreaker.vue') },
       { path: 'tempPage', component: () => import('src/pages/tempPage.vue') },
-      { path: 'EditStore', component: () => import('src/pages/storeEditPage.vue') },
+      {
+        path: 'EditStore/:storeName',
+        name: 'EditStore',
+        props: true,
+        component: () => import('src/pages/storeEditPage.vue'),
+      },
       { path: 'EditDeal', component: () => import('src/pages/dealEditPage.vue') },
       { path: 'EditDealBreaker', component: () => import('src/pages/dealBreakerEditPage.vue') },
     ],
