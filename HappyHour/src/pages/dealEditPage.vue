@@ -83,14 +83,15 @@
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
-                                                        </q-item-section>                                                                                                                                                          </q-item> -->
+                                                              </q-item-section>                                                                                                                                                          </q-item> -->
           <q-card-actions align="right">
             <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done"
               @click="startdealdialog = true">Start Deal
             </q-btn>
           </q-card-actions>
           <q-card-actions align="right">
-            <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Deal</q-btn>
+            <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete"
+              @click="$event => deleteDeal = true">Delete Deal</q-btn>
           </q-card-actions>
         </q-item-section>
       </q-card>
@@ -98,23 +99,22 @@
     <q-dialog v-model="startdealdialog">
       <StartDeal></StartDeal>
     </q-dialog>
-  <!-- <q-dialog v-model="startdealdialog">
-    <DeleteDeal ></DeleteDeal>
-              </q-dialog> -->
-    <q-dialog></q-dialog>
+    <q-dialog v-model="deletedealdialog">
+      <deleteDeal></deleteDeal>
+    </q-dialog>
   </div>
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
 import StartDeal from 'src/components/StartDeal.vue';
-// import DeleteDeal from 'src/components/DeleteDeal.vue';
+import deleteDeal from 'src/components/DeleteDeal.vue';
 import axios from 'axios';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
     StartDeal,
-    // DeleteDeal,
+    deleteDeal,
   },
   data: () => ({
     stores: [],

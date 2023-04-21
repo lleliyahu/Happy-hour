@@ -22,7 +22,8 @@
                 <q-icon name="person" />
               </template>
             </q-input>
-            <q-input square clearable v-model="password" type="password" label="Password">
+            <q-input square clearable v-model="password" type="password" label="Password"
+              :rules="[val => val.length <= 10 || 'Please use maximum 10 characters']">
               <template v-slot:prepend>
                 <q-icon name="lock" />
               </template>

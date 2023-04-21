@@ -1,64 +1,51 @@
 <!-- eslint-disable max-len -->
 <template>
-    <div class="column q-pa-lg">
-      <div class="row">
-        <q-card square class="shadow-24" style="width:300px;height:400px;">
-          <q-card-section class="bg-blue-grey-9">
-            <h4 class="text-h5 text-white q-my-md">Add Store</h4>
-          </q-card-section>
-          <q-card-section>
-            <q-form class="q-px-sm q-pt-xl">
-              <q-input square clearable v-model="ItemName" type="text" label="Item Name ">
-                <template v-slot:prepend>
-                  <q-icon name="inventory_2" />
-                </template>
-              </q-input>
-            </q-form>
-          </q-card-section>
-          <q-card-section>
-            <q-form class="q-px-sm q-pt-xl">
-              <q-input square clearable v-model="descreption" type="text" label=" descreption">
-                <template v-slot:prepend>
-                  <q-icon name="description" />
-                </template>
-              </q-input>
-            </q-form>
-          </q-card-section>
-          <q-card-section>
-            <q-form class="q-px-sm q-pt-xl">
-              <q-input square clearable v-model="Price" type="text" label="price">
-                <template v-slot:prepend>
-                  <q-icon name="payments" />
-                </template>
-              </q-input>
-            </q-form>
-          </q-card-section>
-          <q-card-section>
-            <q-form class="q-px-sm q-pt-xl">
-              <q-input square clearable v-model="picture" type="img" label="picture ">
-                <template v-slot:prepend>
-                  <q-icon name="inventory_2" />
-                </template>
-              </q-input>
-            </q-form>
-          </q-card-section>
-  <div class="q-pa-md">
-    <q-uploader
-      :factory="factoryFn"
-      multiple
-      style="max-width: 300px"
-    />
-  </div>
-          <q-card-actions class="q-px-lg">
-            <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="createstore"
+  <div class="column q-pa-lg">
+    <div class="row">
+      <q-card square class="shadow-24" style="width:400px;height:600px;">
+        <q-card-section class="bg-blue-grey-9">
+          <h4 class="text-h5 text-white q-my-md">Add New Menu Item</h4>
+        </q-card-section>
+        <q-card-section>
+          <q-form class="q-px-sm q-pt">
+            <q-input square clearable v-model="ItemName" type="text" label="Item Name ">
+              <template v-slot:prepend>
+                <q-icon name="inventory_2" />
+              </template>
+            </q-input>
+          </q-form>
+        </q-card-section>
+        <q-card-section>
+          <q-form class="q-px-sm q-pt">
+            <q-input square clearable v-model="descreption" type="text" label="Descreption">
+              <template v-slot:prepend>
+                <q-icon name="description" />
+              </template>
+            </q-input>
+          </q-form>
+        </q-card-section>
+        <q-card-section>
+          <q-form class="q-px-sm q-pt">
+            <q-input square clearable v-model="Price" type="text" label="Price">
+              <template v-slot:prepend>
+                <q-icon name="payments" />
+              </template>
+            </q-input>
+          </q-form>
+        </q-card-section>
+        <div class="q-pa-md">
+          <q-uploader :factory="factoryFn" multiple style="max-width: 300px" color="cyan-8" />
+        </div>
+        <q-card-actions class="q-px-lg">
+          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="createstore"
             v-close-popup />
-          </q-card-actions>
-          <q-card-section class="text-center q-pa-sm">
-          </q-card-section>
-        </q-card>
-      </div>
+        </q-card-actions>
+        <q-card-section class="text-center q-pa-sm">
+        </q-card-section>
+      </q-card>
     </div>
-  </template>
+  </div>
+</template>
 <script>
 import axios from 'axios';
 
@@ -67,10 +54,10 @@ export default {
 
   props: {
     refreshStore:
-      {
-        type: Function,
-        default() { return console.log('Default function aa'); },
-      },
+    {
+      type: Function,
+      default() { return console.log('Default function aa'); },
+    },
   },
   data() {
     return {
