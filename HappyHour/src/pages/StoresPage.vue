@@ -13,15 +13,15 @@
         <q-btn to="/DealBreaker" align="between" class="btn-fixed-width" color="red-6" label="Deal Breaker"
           icon="local_fire_department" />
       </div>
-      <div class="q-gutter-md row">
-        <h4><b>Stores near me:</b></h4>
-        <q-space />
-        <div class="q-pa-md q-gutter-sm">
-          <q-btn label="Filter" color="blue-grey-8" icon="filter_alt" @click="filterdialog = true" />
-          <q-dialog v-model="filterdialog">
-            <storeFilter></storeFilter>
-          </q-dialog>
-        </div>
+    </div>
+    <div class="q-gutter-md row">
+      <h4><b>Stores near me:</b></h4>
+      <q-space />
+      <div class="q-pa-md q-gutter-sm">
+        <q-btn label="Filter" color="blue-grey-8" icon="filter_alt" @click="filterdialog = true" />
+        <q-dialog v-model="filterdialog">
+          <storeFilter></storeFilter>
+        </q-dialog>
       </div>
     </div>
     <div class="q-pa-md">

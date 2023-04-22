@@ -27,7 +27,7 @@
 <script>
 
 export default {
-  name: 'deleteDeal',
+  name: 'DeleteDeal',
   props: {
 
   },

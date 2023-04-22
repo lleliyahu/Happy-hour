@@ -79,11 +79,11 @@
                 <div class="q-pa-md" style="max-width: 600px">
                   <q-list dense bordered padding class="rounded-borders">
                     <div v-for="store in stores" :key="store.storename">
-                      <q-item clickable v-ripple :to="{path:`/EditStore/${store.storename}`}">
+                      <q-item clickable v-ripple :to="{ path: `/EditStore/${store.storename}` }">
                         <q-item-section>
                           {{ store.storename }}
                         </q-item-section>
-                        <q-btn flat rounded icon="edit" ></q-btn>
+                        <q-btn flat rounded icon="edit"></q-btn>
                         <q-btn flat rounded icon="delete"></q-btn>
                       </q-item>
                     </div>
@@ -175,15 +175,21 @@
                       <q-btn flat rounded icon="delete"></q-btn>
                     </q-item>
                   </q-list>
+                  <q-dialog v-model="choseedealtypedialog">
+                    <ChooseDealType></ChooseDealType>
+                  </q-dialog>
                 </div>
+                <q-dialog v-model="choseedealtypedialog">
+                  <ChooseDealType></ChooseDealType>
+                </q-dialog>
               </div>
+              <q-dialog v-model="choseedealtypedialog">
+                <ChooseDealType></ChooseDealType>
+              </q-dialog>
             </q-card-section>
           </q-card>
         </div>
       </div>
-      <q-dialog v-model="choseedealtypedialog">
-        <ChooseDealType></ChooseDealType>
-      </q-dialog>
     </q-page>
   </div>
 </template>
