@@ -21,7 +21,7 @@
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="store_details.store_city_address" label="City Address"
+                <q-input dark color="white" dense v-model="city_address" label="City Address"
                   style="max-width: 600px" />
               </q-item-section>
             </q-item>
@@ -195,7 +195,7 @@
         <div class="row">
           <div class="col">
             <q-card-actions align="right">
-              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note">Update Store Info</q-btn>
+              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click="updateStore" >Update Store Info</q-btn>
             </q-card-actions>
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
@@ -283,6 +283,7 @@ export default defineComponent({
   data: () => ({
     stores: [],
     storename: '',
+    city_address: '',
   }),
   setup() {
     // const loading = ref(false);
@@ -355,6 +356,20 @@ export default defineComponent({
         this.stores = response.data;
         console.log('test', response.data);
       });
+    },
+    updateStore() {
+      const newStoreDetails = {};
+      newStoreDetails.usstorename = localStorage.getItem('user');
+      newStoreDetails.storename = this.storeName;
+      newStoreDetails.city_address = this.city_address;
+      console.log('newStoreDetails:', newStoreDetails);
+      axios.post('http://localhost:3000/store/update', newStoreDetails)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   mounted() {
