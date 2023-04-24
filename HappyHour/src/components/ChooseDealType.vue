@@ -8,19 +8,19 @@
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
-            <q-btn size="lg" class="full-width" label="Deal" icon="percent"></q-btn>
+            <q-btn size="lg" class="full-width" label="Deal" icon="percent" to="EditDeal"></q-btn>
           </q-form>
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
-            <q-btn size="lg" class="full-width text-white" color="red-6" label="Deal Breaker"
-              icon="local_fire_department"></q-btn>
+            <q-btn size="lg" class="full-width text-white" color="red-6" label="Deal Breaker" icon="local_fire_department"
+              to="EditDealBreaker"></q-btn>
           </q-form>
         </q-card-section>
       <!-- <q-card-actions class="q-px-lg">
           <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create"
             @click="ChooseDealType" />
-                              </q-card-actions> -->
+                                      </q-card-actions> -->
         <q-card-section class="text-center q-pa-sm">
         </q-card-section>
       </q-card>
@@ -45,3 +45,9 @@ export default {
   },
 };
 </script>
+<style lang="sass" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap')
+
+div
+  font-family: 'Carter One', cursive
+</style>

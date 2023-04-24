@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-  <div class="q-pa-md gt-sm">
+  <div class="q-pa-md">
     <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
       <q-card class="bg-blue-grey-9 card-bg text-red-6 no-shadow" bordered>
         <q-card-section class="text-center bg-transparent">
@@ -81,8 +81,8 @@
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-slider class="q-mt-xl" v-model="model" color="primary" markers :marker-labels="fnMarkerLabel" :min="10"
-                :max="18" />
+              <q-slider class="q-mt-xl" v-model="model" color="primary" markers :marker-labels="fnMarkerLabel" :min="5"
+                :max="9" />
             </q-item-section>
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -144,14 +144,15 @@
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
-                                                                                                                          </q-item-section>                                                                                                                                                          </q-item> -->
+                                                                                                                                          </q-item-section>                                                                                                                                                          </q-item> -->
           <q-card-actions align="right">
             <q-btn class="text-capitalize text-white-6" rounded color="green-8" icon="done"
               @click="startdealdialog = true">Start Deal
             </q-btn>
           </q-card-actions>
           <q-card-actions align="right">
-            <q-btn class="text-capitalize text-white-6" rounded color="red-8" icon="delete">Delete Deal</q-btn>
+            <q-btn class="text-capitalize text-white-6" rounded color="red-8" icon="delete"
+              @click="deletedealdialog = true">Delete Deal</q-btn>
           </q-card-actions>
         </q-item-section>
       </q-card>
@@ -159,19 +160,22 @@
     <q-dialog v-model="startdealdialog">
       <StartDeal></StartDeal>
     </q-dialog>
+    <q-dialog v-model="deletedealdialog">
+      <DeleteDeal></DeleteDeal>
+    </q-dialog>
   </div>
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
 import StartDeal from 'src/components/StartDeal.vue';
-// import DeleteDeal from 'src/components/DeleteDeal.vue';
+import DeleteDeal from 'src/components/DeleteDeal.vue';
 import axios from 'axios';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
     StartDeal,
-    // DeleteDeal,
+    DeleteDeal,
   },
   data: () => ({
     stores: [],
@@ -180,7 +184,7 @@ export default defineComponent({
     const model = ref(2);
     return {
       model,
-      fnMarkerLabel: (val) => `${5 * val}%`,
+      fnMarkerLabel: (val) => `${10 * val}%`,
       store_details: {},
       password_dict: {},
       createstordialog: ref(false),
