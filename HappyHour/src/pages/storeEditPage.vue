@@ -15,14 +15,12 @@
             </q-card-actions>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section icon="store">
-                <q-input dark color="white" dense v-model="storename" label="Store Name"
-                  style="max-width: 600px"/>
+                <q-input dark color="white" dense v-model="storename" label="Store Name" style="max-width: 600px" />
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="city_address" label="City Address"
-                  style="max-width: 600px" />
+                <q-input dark color="white" dense v-model="city_address" label="City Address" style="max-width: 600px" />
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -107,7 +105,7 @@
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
           </q-item-section>
-                                                                                                                                                                                                          </q-item> -->
+                                                                                                                                                                                                              </q-item> -->
           </div>
           <div class="col">
             <div class="q-pa-md">
@@ -132,7 +130,7 @@
         </q-input>
       </template>
 
-                                                                                                    </q-table> -->
+                                                                                                        </q-table> -->
               <q-table class="no-shadow" :rows="data3" :columns="column" hide-bottom>
                 <template v-slot:top>
                   <q-btn color="green-8" :disable="loading" label="Add row" @click="AddItemMenudialog = true" />
@@ -195,7 +193,8 @@
         <div class="row">
           <div class="col">
             <q-card-actions align="right">
-              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click="updateStore" >Update Store Info</q-btn>
+              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note"
+                @click="updateStore">Update Store Info</q-btn>
             </q-card-actions>
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
@@ -214,7 +213,7 @@
   </div>
 <!-- <q-dialog v-model="choseedealtypedialog">
     <ChooseDealType></ChooseDealType>
-                                                                                                  </q-dialog> -->
+                                                                                                      </q-dialog> -->
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
@@ -362,6 +361,8 @@ export default defineComponent({
       newStoreDetails.usstorename = localStorage.getItem('user');
       newStoreDetails.storename = this.storeName;
       newStoreDetails.city_address = this.city_address;
+      newStoreDetails.post_code = this.post_code;
+      newStoreDetails.store_phone = this.store_phone;
       console.log('newStoreDetails:', newStoreDetails);
       axios.post('http://localhost:3000/store/update', newStoreDetails)
         .then((response) => {
