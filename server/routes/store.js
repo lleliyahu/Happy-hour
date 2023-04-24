@@ -58,4 +58,25 @@ router.get("/Checkuser", async (req, res, next) => {
     });
 });
 
+
+router.post("/update", function (req, res, next) {
+    var myobj = req.body;
+    var myquery = { 'storename' : myobj.storename , 'username' : myobj.usstorename  };
+    var newvalues = { $set: myobj };
+    console.log('myquery : ' ,myquery);
+    console.log('myobj : ' ,myobj);
+    db.getDb()
+    .collection("store")
+    .updateOne(myquery,newvalues, function(err, res) {
+      if (err) {
+        console.log(err);}
+        else{
+          console.log(res);
+          console.log("1 document updated");
+        }
+      
+    });
+    res.send(JSON.stringify(req.body));
+});
+
 module.exports = router;
