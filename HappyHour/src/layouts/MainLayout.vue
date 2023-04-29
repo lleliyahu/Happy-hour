@@ -5,7 +5,7 @@
       <q-toolbar>
       <!-- <div class="lt-md">
           <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-                                                                                                                                                                                  </div> -->
+                                                                                                                                                                                    </div> -->
         <q-toolbar-title class="gt-sm">
           <q-btn to="/" flat round>
             <q-img src="../../public/icons/happyhouricon.png" style="width:100px" />
@@ -18,7 +18,7 @@
             </q-dialog>
           </q-btn>
         <!-- <span>Delviery to</span>
-                                                                                                                              <q-btn flat round icon="arrow_drop_down"></q-btn> -->
+                                                                                                                                <q-btn flat round icon="arrow_drop_down"></q-btn> -->
         </div>
         <q-space class="lt-md"></q-space>
         <q-toolbar-title class="lt-md">
@@ -53,7 +53,7 @@
           <q-dialog v-model="logindialog">
             <logIn :UserConnect="UserConnect" :goReg="goReg"></logIn>
           </q-dialog>
-                                                                                        </div> -->
+                                                                                          </div> -->
         <div v-if="!isNotUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
         </div>
@@ -123,7 +123,7 @@ import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 import RegistraTion from 'components/Registration.vue';
 import logIn from 'components/Login.vue';
-import PlacesSelection from 'components/Places.vue';
+import PlacesSelection from 'src/components/PlacesSelection.vue';
 // import { tsImportEqualsDeclaration } from '@babel/types';
 
 const linksList = [

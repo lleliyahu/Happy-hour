@@ -20,7 +20,7 @@
       <div class="q-pa-md q-gutter-sm">
         <q-btn label="Filter" color="blue-grey-8" icon="filter_alt" @click="filterdialog = true" />
         <q-dialog v-model="filterdialog">
-          <storeFilter></storeFilter>
+          <restaurantFilter></restaurantFilter>
         </q-dialog>
       </div>
     </div>
@@ -37,14 +37,13 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import cardDeal from 'components/cardDeal.vue';
-import storeFilter from 'components/StoreFilter.vue';
-// import { useQuasar } from 'quasar';
+import restaurantFilter from 'src/components/RestaurantFilter.vue';
 
 export default {
   name: 'DealsPage',
   components: {
     cardDeal,
-    storeFilter,
+    restaurantFilter,
   },
   data: () => ({
     deals: [],

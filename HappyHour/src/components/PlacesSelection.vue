@@ -2,58 +2,55 @@
 <template>
   <div class="column q-pa-lg">
     <div class="row">
-      <q-card square class="shadow-24" style="width:380px;height:650px;">
+      <q-card square class="shadow-24" style="width:300px;height:385px;">
         <q-card-section class="bg-blue-grey-9">
-          <h4 class="text-h5 text-white q-my-md">Filter</h4>
-          <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-            <q-btn fab icon="close" color="cyan-8" v-close-popup />
-          </div>
+          <h4 class="text-h5 text-white q-my-md">Pick a Place</h4>
         </q-card-section>
         <div class="q-pa-md">
-          <h6>Filter By Store:</h6>
-          <q-select filled color="cyan-8" v-model="model" use-input use-chips multiple input-debounce="1"
-            @new-value="createValue" :options="filterOptions" transition-show="jump-up" transition-hide="jump-up"
-            @filter="filterFn" style="max-width: 340px" label="Filter By:">
+          <q-select filled color="cyan-8" v-model="model" use-input use-chips input-debounce="1" @new-value="createValue"
+            :options="filterOptions" transition-show="jump-up" transition-hide="jump-up" @filter="filterFn"
+            style="max-width: 340px" label="Country">
             <q-icon name="cancel" @click.stop.prevent="model = null" class="cursor-pointer" />
           </q-select>
         </div>
         <div class="q-pa-md">
-          <h6>Price:</h6>
-          <q-select filled color="cyan-8" v-model="priceModel" use-input use-chips multiple input-debounce="1"
-            @new-value="createPriceValue" :options="priceOptions" transition-show="jump-up" transition-hide="jump-up"
-            @filter="filterPriceFn" style="max-width: 340px" label="Filter By:">
-            <q-icon name="cancel" @click.stop.prevent="priceModel = null" class="cursor-pointer" />
+          <q-select filled color="cyan-8" v-model="cityModel" use-input use-chips input-debounce="1"
+            @new-value="createCityValue" :options="citiesOptions" transition-show="jump-up" transition-hide="jump-up"
+            @filter="filterCityFn" style="max-width: 340px" label="City">
+            <q-icon name="cancel" @click.stop.prevent="dealModel = null" class="cursor-pointer" />
           </q-select>
         </div>
         <q-card-actions class="q-px-lg">
-          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Close" v-close-popup />
+          <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Continue" @click="checkuser"
+            v-close-popup />
         </q-card-actions>
+        <q-card-section class="text-center q-pa-sm">
+        </q-card-section>
       </q-card>
     </div>
   </div>
 </template>
-
 <script>
 import { ref } from 'vue';
 
 const stringOptions = [
-  'Alcohol', 'Florist', 'General Merchandise', 'Grocery', 'Health & Beauty', 'Pet Supply', 'Pharmacy',
+  'Israel',
 ];
 
-const priceOptions = [
-  '$', '$$', '$$$', '$$$$',
+const citiesOptions = [
+  'Beni Barak', 'Rishon Letsiyon', "Ra'annana", 'Tel Aviv', 'Petach Tikva',
 ];
 
 export default {
   setup() {
     const filterOptions = ref(stringOptions);
-    const filterPriceOptions = ref(priceOptions);
+    const filtercitiesOptions = ref(citiesOptions);
 
     return {
       model: ref(null),
-      priceModel: ref(null),
+      cityModel: ref(null),
       filterOptions,
-      priceOptions,
+      citiesOptions,
 
       createValue(val, done) {
         // Calling done(var) when new-value-mode is not set or "add",
@@ -94,7 +91,7 @@ export default {
         });
       },
 
-      createPriceValue(priceVal, done) {
+      createCityValue(cityVal, done) {
         // Calling done(var) when new-value-mode is not set or "add",
         // or done(var, "add") adds "var" content to the model
         // and it resets the input textbox to empty string
@@ -112,21 +109,21 @@ export default {
         // If "var" content is undefined/null, then it doesn't tampers with the model
         // and only resets the input textbox to empty string
 
-        if (priceVal.length > 0) {
-          if (!priceOptions.includes(priceVal)) {
-            priceOptions.push(priceVal);
+        if (cityVal.length > 0) {
+          if (!citiesOptions.includes(cityVal)) {
+            citiesOptions.push(cityVal);
           }
-          done(priceVal, 'toggle');
+          done(cityVal, 'toggle');
         }
       },
 
-      filterPriceFn(priceVal, update) {
+      filterCityFn(cityVal, update) {
         update(() => {
-          if (priceVal === '') {
-            filterOptions.value = priceOptions;
+          if (cityVal === '') {
+            filterOptions.value = citiesOptions;
           } else {
-            const needle = priceVal.toLowerCase();
-            filterPriceOptions.value = priceOptions.filter(
+            const needle = cityVal.toLowerCase();
+            filtercitiesOptions.value = citiesOptions.filter(
               (v) => v.toLowerCase().indexOf(needle) > -1,
             );
           }

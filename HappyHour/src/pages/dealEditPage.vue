@@ -14,8 +14,15 @@
           </q-card-actions>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section icon="store">
-              <q-input dark color="white" dense v-model="store_details.store_name" label="Deal For {{ Item }}"
-                style="max-width: 600px" />
+            <!-- <q-input dark color="white" dense v-model="store_details.store_name" label="Deal For {{ Item }}"
+                                                                                      style="max-width: 600px" /> -->
+              <div class="q-pa-md">
+                <q-select filled bg-color="white" color="cyan-8" v-model="dealModel" use-input use-chips multiple
+                  input-debounce="1" @new-value="createDealValue" :options="dealOptions" transition-show="jump-up"
+                  transition-hide="jump-up" @filter="filterDealFn" style="max-width: 600px;" label="Deal For:">
+                  <q-icon name="cancel" @click.stop.prevent="dealModel = null" class="cursor-pointer" />
+                </q-select>
+              </div>
             </q-item-section>
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -83,7 +90,7 @@
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
-                                                                              </q-item-section>                                                                                                                                                          </q-item> -->
+                                                                                                                                                    </q-item-section>                                                                                                                                                          </q-item> -->
           <q-card-actions align="right">
             <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done"
               @click="startdealdialog = true">Start Deal
@@ -110,6 +117,10 @@ import StartDeal from 'src/components/StartDeal.vue';
 import DeleteDeal from 'src/components/DeleteDeal.vue';
 import axios from 'axios';
 
+const dealOptions = [
+  'Item-1', 'Item-2', 'Item-3', 'Item-4',
+];
+
 export default defineComponent({
   name: 'UserProfile',
   components: {
@@ -120,9 +131,51 @@ export default defineComponent({
     stores: [],
   }),
   setup() {
+    const filterDealOptions = ref(dealOptions);
     const model = ref(2);
     return {
+      dealModel: ref(null),
+      dealOptions,
       model,
+
+      createDealValue(dealVal, done) {
+        // Calling done(var) when new-value-mode is not set or "add",
+        // or done(var, "add") adds "var" content to the model
+        // and it resets the input textbox to empty string
+        // ----
+        // Calling done(var) when new-value-mode is "add-unique",
+        // or done(var, "add-unique") adds "var" content to the model
+        // only if is not already set
+        // and it resets the input textbox to empty string
+        // ----
+        // Calling done(var) when new-value-mode is "toggle",
+        // or done(var, "toggle") toggles the model with "var" content
+        // (adds to model if not already in the model, removes from model if already has it)
+        // and it resets the input textbox to empty string
+        // ----
+        // If "var" content is undefined/null, then it doesn't tampers with the model
+        // and only resets the input textbox to empty string
+
+        if (dealVal.length > 0) {
+          if (!dealOptions.includes(dealVal)) {
+            dealOptions.push(dealVal);
+          }
+          done(dealVal, 'toggle');
+        }
+      },
+
+      filterDealFn(dealVal, update) {
+        update(() => {
+          if (dealVal === '') {
+            filterDealOptions.value = dealOptions;
+          } else {
+            const needle = dealVal.toLowerCase();
+            filterDealOptions.value = dealOptions.filter(
+              (v) => v.toLowerCase().indexOf(needle) > -1,
+            );
+          }
+        });
+      },
       fnMarkerLabel: (val) => `${10 * val}%`,
       store_details: {},
       password_dict: {},

@@ -19,10 +19,10 @@ const routes = [
         path: 'EditStore/:storeName',
         name: 'EditStore',
         props: true,
-        component: () => import('src/pages/storeEditPage.vue'),
+        component: () => import('src/pages/StoreEditPage.vue'),
       },
-      { path: 'EditDeal', component: () => import('src/pages/dealEditPage.vue') },
-      { path: 'EditDealBreaker', component: () => import('src/pages/dealBreakerEditPage.vue') },
+      { path: 'EditDeal', component: () => import('src/pages/DealEditPage.vue') },
+      { path: 'EditDealBreaker', component: () => import('src/pages/DealBreakerEditPage.vue') },
     ],
   },
 

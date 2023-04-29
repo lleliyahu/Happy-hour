@@ -10,7 +10,7 @@
           </div>
         </q-card-section>
         <div class="q-pa-md">
-          <h6>Filter By Store:</h6>
+          <h6>Filter By Cuisine:</h6>
           <q-select filled color="cyan-8" v-model="model" use-input use-chips multiple input-debounce="1"
             @new-value="createValue" :options="filterOptions" transition-show="jump-up" transition-hide="jump-up"
             @filter="filterFn" style="max-width: 340px" label="Filter By:">
@@ -37,7 +37,7 @@
 import { ref } from 'vue';
 
 const stringOptions = [
-  'Alcohol', 'Florist', 'General Merchandise', 'Grocery', 'Health & Beauty', 'Pet Supply', 'Pharmacy',
+  'Alcohol', 'Asian', 'American', 'Bakery', 'BBQ', 'Bowl', 'Breakfast',
 ];
 
 const priceOptions = [

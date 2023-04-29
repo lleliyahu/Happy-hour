@@ -38,7 +38,6 @@ import { ref } from 'vue';
 import axios from 'axios';
 import cardDeal from 'components/cardDeal.vue';
 import storeFilter from 'components/StoreFilter.vue';
-// import { useQuasar } from 'quasar';
 
 export default {
   name: 'StoresPage',
