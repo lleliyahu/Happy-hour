@@ -64,7 +64,8 @@ export default {
     }
   },
   data() {
-    return 
+    return {
+      bla,
     };
   },
   methods: {
@@ -73,46 +74,14 @@ export default {
       menu.storename = this.storename;
       newStor.username = localStorage.getItem('user');
       const menu = {};
-      menu.
-      console.log('new store', newStor);
+      menu.console.log('new store', newStor);
       axios.post('http://localhost:3000/store/create', newStor).then(() => {
         alert('Store created');
         this.refreshStore();
       });
       return true;
     },
-    // factoryFn(file){
-    //   return new Promise((resolve, reject) => {
-    //     this.getBase64(file).then(data => {
-    //         // data is base64
-    //         console.log('base64', data)
-    //         // simulating a delay of 2 seconds
-    //         setTimeout(() => {
-    //           resolve({
-    //             url: 'http://localhost:4444/upload',
-    //             method: 'POST',
-    //             headers: [{name:'Content-Type',value:'application/json'}],
-    //             fields: [{name:'data',value:data}]
-    //           })
-    //         }, 2000)
-    //       }).catch(() => {
-    //         this.$q.notify({
-    //           color: 'negative',
-    //           message: 'Failed to convert file...'
-    //         })
-    //         reject()
-    //       })
-    //   })
-    // },
-    // getBase64 (file) {
-    //   return new Promise((resolve, reject) => {
-    //     const reader = new FileReader()
-    //     // reader.onloadend = (e) => resolve(imageToDataUri(e, 400, 400))
-    //     reader.readAsDataURL(file)
-    //     reader.onload = () => resolve(reader.result)
-    //     reader.onerror = error => reject(error)
-    //   })
-    // },
   },
 };
+
 </script>
