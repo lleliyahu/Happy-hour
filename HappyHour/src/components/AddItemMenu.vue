@@ -53,22 +53,27 @@ export default {
   name: 'AddItemMenu',
 
   props: {
-    refreshStore:
+    refreshMenu:
     {
       type: Function,
       default() { return console.log('Default function aa'); },
     },
+    storename:
+    {
+      type: String,
+    }
   },
   data() {
-    return {
-      storename: '',
+    return 
     };
   },
   methods: {
-    AddItemMenu() {
-      const newStor = {};
-      newStor.storename = this.storename;
+    AddMenuItem() {
+      const store = {};
+      menu.storename = this.storename;
       newStor.username = localStorage.getItem('user');
+      const menu = {};
+      menu.
       console.log('new store', newStor);
       axios.post('http://localhost:3000/store/create', newStor).then(() => {
         alert('Store created');

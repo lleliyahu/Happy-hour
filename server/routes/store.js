@@ -79,4 +79,24 @@ router.post("/update", function (req, res, next) {
     res.send(JSON.stringify(req.body));
 });
 
+router.post("/addMenuItem", function (req, res, next) {
+  var myobj = req.body;
+  var myquery = { 'storename' : myobj.storename , 'username' : myobj.usstorename  };
+  var newvalues = { $addFields: myobj.menu };
+  console.log('myquery : ' ,myquery);
+  console.log('myobj : ' ,myobj);
+  db.getDb()
+  .collection("store")
+  .updateOne(myquery,newvalues, function(err, res) {
+    if (err) {
+      console.log(err);}
+      else{
+        console.log(res);
+        console.log("1 document updated");
+      }
+    
+  });
+  res.send(JSON.stringify(req.body));
+});
+
 module.exports = router;
