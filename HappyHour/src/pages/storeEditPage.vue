@@ -348,9 +348,7 @@ export default defineComponent({
         });
     },
     addItem(item) {
-      alert('aaaaaaaaaaaaaaaaaa');
       this.menu.push(item);
-      console.log('data 3 : ', this.menu);
     },
   },
   mounted() {

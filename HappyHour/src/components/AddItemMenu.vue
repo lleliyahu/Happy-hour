@@ -78,10 +78,6 @@ export default {
   },
   methods: {
     AddMenuItem() {
-      const store = {};
-      store.storename = this.storename;
-      store.username = localStorage.getItem('user');
-      console.log('store', store);
       const menu = {};
       menu.name = this.itemName;
       menu.des = this.descreption;
