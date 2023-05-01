@@ -47,7 +47,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
 
 export default {
   name: 'AddItemMenu',
@@ -83,12 +82,6 @@ export default {
       menu.des = this.descreption;
       menu.price = this.price;
       this.addItem(menu);
-      store.menu = menu;
-      console.log('store', store);
-      axios.post('http://localhost:3000/store/addMenuItem', store).then(() => {
-        alert('the item add');
-        this.refreshMenu();
-      });
       return true;
     },
   },
