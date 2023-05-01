@@ -6,7 +6,6 @@ var db = require("../DB/DbClient.js");
 /* GET users listing. */
 router.post("/getStore", function (req, res, next) {
   var query = {};
-  console.log("user", req);
   query.username = req.body.username;
   db.getDb()
     .collection("store")
@@ -14,9 +13,25 @@ router.post("/getStore", function (req, res, next) {
     .toArray(function (err, result) {
       if (err) {
         res.status(400).send("Error fetching listing");
-        console.log(result);
       } else {
-        res.send(result);
+        res.send(result);  
+        console.log(result);
+      }
+    });
+});
+
+router.post("/getStoreData", function (req, res, next) {
+  var query = {};
+  query.username = req.body.username;
+  query.storename = req.body.storename;
+  db.getDb()
+    .collection("store")
+    .find(query)
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(400).send("Error fetching listing");
+      } else {
+        res.send(result);  
         console.log(result);
       }
     });
@@ -41,7 +56,6 @@ router.post("/create", function (req, res, next) {
 
 router.get("/Checkuser", async (req, res, next) => {
   var query = JSON.parse(req.query.user);
-  console.log(query);
 
   db.getDb()
     .collection("users")
@@ -81,10 +95,11 @@ router.post("/update", function (req, res, next) {
 
 router.post("/addMenuItem", function (req, res, next) {
   var myobj = req.body;
-  var myquery = { 'storename' : myobj.storename , 'username' : myobj.usstorename  };
-  var newvalues = { $addFields: myobj.menu };
-  console.log('myquery : ' ,myquery);
   console.log('myobj : ' ,myobj);
+  var myquery = { 'storename' : myobj.storename , 'username' : myobj.username  };
+  var newvalues = { $addFields: { "menu" : myobj.menu } };
+  console.log('myquery : ' ,myquery);
+  console.log('newvalues : ' ,newvalues);
   db.getDb()
   .collection("store")
   .updateOne(myquery,newvalues, function(err, res) {

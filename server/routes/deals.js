@@ -8,14 +8,12 @@ router.get("/", function (req, res, next) {
 
 router.get("/all", function (req, res, next) {
   var query = {};
-  console.log("loggggggg", db);
   db.getDb()
     .collection("Deals")
     .find(query)
     .toArray(function (err, result) {
       if (err) {
         res.status(400).send("Error fetching listing");
-        console.log(result);
       } else {
         res.send(result);
       }

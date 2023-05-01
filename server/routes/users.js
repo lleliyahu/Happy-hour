@@ -27,13 +27,11 @@ router.post("/add", function (req, res, next) {
 
 router.get("/Checkuser", async (req, res, next) => {
   var query = JSON.parse(req.query.user);
-  console.log(query);
 
   db.getDb()
     .collection("users")
     .find(query)
     .toArray(function (err, result) {
-      console.log(result);
       if (result.length === 0) {
         res.status(404);
         res.send("the user not valid");

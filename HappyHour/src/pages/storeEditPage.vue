@@ -31,13 +31,13 @@
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="store_details.post_code" label="Postal Code"
+                <q-input dark color="white" dense v-model="post_code" label="Postal Code"
                   style="max-width: 600px" />
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="store_details.store_phone" label="Store Phone"
+                <q-input dark color="white" dense v-model="store_phone" label="Store Phone"
                   style="max-width: 600px" />
               </q-item-section>
             </q-item>
@@ -131,7 +131,7 @@
       </template>
 
                                                                                                         </q-table> -->
-              <q-table class="no-shadow" :rows="data3" :columns="column" hide-bottom>
+              <q-table class="no-shadow" :rows="menu" :columns="column" hide-bottom>
                 <template v-slot:top>
                   <q-btn color="green-8" :disable="loading" label="Add row" @click="AddItemMenudialog = true" />
                   <q-btn class="q-ml-sm" color="red-8" :disable="loading" label="Remove row" @click="removeRow" />
@@ -208,7 +208,7 @@
       <EditMenu></EditMenu>
     </q-dialog>
     <q-dialog v-model="AddItemMenudialog">
-      <AddItemMenu></AddItemMenu>
+      <AddItemMenu :addItem='addItem' :storename=storename  ></AddItemMenu>
     </q-dialog>
   </div>
 <!-- <q-dialog v-model="choseedealtypedialog">
@@ -233,44 +233,6 @@ const column = [
     name: 'Price', label: 'Price', field: 'price', sortable: true, align: 'left',
   },
 ];
-const data3 = [
-  {
-    name: 'Schnitzel',
-    des: 'Chicken',
-    Progress: 70,
-    type: 'info',
-    issue: '#125',
-    avatar: 'https://imageproxy.wolt.com/menu/menu-images/5dfe6fead974d05f8c043b8d/1e7732cc-73db-11ed-8f43-2aae70c19b32__________.jpeg?w=960',
-    price: '75₪',
-  },
-  {
-    name: 'Hamborger',
-    des: 'Cow',
-    Progress: 60,
-    type: 'success',
-    issue: '#1425',
-    avatar: 'https://imageproxy.wolt.com/menu/menu-images/5dfe6fead974d05f8c043b8d/7d9883c4-553a-11ed-a05d-820939ac0787________.jpeg?w=960',
-    price: '78₪',
-  },
-  {
-    name: 'Salmon',
-    des: 'Fish',
-    Progress: 30,
-    type: 'warning',
-    issue: '#1475',
-    avatar: 'https://imageproxy.wolt.com/menu/menu-images/5dfe6fead974d05f8c043b8d/59fc8db2-5539-11ed-bc1c-52a708bd15dd______.jpeg?w=960',
-    price: '97₪',
-  },
-  {
-    name: 'Fries',
-    des: 'Developer',
-    Progress: 100,
-    type: 'success',
-    issue: '#134',
-    avatar: 'https://imageproxy.wolt.com/menu/menu-images/5dfe6fead974d05f8c043b8d/f71d7188-5539-11ed-ad5d-2e5c8dc31567_____.jpeg?w=600',
-    price: '19₪',
-  },
-];
 
 export default defineComponent({
   name: 'UserProfile',
@@ -280,9 +242,11 @@ export default defineComponent({
   },
   props: ['storeName'],
   data: () => ({
-    stores: [],
     storename: '',
     city_address: '',
+    store_phone: '',
+    post_code: '',
+    menu: [],
   }),
   setup() {
     // const loading = ref(false);
@@ -302,7 +266,6 @@ export default defineComponent({
       EditMenudialog: ref(false),
       AddItemMenudialog: ref(false),
       column,
-      data3,
       getColor(val) {
         if (val > 70 && val <= 100) {
           return 'green';
@@ -350,10 +313,15 @@ export default defineComponent({
     refreshStore() {
       const body = {};
       body.username = localStorage.getItem('user');
+      body.storename = this.storeName;
       console.log('body', body);
-      axios.post('http://localhost:3000/store/getStore', body).then((response) => {
-        this.stores = response.data;
-        console.log('test', response.data);
+      axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
+        console.log('test', response.data[0]);
+        this.storename = response.data[0].storename;
+        this.city_address = response.data[0].city_address;
+        this.store_phone = response.data[0].store_phone;
+        this.post_code = response.data[0].post_code;
+        this.menu = response.data[0].menu;
       });
     },
     updateStore() {
@@ -363,20 +331,46 @@ export default defineComponent({
       newStoreDetails.city_address = this.city_address;
       newStoreDetails.post_code = this.post_code;
       newStoreDetails.store_phone = this.store_phone;
+      newStoreDetails.menu = this.menu;
       console.log('newStoreDetails:', newStoreDetails);
       axios.post('http://localhost:3000/store/update', newStoreDetails)
         .then((response) => {
           console.log(response);
+          this.refreshStore();
         })
         .catch((error) => {
           console.log(error);
         });
     },
+    addItem(item) {
+      alert('aaaaaaaaaaaaaaaaaa');
+      this.menu.push(item);
+      console.log('data 3 : ', this.menu);
+    },
   },
   mounted() {
     this.refreshStore();
-    console.log('storeName', this.storeName);
     this.storename = this.storeName;
+    // this.menu = [
+    //   {
+    //     name: 'Schnitzel',
+    //     des: 'Chicken',
+    //     Progress: 70,
+    //     type: 'info',
+    //     issue: '#125',
+    //     avatar: 'https://imageproxy.wolt.com/menu/menu-images/5dfe6fead974d05f8c043b8d/1e7732cc-73db-11ed-8f43-2aae70c19b32__________.jpeg?w=960',
+    //     price: '75₪',
+    //   },
+    //   {
+    //     name: 'Hamborger',
+    //     des: 'Cow',
+    //     Progress: 60,
+    //     type: 'success',
+    //     issue: '#1425',
+    //     avatar: 'https://imageproxy.wolt.com/menu/menu-images/5dfe6fead974d05f8c043b8d/7d9883c4-553a-11ed-a05d-820939ac0787________.jpeg?w=960',
+    //     price: '78₪',
+    //   },
+    // ];
   },
 });
 </script>
