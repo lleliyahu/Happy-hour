@@ -221,6 +221,7 @@ import { defineComponent, ref } from 'vue';
 import EditMenu from 'src/components/EditMenu.vue';
 import axios from 'axios';
 import AddItemMenu from 'src/components/AddItemMenu.vue';
+// import { ElementTypes } from '@vue/compiler-core';
 
 const column = [
   {
@@ -321,7 +322,11 @@ export default defineComponent({
         this.city_address = response.data[0].city_address;
         this.store_phone = response.data[0].store_phone;
         this.post_code = response.data[0].post_code;
-        this.menu = response.data[0].menu;
+        if (response.data[0].menu === undefined) {
+          this.menu = [];
+        } else {
+          this.menu = response.data[0].menu;
+        }
       });
     },
     updateStore() {
