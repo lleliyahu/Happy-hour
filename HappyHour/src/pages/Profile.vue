@@ -93,7 +93,7 @@
             </q-card-section>
           </q-card>
           <q-dialog v-model="createstordialog">
-            <CreateStore :refreshStore="refreshStore" ></CreateStore>
+            <CreateStore :refreshStore="refreshStore"></CreateStore>
           </q-dialog>
         </div>
         <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
@@ -213,6 +213,7 @@ export default defineComponent({
       user_details: {},
       password_dict: {},
       createstordialog: ref(false),
+      choseedealtypedialog: ref(false),
     };
   },
   methods: {

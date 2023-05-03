@@ -31,14 +31,12 @@
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="post_code" label="Postal Code"
-                  style="max-width: 600px" />
+                <q-input dark color="white" dense v-model="post_code" label="Postal Code" style="max-width: 600px" />
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="store_phone" label="Store Phone"
-                  style="max-width: 600px" />
+                <q-input dark color="white" dense v-model="store_phone" label="Store Phone" style="max-width: 600px" />
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -95,11 +93,7 @@
                 </q-input>
               </q-item-section>
             </q-item>
-            <q-card-actions align="left">
-              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit"
-                @click="EditMenudialog = true">Edit Menu</q-btn>
-            </q-card-actions>
-          <!-- <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <!-- <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
@@ -110,7 +104,7 @@
           <div class="col">
             <div class="q-pa-md">
               <h7>Edit menu</h7>
-            <!-- <q-table
+              <!-- <q-table
       title="Treats"
       :rows="rows"
       :columns="columns"
@@ -152,7 +146,7 @@
                       </q-item-section>
                       <q-item-section>
                         <q-item-label>{{ props.row.name }}</q-item-label>
-                        <q-item-label caption class="">{{ props.row.des }}</q-item-label>
+                        <q-item-label caption class="">{{ props.row.name }}</q-item-label>
                       </q-item-section>
                     </q-item>
                   </q-td>
@@ -185,7 +179,13 @@
                       </q-item-section>
                     </q-item>
                   </q-td>
+                  <q-td>
+                    <q-btn icon="delete"></q-btn>
+                  </q-td>
                 </template>
+                <q-td>
+                  <q-btn icon="delete"></q-btn>
+                </q-td>
               </q-table>
             </div>
           </div>
@@ -208,10 +208,10 @@
       <EditMenu></EditMenu>
     </q-dialog>
     <q-dialog v-model="AddItemMenudialog">
-      <AddItemMenu :addItem='addItem' :storename=storename  ></AddItemMenu>
+      <AddItemMenu :addItem='addItem' :storename=storename></AddItemMenu>
     </q-dialog>
   </div>
-<!-- <q-dialog v-model="choseedealtypedialog">
+  <!-- <q-dialog v-model="choseedealtypedialog">
     <ChooseDealType></ChooseDealType>
                                                                                                       </q-dialog> -->
 </template>
@@ -228,10 +228,16 @@ const column = [
     name: 'Name', label: 'Name', field: 'name', sortable: true, align: 'left',
   },
   {
-    name: 'Task', label: 'Task', field: 'task', sortable: true, align: 'left',
+    name: 'Description', label: 'Description', field: 'des', sortable: true, align: 'left',
   },
   {
     name: 'Price', label: 'Price', field: 'price', sortable: true, align: 'left',
+  },
+  {
+    name: 'Remove Item', label: 'Remove Item', field: 'remove item', align: 'left',
+  },
+  {
+    name: 'Rating', label: 'Rating', field: 'rating', sortable: true, align: 'left',
   },
 ];
 
@@ -250,12 +256,6 @@ export default defineComponent({
     menu: [],
   }),
   setup() {
-    // const loading = ref(false);
-    // const filter = ref('');
-    // const rowCount = ref(10);
-    // const rows = ref([...originalRows]);
-    // console.log(this.storeName);
-
     return {
       store_details: {},
       password_dict: {},
@@ -354,26 +354,6 @@ export default defineComponent({
   mounted() {
     this.refreshStore();
     this.storename = this.storeName;
-    // this.menu = [
-    //   {
-    //     name: 'Schnitzel',
-    //     des: 'Chicken',
-    //     Progress: 70,
-    //     type: 'info',
-    //     issue: '#125',
-    //     avatar: 'https://imageproxy.wolt.com/menu/menu-images/5dfe6fead974d05f8c043b8d/1e7732cc-73db-11ed-8f43-2aae70c19b32__________.jpeg?w=960',
-    //     price: '75₪',
-    //   },
-    //   {
-    //     name: 'Hamborger',
-    //     des: 'Cow',
-    //     Progress: 60,
-    //     type: 'success',
-    //     issue: '#1425',
-    //     avatar: 'https://imageproxy.wolt.com/menu/menu-images/5dfe6fead974d05f8c043b8d/7d9883c4-553a-11ed-a05d-820939ac0787________.jpeg?w=960',
-    //     price: '78₪',
-    //   },
-    // ];
   },
 });
 </script>
