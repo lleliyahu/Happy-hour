@@ -1,14 +1,7 @@
 <!-- eslint-disable max-len -->
 <template>
   <div class="q-pa-md">
-    <q-table
-      title="Treats"
-      :rows="rows"
-      :columns="columns"
-      row-key="id"
-      :filter="filter"
-      :loading="loading"
-    >
+    <q-table title="Treats" :rows="rows" :columns="columns" row-key="id" :filter="filter" :loading="loading">
 
       <template v-slot:top>
         <q-btn color="primary" :disable="loading" label="Add row" @click="addRow" />

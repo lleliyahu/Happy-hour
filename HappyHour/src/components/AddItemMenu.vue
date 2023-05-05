@@ -26,7 +26,7 @@
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt">
-            <q-input square clearable v-model="price" type="text" label="Price">
+            <q-input square clearable v-model="price" prefix="$" type="text" label="Price">
               <template v-slot:prepend>
                 <q-icon name="payments" />
               </template>
@@ -73,6 +73,7 @@ export default {
       itemName: '',
       descreption: '',
       price: '',
+      prefix: '$ ',
     };
   },
   methods: {

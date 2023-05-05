@@ -161,7 +161,7 @@
                             <q-icon name="settings" color="blue" size="20px" v-if="props.row.type == 'info'"></q-icon>
                             <q-icon name="flag" color="blue" size="20px" v-if="props.row.type == 'success'"></q-icon>
                             <q-icon name="fireplace" color="blue" size="20px" v-if="props.row.type == 'warning'"></q-icon>
-                            {{ props.row.issue }}
+                            {{ props.row.orders }}
                           </span>
                           <q-chip class="float-right text-white text-capitalize" :label="props.row.type" color="positive"
                             v-if="props.row.type == 'success'"></q-chip>
@@ -193,8 +193,8 @@
         <div class="row">
           <div class="col">
             <q-card-actions align="right">
-              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note"
-                @click="updateStore">Update Store Info</q-btn>
+              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click="updateStore"
+                to="Profile">Update Store Info</q-btn>
             </q-card-actions>
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
@@ -234,11 +234,15 @@ const column = [
     name: 'Price', label: 'Price', field: 'price', sortable: true, align: 'left',
   },
   {
-    name: 'Remove Item', label: 'Remove Item', field: 'remove item', align: 'left',
-  },
-  {
     name: 'Rating', label: 'Rating', field: 'rating', sortable: true, align: 'left',
   },
+  {
+    name: 'Ordes', label: 'Orders', field: 'orders', sortable: true, align: 'left',
+  },
+  {
+    name: 'Remove Item', label: 'Remove Item', field: 'remove item', align: 'left',
+  },
+
 ];
 
 export default defineComponent({
@@ -268,10 +272,10 @@ export default defineComponent({
       AddItemMenudialog: ref(false),
       column,
       getColor(val) {
-        if (val > 70 && val <= 100) {
+        if (val > 5 && val <= 100) {
           return 'green';
         }
-        if (val > 50 && val <= 70) {
+        if (val > 3 && val <= 5) {
           return 'blue';
         }
         return 'red';
