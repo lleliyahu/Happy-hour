@@ -14,7 +14,20 @@
           </q-card-actions>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section icon="store">
-            <!-- <q-input dark color="white" dense v-model="store_details.store_name" label="Deal For {{ Item }}"
+              <!-- <q-input dark color="white" dense v-model="store_details.store_name" label="Deal For {{ Item }}"
+                                                                                      style="max-width: 600px" /> -->
+              <div class="q-pa-md">
+                <q-select filled bg-color="white" color="cyan-8" v-model="storeModel" use-input use-chips
+                  input-debounce="1" @new-value="createStoreValue" :options="storeOptions" transition-show="jump-up"
+                  transition-hide="jump-up" style="max-width: 600px;" label="Choose Store:">
+                  <q-icon name="cancel" @click.stop.prevent="storeModel = null" class="cursor-pointer" />
+                </q-select>
+              </div>
+            </q-item-section>
+          </q-item>
+          <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <q-item-section icon="store">
+              <!-- <q-input dark color="white" dense v-model="store_details.store_name" label="Deal For {{ Item }}"
                                                                                       style="max-width: 600px" /> -->
               <div class="q-pa-md">
                 <q-select filled bg-color="white" color="cyan-8" v-model="dealModel" use-input use-chips multiple
@@ -85,7 +98,7 @@
               </q-input>
             </q-item-section>
           </q-item>
-        <!-- <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <!-- <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <q-item-section>
             <div class="q-pa-md">
               <q-time v-model="time" landscape now-btn format24h color="black" />
@@ -117,10 +130,6 @@ import StartDeal from 'src/components/StartDeal.vue';
 import DeleteDeal from 'src/components/DeleteDeal.vue';
 import axios from 'axios';
 
-const dealOptions = [
-  'Item-1', 'Item-2', 'Item-3', 'Item-4',
-];
-
 export default defineComponent({
   name: 'UserProfile',
   components: {
@@ -129,13 +138,31 @@ export default defineComponent({
   },
   data: () => ({
     stores: [],
+    storeOptions: [],
+    storeModel: {},
   }),
+  // computed: {
+  //   // a computed getter
+  //   dealOptions() {
+  //     let menuVal = [];
+  //     console.log(this.storeModel);
+  //     console.log(this.stores);
+  //     // `this` points to the component instance
+  //     // if (this.stores !== undefined) {
+  //    //   menuVal = this.stores.menu.filter((store) => store.storename
+  // === this.storeModel)[0].menu;
+  //     // }
+  //     return menuVal;
+  //   },
+  // },
   setup() {
-    const filterDealOptions = ref(dealOptions);
+    // this.filterDealOptions = ref(dealOptions);
+    // this.filterStoreOptions = ref(storeOptions);
     const model = ref(2);
     return {
       dealModel: ref(null),
-      dealOptions,
+      // dealOptions,
+      // storeOptions,
       model,
 
       createDealValue(dealVal, done) {
@@ -157,25 +184,64 @@ export default defineComponent({
         // and only resets the input textbox to empty string
 
         if (dealVal.length > 0) {
-          if (!dealOptions.includes(dealVal)) {
-            dealOptions.push(dealVal);
+          if (!this.dealOptions.includes(dealVal)) {
+            this.dealOptions.push(dealVal);
           }
           done(dealVal, 'toggle');
         }
       },
 
-      filterDealFn(dealVal, update) {
-        update(() => {
-          if (dealVal === '') {
-            filterDealOptions.value = dealOptions;
-          } else {
-            const needle = dealVal.toLowerCase();
-            filterDealOptions.value = dealOptions.filter(
-              (v) => v.toLowerCase().indexOf(needle) > -1,
-            );
+      // filterDealFn(dealVal, update) {
+      //   update(() => {
+      //     if (dealVal === '') {
+      //       filterDealOptions.value = dealOptions;
+      //     } else {
+      //       const needle = dealVal.toLowerCase();
+      //       filterDealOptions.value = dealOptions.filter(
+      //         (v) => v.toLowerCase().indexOf(needle) > -1,
+      //       );
+      //     }
+      //   });
+      // },
+
+      createStoreValue(storeVal, done) {
+        // Calling done(var) when new-value-mode is not set or "add",
+        // or done(var, "add") adds "var" content to the model
+        // and it resets the input textbox to empty string
+        // ----
+        // Calling done(var) when new-value-mode is "add-unique",
+        // or done(var, "add-unique") adds "var" content to the model
+        // only if is not already set
+        // and it resets the input textbox to empty string
+        // ----
+        // Calling done(var) when new-value-mode is "toggle",
+        // or done(var, "toggle") toggles the model with "var" content
+        // (adds to model if not already in the model, removes from model if already has it)
+        // and it resets the input textbox to empty string
+        // ----
+        // If "var" content is undefined/null, then it doesn't tampers with the model
+        // and only resets the input textbox to empty string
+
+        if (storeVal.length > 0) {
+          if (!this.storeOptions.includes(storeVal)) {
+            this.storeOptions.push(storeVal);
           }
-        });
+          done(storeVal, 'toggle');
+        }
       },
+
+      // filterStoreFn(storeVal, update) {
+      //   update(() => {
+      //     if (storeVal === '') {
+      //       filterStoreOptions.value = storeOptions;
+      //     } else {
+      //       const needle = storeVal.toLowerCase();
+      //       filterStoreOptions.value = storeOptions.filter(
+      //         (v) => v.toLowerCase().indexOf(needle) > -1,
+      //       );
+      //     }
+      //   });
+      // },
       fnMarkerLabel: (val) => `${10 * val}%`,
       store_details: {},
       password_dict: {},
@@ -190,18 +256,21 @@ export default defineComponent({
     };
   },
   methods: {
-    refreshStore() {
+    getStores() {
       const body = {};
       body.username = localStorage.getItem('user');
       console.log('body', body);
       axios.post('http://localhost:3000/store/getStore', body).then((response) => {
         this.stores = response.data;
+        this.stores.forEach((element) => {
+          this.storeOptions.push(element.storename);
+        });
         console.log('test', response.data);
       });
     },
   },
   mounted() {
-    this.refreshStore();
+    this.getStores();
     // console.log(this.deals);
   },
 });
