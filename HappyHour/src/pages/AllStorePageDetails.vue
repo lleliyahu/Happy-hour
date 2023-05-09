@@ -2,10 +2,10 @@
   <div class="image-container">
     <q-img class="image" src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
     <div class="row no-wrap items-center justify-start">
-            <div class="col text-h6 ellipsis">
-              {{ store }}
-            </div>
-          </div>
+      <div class="col text-h6 ellipsis">
+        {{ store }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,16 +21,22 @@ export default {
 
 <style>
 .image-container {
-  height: 50vh; /* hauteur de 25% de l'écran */
-  position: relative; /* position relative pour contenir l'image */
+  height: 50vh;
+  /* hauteur de 25% de l'écran */
+  position: relative;
+  /* position relative pour contenir l'image */
+  text-decoration: none;
+  color: #333;
 }
 
 .image {
-  position: absolute; /* position absolue pour couvrir toute la hauteur du conteneur */
+  position: absolute;
+  /* position absolue pour couvrir toute la hauteur du conteneur */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* pour que l'image s'adapte et ne soit pas déformée */
+  object-fit: cover;
+  /* pour que l'image s'adapte et ne soit pas déformée */
 }
 </style>
