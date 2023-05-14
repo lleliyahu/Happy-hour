@@ -25,7 +25,7 @@
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="store_details.store_street_address" label="Street Address"
+                <q-input dark color="white" dense v-model="street_address" label="Street Address"
                   style="max-width: 600px" />
               </q-item-section>
             </q-item>
@@ -193,8 +193,8 @@
         <div class="row">
           <div class="col">
             <q-card-actions align="right">
-              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click="updateStore"
-                to="Profile">Update Store Info</q-btn>
+              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click="updateStore">
+                Update Store Info</q-btn>
             </q-card-actions>
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
@@ -257,6 +257,7 @@ export default defineComponent({
     city_address: '',
     store_phone: '',
     post_code: '',
+    street_address: '',
     menu: [],
   }),
   setup() {
@@ -321,11 +322,11 @@ export default defineComponent({
       body.storename = this.storeName;
       console.log('body', body);
       axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
-        console.log('test', response.data[0]);
         this.storename = response.data[0].storename;
         this.city_address = response.data[0].city_address;
         this.store_phone = response.data[0].store_phone;
         this.post_code = response.data[0].post_code;
+        this.street_address = response.data[0].street_address;
         if (response.data[0].menu === undefined) {
           this.menu = [];
         } else {
@@ -341,10 +342,10 @@ export default defineComponent({
       newStoreDetails.post_code = this.post_code;
       newStoreDetails.store_phone = this.store_phone;
       newStoreDetails.menu = this.menu;
+      newStoreDetails.street_address = this.street_address;
       console.log('newStoreDetails:', newStoreDetails);
       axios.post('http://localhost:3000/store/update', newStoreDetails)
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           this.refreshStore();
         })
         .catch((error) => {

@@ -46,11 +46,11 @@
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-input dark color="white" dense v-model="time" label="Set Opening Deal Hour" style="max-width: 600px">
+              <q-input dark color="white" dense v-model="opening_time" label="Set Opening Deal Hour" style="max-width: 600px">
                 <template #append>
                   <q-icon class="cursor-pointer" name="access_time">
                     <q-popup-proxy cover>
-                      <q-time v-model="time" now-btn format24h color="cyan-8">
+                      <q-time v-model="opening_time" now-btn format24h color="cyan-8">
                         <div class="row justify-end">
                           <q-btn v-close-popup flat label="close"></q-btn>
                           <q-btn v-close-popup type="submit" flat label="Submit"></q-btn>
@@ -64,11 +64,11 @@
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-input dark color="white" dense v-model="time2" label="Set Closing Deal Hour" style="max-width: 600px">
+              <q-input dark color="white" dense v-model="closing_time" label="Set Closing Deal Hour" style="max-width: 600px">
                 <template #append>
                   <q-icon class="cursor-pointer" name="access_time">
                     <q-popup-proxy cover>
-                      <q-time v-model="time2" now-btn format24h color="cyan-8">
+                      <q-time v-model="closing_time" now-btn format24h color="cyan-8">
                         <div class="row justify-end">
                           <q-btn v-close-popup flat label="close"></q-btn>
                           <q-btn v-close-popup type="submit" flat label="Submit"></q-btn>
@@ -82,7 +82,7 @@
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-input dark color="white" dense v-model="days" label="Set Deal Dates" style="max-width: 600px"
+              <q-input dark color="white" dense v-model="days_view" label="Set Deal Dates" style="max-width: 600px"
                 :rules="['days']">
                 <template #append>
                   <q-icon class="cursor-pointer" name="event">
@@ -106,7 +106,7 @@
                                                                                                                                                     </q-item-section>                                                                                                                                                          </q-item> -->
           <q-card-actions align="right">
             <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done"
-              @click="startdealdialog = true">Start Deal
+              @click="create_deal">Start Deal
             </q-btn>
           </q-card-actions>
           <q-card-actions align="right">
@@ -140,25 +140,23 @@ export default defineComponent({
     stores: [],
     storeOptions: [],
     storeModel: {},
+    closing_time: '',
+    opening_time: '',
   }),
   computed: {
     // a computed getter
+    days_view() {
+      return '2023/05/01 - 2023/05/18';
+    },
     dealOptions() {
       let menuVal = [];
-      console.log(this.storeModel);
-      console.log(this.stores[0]);
-      console.log('aaaaaaaaaaa', this.stores);
       if (this.stores !== undefined) {
         this.stores.forEach((x) => {
-          console.log('if', x.valueOf().storename, this.storeModel);
           if (x.valueOf().storename === this.storeModel) {
             menuVal = x.valueOf().menu.valueOf().map((y) => y.name);
-            console.log('menuVal', x.valueOf().menu.valueOf());
           }
         });
-        console.log('storeModel.storename', this.storeModel);
       }
-      console.log('menuVal', menuVal);
       return menuVal;
     },
   },
@@ -274,6 +272,22 @@ export default defineComponent({
         });
         console.log('test', response.data);
       });
+    },
+    create_deal() {
+      const newDeal = {};
+      newDeal.usstorename = localStorage.getItem('user');
+      newDeal.storename = this.storeModel;
+      newDeal.closing_time = this.closing_time;
+      newDeal.opening_time = this.opening_time;
+      newDeal.days = this.days;
+      console.log('new_deal:', newDeal);
+      axios.post('http://localhost:3000/store/create_deal', newDeal)
+        .then(() => {
+          console.log('deal created');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   mounted() {
