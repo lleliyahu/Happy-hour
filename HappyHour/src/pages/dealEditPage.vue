@@ -33,7 +33,7 @@
                 <q-select filled bg-color="white" color="cyan-8" v-model="dealModel" use-input use-chips multiple
                   input-debounce="1" @new-value="createDealValue" :options="dealOptions" transition-show="jump-up"
                   transition-hide="jump-up" @filter="filterDealFn" style="max-width: 600px;" label="Deal For:">
-                  <q-icon name="cancel" @click.stop.prevent="dealModel = null" class="cursor-pointer" />
+                  <!-- <q-icon name="cancel" @click.stop.prevent="dealModel = null" class="cursor-pointer" /> -->
                 </q-select>
               </div>
             </q-item-section>
@@ -141,20 +141,27 @@ export default defineComponent({
     storeOptions: [],
     storeModel: {},
   }),
-  // computed: {
-  //   // a computed getter
-  //   dealOptions() {
-  //     let menuVal = [];
-  //     console.log(this.storeModel);
-  //     console.log(this.stores);
-  //     // `this` points to the component instance
-  //     // if (this.stores !== undefined) {
-  //    //   menuVal = this.stores.menu.filter((store) => store.storename
-  // === this.storeModel)[0].menu;
-  //     // }
-  //     return menuVal;
-  //   },
-  // },
+  computed: {
+    // a computed getter
+    dealOptions() {
+      let menuVal = [];
+      console.log(this.storeModel);
+      console.log(this.stores[0]);
+      console.log('aaaaaaaaaaa', this.stores);
+      if (this.stores !== undefined) {
+        this.stores.forEach((x) => {
+          console.log('if', x.valueOf().storename, this.storeModel);
+          if (x.valueOf().storename === this.storeModel) {
+            menuVal = x.valueOf().menu.valueOf().map((y) => y.name);
+            console.log('menuVal', x.valueOf().menu.valueOf());
+          }
+        });
+        console.log('storeModel.storename', this.storeModel);
+      }
+      console.log('menuVal', menuVal);
+      return menuVal;
+    },
+  },
   setup() {
     // this.filterDealOptions = ref(dealOptions);
     // this.filterStoreOptions = ref(storeOptions);
