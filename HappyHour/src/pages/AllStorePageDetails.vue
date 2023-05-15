@@ -49,7 +49,7 @@
 
         </q-bar>
 
-        <div class="q-pa-sm q-pl-md row items-center">
+        <!-- <div class="q-pa-sm q-pl-md row items-center">
           <div class="cursor-pointer non-selectable">
             File
             <q-menu>
@@ -118,7 +118,7 @@
               </q-list>
             </q-menu>
           </div>
-        </div>
+        </div> -->
       </q-header>
       <h2>Bla</h2>
       <div class="q-pa-md">
