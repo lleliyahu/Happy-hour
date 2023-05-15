@@ -3,7 +3,7 @@
   <div class="image-container" style="height:250px;">
     <q-img class="image" src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
       <div class="absolute-bottom text-subtitle1 text-center">
-         {{storeName}}
+        {{ storeName }}
       </div>
     </q-img>
     <!-- <q-icon class="absolute all-pointer-events" size="32px" name="favorite" color="white" style="top: 8px; left: 8px">
@@ -37,9 +37,9 @@
           </div>
 
           <q-space />
-          <div class="q-pa-md" style="max-width: 300px;max-height: 120px;">
+          <div class="q-pa-md gt-xs" style="max-width: 300px;max-height: 120px;">
             <div class="q-gutter-md">
-              <q-input v-model="search" debounce="1000" borderless placeholder="Search in store">
+              <q-input v-model="search" debounce="1000" borderless placeholder="Search in {{ storeName }}">
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
@@ -48,7 +48,17 @@
           </div>
 
         </q-bar>
-
+        <div class="q-pa-sm q-pl-md row items-center lt-sm">
+          <div class="q-pa-md" style="max-width: 300px;max-height: 50px;">
+            <div class="q-gutter-md">
+              <q-input v-model="search" debounce="1000" borderless placeholder="Search in {{ storeName }}">
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
+            </div>
+          </div>
+        </div>
         <!-- <div class="q-pa-sm q-pl-md row items-center">
           <div class="cursor-pointer non-selectable">
             File
@@ -120,6 +130,9 @@
           </div>
         </div> -->
       </q-header>
+      <br>
+      <br>
+      <br>
       <h2>Store Deals</h2>
       <div class="q-pa-md">
         <q-card class="my-card">
