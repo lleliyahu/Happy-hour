@@ -142,6 +142,10 @@ export default defineComponent({
     storeModel: {},
     closing_time: '',
     opening_time: '',
+    days: ref([
+      { from: '2023/04/01', to: '2023/04/10' },
+    ]),
+    fnMarkerLabel: (val) => `${10 * val}%`,
   }),
   computed: {
     // a computed getter
@@ -247,17 +251,6 @@ export default defineComponent({
       //     }
       //   });
       // },
-      fnMarkerLabel: (val) => `${10 * val}%`,
-      store_details: {},
-      password_dict: {},
-      createstordialog: ref(false),
-      time: ref('00:00'),
-      time2: ref('00:00'),
-      date: ref('2023/04/01'),
-      days: ref([
-        { from: '2023/04/01', to: '2023/04/10' },
-        { from: '2023/04/21', to: '2020/04/25' },
-      ]),
     };
   },
   methods: {
@@ -281,7 +274,7 @@ export default defineComponent({
       newDeal.opening_time = this.opening_time;
       newDeal.days = this.days;
       console.log('new_deal:', newDeal);
-      axios.post('http://localhost:3000/store/create_deal', newDeal)
+      axios.post('http://localhost:3000/deals/create', newDeal)
         .then(() => {
           console.log('deal created');
         })

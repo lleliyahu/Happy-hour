@@ -18,70 +18,24 @@ router.get("/all", function (req, res, next) {
         res.send(result);
       }
     });
-  //  message = [ {
-  //     "store": "aaaaaa",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "aaaa  i hi"
-  //   },
-  //   {
-  //     "store": "bbbbb",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "bbbb  hi hi"
-  //   },
-  //   {
-  //     "store": "ddddd",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "bbbb  hi hi"
-  //   },
-  //   {
-  //     "store": "bbbbb",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "bbbb  hi hi"
-  //   },
-  //   {
-  //     "store": "bbbbb",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "bbbb  hi hi"
-  //   },
-  //   {
-  //     "store": "bbbbb",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "bbbb  hi hi"
-  //   },
-  //   {
-  //     "store": "bbbbb",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "bbbb  hi hi"
-  //   },
-  //   {
-  //     "store": "cccc",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "cccc hi hi"
-  //   },
-  //   {
-  //     "store": "cccc",
-  //     "start_time": "01.01.2222",
-  //     "end_time": "01.01.2222",
-  //     "discount": 10,
-  //     "message": "cccc hi hi"
-  //   }
-  // ];
+ 
 });
+
+router.post("/create", function (req, res, next) {
+  console.log(req.body);
+  var myobj = req.body;
+  db.getDb()
+    .collection("Deals")
+    .insertOne(myobj, function (err) {
+      if (err) {
+        res.status(500);
+        res.send("error");
+      } else {
+        console.log("1 document inserted");
+        res.status(200);
+        res.send("1 document inserted");
+      }
+    });
+  });
 
 module.exports = router;

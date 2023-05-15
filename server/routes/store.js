@@ -3,13 +3,26 @@ var express = require("express");
 var router = express.Router();
 var db = require("../DB/DbClient.js");
 
-/* GET users listing. */
 router.post("/getStore", function (req, res, next) {
   var query = {};
   query.username = req.body.username;
   db.getDb()
     .collection("store")
     .find(query)
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(400).send("Error fetching listing");
+      } else {
+        res.send(result);
+        console.log(result);
+      }
+    });
+});
+
+router.get("/getallStore", async (req, res, next) => {
+  db.getDb()
+    .collection("store")
+    .find()
     .toArray(function (err, result) {
       if (err) {
         res.status(400).send("Error fetching listing");
