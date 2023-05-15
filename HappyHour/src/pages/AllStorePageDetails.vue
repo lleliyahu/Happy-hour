@@ -3,7 +3,7 @@
   <div class="image-container" style="height:250px;">
     <q-img class="image" src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
       <div class="absolute-bottom text-subtitle1 text-center">
-        Store Name
+         {{storeName}}
       </div>
     </q-img>
     <!-- <q-icon class="absolute all-pointer-events" size="32px" name="favorite" color="white" style="top: 8px; left: 8px">
@@ -144,14 +144,14 @@ export default {
   components: {
     seeMoreInfo,
   },
-  props: {
-    store: String,
-    message: Number,
-  },
+  props: ['storeName'],
   methods: {
     changeColor() {
       this.$refs.favoriteButton.color = 'red';
     },
+  },
+  mounted() {
+    console.log('store name::::::::::', this.storeName);
   },
   watch: {
     isFavorite(val) {

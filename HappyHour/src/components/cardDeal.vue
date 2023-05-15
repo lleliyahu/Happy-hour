@@ -1,7 +1,7 @@
 <!-- eslint-disable max-len -->
 <template>
   <div>
-    <router-link to="/nouvelle-page">
+    <router-link  :to="{ path: `/nouvelle-page/${store}` }"  >
     <q-card class="my-card" @click="handleImageClick">
 
         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />

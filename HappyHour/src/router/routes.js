@@ -12,7 +12,11 @@ const routes = [
       { path: 'Profile', component: () => import('src/pages/Profile.vue') },
       { path: 'Restaurants', component: () => import('src/pages/DealsPage.vue') },
       { path: 'Stores', component: () => import('src/pages/StoresPage.vue') },
-      { path: 'nouvelle-page', component: () => import('src/pages/AllStorePageDetails.vue') },
+      {
+        path: 'nouvelle-page/:storeName',
+        props: true,
+        component: () => import('src/pages/AllStorePageDetails.vue'),
+      },
       { path: 'DealBreaker', component: () => import('src/pages/DealBreaker.vue') },
       { path: 'tempPage', component: () => import('src/pages/tempPage.vue') },
       {
