@@ -120,7 +120,18 @@
           </div>
         </div> -->
       </q-header>
-      <h2>Bla</h2>
+      <h2>Store Deals</h2>
+      <div class="q-pa-md">
+        <q-card class="my-card">
+          <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150" />
+
+          <q-card-section>
+            <div class="text-h6">Our Changing Planet</div>
+            <div class="text-subtitle2">by John Doe</div>
+          </q-card-section>
+        </q-card>
+      </div>
+      <h2>Store Menu</h2>
       <div class="q-pa-md">
         <q-card class="my-card">
           <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150" />
@@ -163,7 +174,7 @@ export default {
 
 <style>
 .image-container {
-  height: 50vh;
+  /* height: 50vh; */
   /* hauteur de 25% de l'écran */
   position: relative;
   /* position relative pour contenir l'image */
