@@ -21,6 +21,22 @@ router.get("/all", function (req, res, next) {
  
 });
 
+router.get("/storeDeals", function (req, res, next) {
+  var query = JSON.parse(req.query.store);
+  console.log(query)
+  db.getDb()
+    .collection("Deals")
+    .find(query)
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(400).send("Error fetching listing");
+      } else {
+        res.send(result);
+      }
+    });
+ 
+});
+
 router.post("/create", function (req, res, next) {
   console.log(req.body);
   var myobj = req.body;
