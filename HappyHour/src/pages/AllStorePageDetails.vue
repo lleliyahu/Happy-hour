@@ -134,9 +134,11 @@
       <h2>Store Deals</h2>
       <div class="q-pa-md">
         <q-card class="my-card">
-          <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150" />
+          <q-chip dense color="red" text-color="white" icon="percent" label="40" />
+          <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150"></q-parallax>
 
           <q-card-section>
+            <q-chip dense color="red" text-color="white" icon="alarm" label="Set alarm" />
             <div class="text-h6">Our Changing Planet</div>
             <div class="text-subtitle2">by John Doe</div>
           </q-card-section>

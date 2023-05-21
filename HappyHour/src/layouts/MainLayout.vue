@@ -3,7 +3,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-      <!-- <div class="lt-md">
+        <!-- <div class="lt-md">
           <q-btn class="bg-cyan-8" side flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
                                                                                                                                                                                     </div> -->
         <q-toolbar-title class="gt-sm">
@@ -17,7 +17,7 @@
               <PlacesSelection></PlacesSelection>
             </q-dialog>
           </q-btn>
-        <!-- <span>Delviery to</span>
+          <!-- <span>Delviery to</span>
                                                                                                                                 <q-btn flat round icon="arrow_drop_down"></q-btn> -->
         </div>
         <q-space class="lt-md"></q-space>
@@ -48,7 +48,7 @@
             <RegistraTion :goLogIn="goLogIn"></RegistraTion>
           </q-dialog>
         </div>
-      <!-- <div class="lt-md" v-if="isNotUserConnect">
+        <!-- <div class="lt-md" v-if="isNotUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" @click="logindialog = true" />
           <q-dialog v-model="logindialog">
             <logIn :UserConnect="UserConnect" :goReg="goReg"></logIn>
@@ -57,6 +57,7 @@
         <div v-if="!isNotUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
         </div>
+        <q-btn class="bg-cyan-8" flat round icon="shopping_cart" to="/Profile"></q-btn>
       </q-toolbar>
     </q-header>
     <q-footer class="bg-blue-grey-9" reveal elevated>
