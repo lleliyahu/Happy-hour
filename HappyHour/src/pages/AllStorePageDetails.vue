@@ -12,23 +12,21 @@
         Add to favorite
       </q-tooltip>
     </q-icon> -->
-    <q-btn class="favorite-button" icon="favorite" @click="changeColor" color="red"></q-btn>
-
-    <q-btn class="favorite-button" icon="favorite" :color="isFavorite ? 'red' : 'black'" @click="onFavorite"
+    <q-btn class="favorite-button" round color="black" :icon="isFavorite ? 'favorite' : 'recommend'" @click="onFavorite"
       watch="isFavorite"></q-btn>
 
-    <div class="row no-wrap items-center justify-start">
+    <!-- <div class="row no-wrap items-center justify-start">
       <div class="col text-h6 ellipsis" color="white">
         store
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="q-pa-md">
     <q-layout view="lHh lpr lFf" container style="height: 800px" class="shadow-2 rounded-borders">
       <q-header elevated>
         <q-bar>
-          <q-icon name="schedule" />
-          <div>Open until</div>
+          <q-icon name="schedule" color="blue-grey-8" />
+          <div style="color: #36486b;">Open until</div>
           <div class="q-pa-md q-gutter-sm">
             <q-btn label="See more information" color="blue-grey-8" icon="info" @click="moreinfodialog = true" />
             <q-dialog v-model="moreinfodialog">
@@ -37,11 +35,11 @@
           </div>
 
           <q-space />
-          <div class="q-pa-md gt-xs" style="max-width: 300px;max-height: 120px;">
+          <div class="q-pa-md gt-xs" color="blue-grey-8" style="max-width: 300px;max-height: 120px;">
             <div class="q-gutter-md">
-              <q-input v-model="search" debounce="1000" borderless placeholder="Search in {{ storeName }}">
+              <q-input color="blue-grey-8" v-model="search" debounce="1000" borderless placeholder="Search">
                 <template v-slot:append>
-                  <q-icon name="search" />
+                  <q-icon color="blue-grey-8" name="search" />
                 </template>
               </q-input>
             </div>
@@ -156,6 +154,38 @@
         </q-card>
       </div>
 
+      <div class="q-pa-md">
+        <q-table flat bordered title="Treats" :rows="rows" :columns="columns" row-key="name">
+
+          <template v-slot:header="props">
+            <q-tr :props="props">
+              <q-th auto-width />
+              <q-th v-for="col in props.cols" :key="col.name" :props="props">
+                {{ col.label }}
+              </q-th>
+            </q-tr>
+          </template>
+
+          <template v-slot:body="props">
+            <q-tr :props="props">
+              <q-td auto-width>
+                <q-btn size="sm" color="accent" round dense @click="props.expand = !props.expand"
+                  :icon="props.expand ? 'remove' : 'add'" />
+              </q-td>
+              <q-td v-for="col in props.cols" :key="col.name" :props="props">
+                {{ col.value }}
+              </q-td>
+            </q-tr>
+            <q-tr v-show="props.expand" :props="props">
+              <q-td colspan="100%">
+                <div class="text-left">This is expand slot for row above: {{ props.row.name }}.</div>
+              </q-td>
+            </q-tr>
+          </template>
+
+        </q-table>
+      </div>
+
     </q-layout>
   </div>
 </template>
@@ -163,6 +193,140 @@
 <script>
 import seeMoreInfo from 'src/components/SeeMoreInfo.vue';
 
+const columns = [
+  {
+    name: 'name',
+    required: true,
+    label: 'Dessert (100g serving)',
+    align: 'left',
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true,
+  },
+  {
+    name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true,
+  },
+  {
+    name: 'carbs', label: 'Carbs (g)', field: 'carbs',
+  },
+  {
+    name: 'protein', label: 'Protein (g)', field: 'protein',
+  },
+  {
+    name: 'sodium', label: 'Sodium (mg)', field: 'sodium',
+  },
+  {
+    name: 'calcium', label: 'Calcium (%)', field: 'calcium', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+  },
+  {
+    name: 'iron', label: 'Iron (%)', field: 'iron', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+  },
+];
+const rows = [
+  {
+    name: 'Frozen Yogurt',
+    calories: 159,
+    fat: 6.0,
+    carbs: 24,
+    protein: 4.0,
+    sodium: 87,
+    calcium: '14%',
+    iron: '1%',
+  },
+  {
+    name: 'Ice cream sandwich',
+    calories: 237,
+    fat: 9.0,
+    carbs: 37,
+    protein: 4.3,
+    sodium: 129,
+    calcium: '8%',
+    iron: '1%',
+  },
+  {
+    name: 'Eclair',
+    calories: 262,
+    fat: 16.0,
+    carbs: 23,
+    protein: 6.0,
+    sodium: 337,
+    calcium: '6%',
+    iron: '7%',
+  },
+  {
+    name: 'Cupcake',
+    calories: 305,
+    fat: 3.7,
+    carbs: 67,
+    protein: 4.3,
+    sodium: 413,
+    calcium: '3%',
+    iron: '8%',
+  },
+  {
+    name: 'Gingerbread',
+    calories: 356,
+    fat: 16.0,
+    carbs: 49,
+    protein: 3.9,
+    sodium: 327,
+    calcium: '7%',
+    iron: '16%',
+  },
+  {
+    name: 'Jelly bean',
+    calories: 375,
+    fat: 0.0,
+    carbs: 94,
+    protein: 0.0,
+    sodium: 50,
+    calcium: '0%',
+    iron: '0%',
+  },
+  {
+    name: 'Lollipop',
+    calories: 392,
+    fat: 0.2,
+    carbs: 98,
+    protein: 0,
+    sodium: 38,
+    calcium: '0%',
+    iron: '2%',
+  },
+  {
+    name: 'Honeycomb',
+    calories: 408,
+    fat: 3.2,
+    carbs: 87,
+    protein: 6.5,
+    sodium: 562,
+    calcium: '0%',
+    iron: '45%',
+  },
+  {
+    name: 'Donut',
+    calories: 452,
+    fat: 25.0,
+    carbs: 51,
+    protein: 4.9,
+    sodium: 326,
+    calcium: '2%',
+    iron: '22%',
+  },
+  {
+    name: 'KitKat',
+    calories: 518,
+    fat: 26.0,
+    carbs: 65,
+    protein: 7,
+    sodium: 54,
+    calcium: '12%',
+    iron: '6%',
+  },
+];
 export default {
   name: 'cardDeal',
   components: {
@@ -177,10 +341,16 @@ export default {
   mounted() {
     console.log('store name::::::::::', this.storeName);
   },
-  watch: {
-    isFavorite(val) {
-      this.$refs.favoriteButton.color = val ? 'red' : 'black';
-    },
+  // watch: {
+  //   isFavorite(val) {
+  //     this.$refs.favoriteButton.color = val ? 'red' : 'black';
+  //   },
+  // },
+  setup() {
+    return {
+      columns,
+      rows,
+    };
   },
 };
 </script>

@@ -39,6 +39,17 @@
                 <q-input dark color="white" dense v-model="store_phone" label="Store Phone" style="max-width: 600px" />
               </q-item-section>
             </q-item>
+            <q-item>
+              <q-item-section>
+                <div class="q-pa-md">
+                  <q-select filled bg-color="white" color="cyan-8" v-model="storeModel" use-input use-chips
+                    input-debounce="1" @new-value="createStoreValue" :options="storeOptions" transition-show="jump-up"
+                    transition-hide="jump-up" style="max-width: 600px;" label="Choose Store Filters:">
+                    <q-icon name="cancel" @click.stop.prevent="storeModel = null" class="cursor-pointer" />
+                  </q-select>
+                </div>
+              </q-item-section>
+            </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
                 <q-input dark color="white" dense v-model="time" label="Set Opening Hour" style="max-width: 600px">
@@ -99,7 +110,7 @@
               <q-time v-model="time" landscape now-btn format24h color="black" />
             </div>
           </q-item-section>
-                                                                                                                                                                                                              </q-item> -->
+          </q-item> -->
           </div>
           <div class="col">
             <div class="q-pa-md">
@@ -123,9 +134,8 @@
           </template>
         </q-input>
       </template>
-
-                                                                                                        </q-table> -->
-              <q-table class="no-shadow" :rows="menu" :columns="column" hide-bottom>
+    </q-table> -->
+              <q-table title="Menu" class="no-shadow" :rows="menu" :columns="column" hide-bottom>
                 <template v-slot:top>
                   <q-btn color="green-8" :disable="loading" label="Add row" @click="AddItemMenudialog = true" />
                   <q-btn class="q-ml-sm" color="red-8" :disable="loading" label="Remove row" @click="removeRow" />
@@ -186,6 +196,11 @@
                 <q-td>
                   <q-btn icon="delete"></q-btn>
                 </q-td>
+                <q-tr v-show="props.expand" :props="props">
+                  <q-td colspan="100%">
+                    <div class="text-left">This is expand slot for row above: {{ props.row.storeName }}.</div>
+                  </q-td>
+                </q-tr>
               </q-table>
             </div>
           </div>
@@ -259,6 +274,7 @@ export default defineComponent({
     post_code: '',
     street_address: '',
     menu: [],
+    storeModel: {},
   }),
   setup() {
     return {
