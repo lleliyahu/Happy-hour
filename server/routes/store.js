@@ -35,7 +35,6 @@ router.get("/getallStore", async (req, res, next) => {
 
 router.post("/getStoreData", function (req, res, next) {
   var query = {};
-  query.username = req.body.username;
   query.storename = req.body.storename;
   console.log(query);
   db.getDb()
