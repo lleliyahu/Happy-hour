@@ -56,8 +56,8 @@
                                                                                           </div> -->
         <div v-if="!isNotUserConnect">
           <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
+          <q-btn class="bg-cyan-8" flat round icon="shopping_cart" to="/ShoppingCart"></q-btn>
         </div>
-        <q-btn class="bg-cyan-8" flat round icon="shopping_cart" to="/Profile"></q-btn>
       </q-toolbar>
     </q-header>
     <q-footer class="bg-blue-grey-9" reveal elevated>
