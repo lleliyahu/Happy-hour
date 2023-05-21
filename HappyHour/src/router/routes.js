@@ -13,7 +13,7 @@ const routes = [
       { path: 'Restaurants', component: () => import('src/pages/DealsPage.vue') },
       { path: 'Stores', component: () => import('src/pages/StoresPage.vue') },
       {
-        path: 'nouvelle-page/:storeName',
+        path: 'StoreDetailsPage/:storeName',
         props: true,
         component: () => import('src/pages/AllStorePageDetails.vue'),
       },

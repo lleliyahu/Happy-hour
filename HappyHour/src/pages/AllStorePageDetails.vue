@@ -20,7 +20,7 @@
         store
       </div>
     </div> -->
-  </div>
+
   <div class="q-pa-md">
     <q-layout view="lHh lpr lFf" container style="height: 800px" class="shadow-2 rounded-borders">
       <q-header elevated>
@@ -133,16 +133,18 @@
       <br>
       <h2>Store Deals</h2>
       <div class="q-pa-md">
-        <q-card class="my-card">
+        <div class="row q-col-gutter-sm">
+        <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
           <q-chip dense color="red" text-color="white" icon="percent" label="40" />
           <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150"></q-parallax>
 
           <q-card-section>
             <q-chip dense color="red" text-color="white" icon="alarm" label="Set alarm" />
-            <div class="text-h6">Our Changing Planet</div>
+            <div class="text-h6">{{deal._id}}</div>
             <div class="text-subtitle2">by John Doe</div>
           </q-card-section>
         </q-card>
+        </div>
       </div>
       <h2>Store Menu</h2>
       <div class="q-pa-md">
@@ -190,10 +192,12 @@
 
     </q-layout>
   </div>
+</div>
 </template>
 
 <script>
 import seeMoreInfo from 'src/components/SeeMoreInfo.vue';
+import axios from 'axios';
 
 const columns = [
   {
@@ -335,13 +339,48 @@ export default {
     seeMoreInfo,
   },
   props: ['storeName'],
+  data: () => ({
+    city_address: '',
+    store_phone: '',
+    post_code: '',
+    street_address: '',
+    menu: [],
+    storeModel: {},
+    deals: {},
+  }),
   methods: {
     changeColor() {
       this.$refs.favoriteButton.color = 'red';
     },
+    getStoreDetails() {
+      const body = {};
+      body.storename = this.storeName;
+      console.log('body', body);
+      axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
+        console.log('data', response.data);
+        this.city_address = response.data[0].city_address;
+        this.store_phone = response.data[0].store_phone;
+        this.post_code = response.data[0].post_code;
+        this.street_address = response.data[0].street_address;
+        if (response.data[0].menu === undefined) {
+          this.menu = [];
+        } else {
+          this.menu = response.data[0].menu;
+        }
+      });
+      this.getdeals();
+    },
+    getdeals() {
+      const store = {};
+      store.storename = this.storeName;
+      axios.get('http://localhost:3000/deals/storeDeals', { params: { store } }).then((response) => {
+        this.deals = response.data.valueOf();
+        console.log('this.dealseeeeeeee', this.deals);
+      });
+    },
   },
   mounted() {
-    console.log('store name::::::::::', this.storeName);
+    this.getStoreDetails();
   },
   // watch: {
   //   isFavorite(val) {

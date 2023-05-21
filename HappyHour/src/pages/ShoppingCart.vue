@@ -180,7 +180,6 @@ label {
         padding: 1em 0 1em 1em;
       }
 
-
       .cart-items {
         padding: 0 1em 2em 1em;
 
