@@ -133,7 +133,7 @@
         <br>
         <h2>Store Deals</h2>
         <div class="q-pa-md">
-          <q-card class="my-card">
+
             <div class="row q-col-gutter-sm">
               <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
                 <q-chip dense color="red" text-color="white" icon="percent" label="40" />
@@ -149,16 +149,16 @@
                 </q-card-section>
               </q-card>
             </div>
-          </q-card>
+
         </div>
         <h2>Store Menu</h2>
-        <div class="q-pa-md">
-          <q-card class="my-card">
+        <div class="row q-col-gutter-sm">
+          <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="item in menu" :key="item.name">
             <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150" />
 
             <q-card-section>
-              <div class="text-h6">Our Changing Planet</div>
-              <div class="text-subtitle2">by John Doe</div>
+              <div class="text-h6">{{item.name}}</div>
+              <div class="text-subtitle2">{{ item.des }}</div>
             </q-card-section>
           </q-card>
         </div>
@@ -371,6 +371,7 @@ export default {
           this.menu = [];
         } else {
           this.menu = response.data[0].menu;
+          console.log('aaaaaaaaaaaaaaaaaaa', this.menu);
         }
       });
       this.getdeals();
