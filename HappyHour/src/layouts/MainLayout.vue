@@ -55,8 +55,48 @@
           </q-dialog>
                                                                                           </div> -->
         <div v-if="!isNotUserConnect">
-          <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
-          <q-btn class="bg-cyan-8" flat round icon="shopping_cart" to="/ShoppingCart"></q-btn>
+          <div class="gt-sm q-pa-md">
+            <q-btn-dropdown color="blue-grey-8" label="Account Settings">
+              <div class="row no-wrap q-pa-md">
+                <div class="column">
+                  <div class="text-h6 q-mb-md">Settings</div>
+                  <q-btn class="text-white bg-cyan-8" flat icon="account_circle" label="Profile Settings"
+                    to="/Profile"></q-btn>
+                  <br>
+                  <q-btn class="bg-cyan-8 text-white" flat icon="shopping_cart" label="Shopping Cart"
+                    to="/ShoppingCart"></q-btn>
+                </div>
+
+                <q-separator vertical inset class="q-mx-lg" />
+
+                <div class="column items-center">
+                  <br>
+                  <br>
+                  <br>
+                  <!-- <q-avatar size="72px">
+                    <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                  </q-avatar> -->
+
+                  <!-- <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div> -->
+
+                  <q-btn color="blue-grey-8" label="Logout" push size="md" v-close-popup />
+                </div>
+              </div>
+            </q-btn-dropdown>
+          </div>
+          <div class="lt-md">
+            <div class="q-px-sm q-py-lg">
+              <div class="column items-center">
+                <q-fab color="blue-grey-8" icon="keyboard_arrow_down" direction="down">
+                  <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
+                  <q-btn class="bg-cyan-8" flat round icon="shopping_cart" to="/ShoppingCart"></q-btn>
+                </q-fab>
+              </div>
+
+            </div>
+            <!-- <q-btn class="lt-md bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
+          <q-btn class="lt-md bg-cyan-8" flat round icon="shopping_cart" to="/ShoppingCart"></q-btn> -->
+          </div>
         </div>
       </q-toolbar>
     </q-header>

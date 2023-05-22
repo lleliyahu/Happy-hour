@@ -1,27 +1,21 @@
 <!-- eslint-disable max-len -->
 <template>
   <div>
-    <router-link  :to="{ path: `/StoreDetailsPage/${store}` }"  >
-    <q-card class="my-card" @click="handleImageClick">
+    <router-link :to="{ path: `/StoreDetailsPage/${store}` }">
+      <q-card class="my-card" @click="handleImageClick">
 
         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
         <q-card-section>
-          <q-btn
-            fab
-            color="primary"
-            icon="place"
-            class="absolute"
-            style="top: 0; right: 12px; transform: translateY(-50%);"
-          />
-
+          <q-btn fab :color="isFavorite ? 'red-6' : 'blue-grey-8'" icon="favorite" class="absolute"
+            style="top: 0; right: 12px; transform: translateY(-50%);" />
           <div class="row no-wrap items-center justify-start">
             <div class="col text-h6 ellipsis">
               {{ store }}
             </div>
-            <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center justify-end">
+            <!-- <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center justify-end">
               <q-icon name="place" />
               250 ft
-            </div>
+            </div> -->
           </div>
 
           <q-rating v-model="stars" :max="5" size="22px" />
@@ -42,10 +36,10 @@
           <q-btn v-close-popup flat color="primary" label="Reserve" />
           <q-btn v-close-popup flat color="primary" round icon="event" />
         </q-card-actions> -->
-       </q-card>
-       </router-link>
+      </q-card>
+    </router-link>
 
-</div>
+  </div>
 </template>
 <script>
 export default {
