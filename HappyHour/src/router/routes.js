@@ -19,7 +19,7 @@ const routes = [
         component: () => import('src/pages/AllStorePageDetails.vue'),
       },
       { path: 'DealBreaker', component: () => import('src/pages/DealBreaker.vue') },
-      { path: 'tempPage', component: () => import('src/pages/tempPage.vue') },
+      { path: 'Portfolio', component: () => import('src/pages/Portfolio.vue') },
       {
         path: 'EditStore/:storeName',
         name: 'EditStore',

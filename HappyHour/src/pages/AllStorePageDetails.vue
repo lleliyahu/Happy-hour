@@ -6,21 +6,6 @@
         {{ storeName }}
       </div>
     </q-img>
-    <!-- <q-icon class="absolute all-pointer-events" size="32px" name="favorite" color="white" style="top: 8px; left: 8px">
-
-      <q-tooltip class="bg-cyan">
-        Add to favorite
-      </q-tooltip>
-    </q-icon> -->
-    <q-btn class="favorite-button" round color="black" :icon="isFavorite ? 'favorite' : 'recommend'" @click="onFavorite"
-      watch="isFavorite"></q-btn>
-
-    <!-- <div class="row no-wrap items-center justify-start">
-      <div class="col text-h6 ellipsis" color="white">
-        store
-      </div>
-    </div> -->
-
     <div class="q-pa-md">
       <q-layout view="lHh lpr lFf" container style="height: 800px" class="shadow-2 rounded-borders">
         <q-header elevated>
@@ -57,76 +42,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="q-pa-sm q-pl-md row items-center">
-          <div class="cursor-pointer non-selectable">
-            File
-            <q-menu>
-              <q-list dense style="min-width: 100px">
-                <q-item clickable v-close-popup>
-                  <q-item-section>Open...</q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>New</q-item-section>
-                </q-item>
-
-                <q-separator />
-
-                <q-item clickable>
-                  <q-item-section>Preferences</q-item-section>
-                  <q-item-section side>
-                    <q-icon name="keyboard_arrow_right" />
-                  </q-item-section>
-
-                  <q-menu anchor="top end" self="top start">
-                    <q-list>
-                      <q-item v-for="n in 3" :key="n" dense clickable>
-                        <q-item-section>Submenu Label</q-item-section>
-                        <q-item-section side>
-                          <q-icon name="keyboard_arrow_right" />
-                        </q-item-section>
-                        <q-menu auto-close anchor="top end" self="top start">
-                          <q-list>
-                            <q-item v-for="n in 3" :key="n" dense clickable>
-                              <q-item-section>3rd level Label</q-item-section>
-                            </q-item>
-                          </q-list>
-                        </q-menu>
-                      </q-item>
-                    </q-list>
-                  </q-menu>
-                </q-item>
-
-                <q-separator />
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>Quit</q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </div>
-
-          <div class="q-ml-md cursor-pointer non-selectable">
-            Edit
-            <q-menu auto-close>
-              <q-list dense style="min-width: 100px">
-                <q-item clickable>
-                  <q-item-section>Cut</q-item-section>
-                </q-item>
-                <q-item clickable>
-                  <q-item-section>Copy</q-item-section>
-                </q-item>
-                <q-item clickable>
-                  <q-item-section>Paste</q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item clickable>
-                  <q-item-section>Select All</q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </div>
-        </div> -->
         </q-header>
         <br>
         <br>
@@ -138,18 +53,19 @@
         <h2>Store Deals</h2>
         <div class="q-pa-md">
 
-            <div class="row q-col-gutter-sm">
-              <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
-                <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150"></q-parallax>
-                <q-card-section>
-                  <q-chip dense color="red" text-color="white" :label=deal.deal  />
-                  <div class="text-h6">{{ deal.dealfor[0] }}</div>
-                  <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart"></q-btn></div>
-                  <div class="text-subtitle2">{{deal.days[0].from}}-{{deal.days[0].to}}</div>
-                  <div class="text-subtitle2">Price:</div>
-                </q-card-section>
-              </q-card>
-            </div>
+          <div class="row q-col-gutter-sm">
+            <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
+              <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150"></q-parallax>
+              <q-card-section>
+                <q-chip dense color="red" text-color="white" :label=deal.deal />
+                <div class="text-h6">{{ deal.dealfor[0] }}</div>
+                <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart"></q-btn></div>
+                <div class="text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
+                <div class="text-subtitle2">Price:</div>
+              </q-card-section>
+            </q-card>
+            <q-space />
+          </div>
 
         </div>
         <h2>Store Menu</h2>
@@ -158,13 +74,14 @@
             <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150" />
 
             <q-card-section>
-              <div class="text-h6">{{item.name}}</div>
-              <div class="text-subtitle2">{{ item.des }}</div>
+              <div class="text-h6">{{ item.name }}</div>
+              <div class="text-grey-8 text-subtitle2">{{ item.des }}</div>
+              <div class="text-blue-grey-8 text-subtitle2">{{ item.price }}$</div>
             </q-card-section>
           </q-card>
         </div>
 
-        <div class="q-pa-md">
+        <!-- <div class="q-pa-md">
           <q-table flat bordered title="Treats" :rows="rows" :columns="columns" row-key="name">
 
             <template v-slot:header="props">
@@ -194,7 +111,7 @@
             </template>
 
           </q-table>
-        </div>
+        </div> -->
 
       </q-layout>
     </div>

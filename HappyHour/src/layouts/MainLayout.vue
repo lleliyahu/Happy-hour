@@ -94,19 +94,19 @@
               </div>
 
             </div>
-            <!-- <q-btn class="lt-md bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
-          <q-btn class="lt-md bg-cyan-8" flat round icon="shopping_cart" to="/ShoppingCart"></q-btn> -->
           </div>
         </div>
       </q-toolbar>
     </q-header>
-    <q-footer class="bg-blue-grey-9" reveal elevated>
-      <div id="footer" class="gt-sm">
-        <q-toolbar>
-          <q-space />
-          &copy; Happy Hour
-          <q-space />
-        </q-toolbar>
+    <q-footer class="bg-blue-grey-9 q-footer bg-transparent absolute-bottom" reveal elevated>
+      <div class="content q-px-md q-py-lg">
+        <div data-v-0af707fe="" class="text-center">
+          <div data-v-0af707fe="" class="text-h5">
+            <div data-v-0af707fe="">
+              <div class="q-pb-none">&copy; Happy Hour</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="lt-md">
         <q-toolbar>
