@@ -40,7 +40,7 @@
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-slider class="q-mt-xl" v-model="model" color="cyan-8" markers :marker-labels="fnMarkerLabel" :min="1"
+              <q-slider class="q-mt-xl" v-model="deal" color="cyan-8" markers :marker-labels="fnMarkerLabel" :min="1"
                 :max="4" />
             </q-item-section>
           </q-item>
@@ -82,8 +82,7 @@
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-input dark color="white" dense v-model="days_view" label="Set Deal Dates" style="max-width: 600px"
-                :rules="['days']">
+              <q-input dark color="white" dense v-model="days_view" label="Set dddddDeal Dates" style="max-width: 600px">
                 <template #append>
                   <q-icon class="cursor-pointer" name="event">
                     <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -145,12 +144,12 @@ export default defineComponent({
     days: ref([
       { from: '2023/04/01', to: '2023/04/10' },
     ]),
+    deal: '',
     fnMarkerLabel: (val) => `${10 * val}%`,
   }),
   computed: {
-    // a computed getter
     days_view() {
-      return '2023/05/01 - 2023/05/18';
+      return `from: ${this.days[0].from} to: ${this.days[0].to}`;
     },
     dealOptions() {
       let menuVal = [];
@@ -165,33 +164,12 @@ export default defineComponent({
     },
   },
   setup() {
-    // this.filterDealOptions = ref(dealOptions);
-    // this.filterStoreOptions = ref(storeOptions);
     const model = ref(2);
     return {
       dealModel: ref(null),
-      // dealOptions,
-      // storeOptions,
       model,
 
       createDealValue(dealVal, done) {
-        // Calling done(var) when new-value-mode is not set or "add",
-        // or done(var, "add") adds "var" content to the model
-        // and it resets the input textbox to empty string
-        // ----
-        // Calling done(var) when new-value-mode is "add-unique",
-        // or done(var, "add-unique") adds "var" content to the model
-        // only if is not already set
-        // and it resets the input textbox to empty string
-        // ----
-        // Calling done(var) when new-value-mode is "toggle",
-        // or done(var, "toggle") toggles the model with "var" content
-        // (adds to model if not already in the model, removes from model if already has it)
-        // and it resets the input textbox to empty string
-        // ----
-        // If "var" content is undefined/null, then it doesn't tampers with the model
-        // and only resets the input textbox to empty string
-
         if (dealVal.length > 0) {
           if (!this.dealOptions.includes(dealVal)) {
             this.dealOptions.push(dealVal);
@@ -199,38 +177,7 @@ export default defineComponent({
           done(dealVal, 'toggle');
         }
       },
-
-      // filterDealFn(dealVal, update) {
-      //   update(() => {
-      //     if (dealVal === '') {
-      //       filterDealOptions.value = dealOptions;
-      //     } else {
-      //       const needle = dealVal.toLowerCase();
-      //       filterDealOptions.value = dealOptions.filter(
-      //         (v) => v.toLowerCase().indexOf(needle) > -1,
-      //       );
-      //     }
-      //   });
-      // },
-
       createStoreValue(storeVal, done) {
-        // Calling done(var) when new-value-mode is not set or "add",
-        // or done(var, "add") adds "var" content to the model
-        // and it resets the input textbox to empty string
-        // ----
-        // Calling done(var) when new-value-mode is "add-unique",
-        // or done(var, "add-unique") adds "var" content to the model
-        // only if is not already set
-        // and it resets the input textbox to empty string
-        // ----
-        // Calling done(var) when new-value-mode is "toggle",
-        // or done(var, "toggle") toggles the model with "var" content
-        // (adds to model if not already in the model, removes from model if already has it)
-        // and it resets the input textbox to empty string
-        // ----
-        // If "var" content is undefined/null, then it doesn't tampers with the model
-        // and only resets the input textbox to empty string
-
         if (storeVal.length > 0) {
           if (!this.storeOptions.includes(storeVal)) {
             this.storeOptions.push(storeVal);
@@ -239,18 +186,6 @@ export default defineComponent({
         }
       },
 
-      // filterStoreFn(storeVal, update) {
-      //   update(() => {
-      //     if (storeVal === '') {
-      //       filterStoreOptions.value = storeOptions;
-      //     } else {
-      //       const needle = storeVal.toLowerCase();
-      //       filterStoreOptions.value = storeOptions.filter(
-      //         (v) => v.toLowerCase().indexOf(needle) > -1,
-      //       );
-      //     }
-      //   });
-      // },
     };
   },
   methods: {
@@ -268,11 +203,12 @@ export default defineComponent({
     },
     create_deal() {
       const newDeal = {};
-      newDeal.usstorename = localStorage.getItem('user');
       newDeal.storename = this.storeModel;
       newDeal.closing_time = this.closing_time;
       newDeal.opening_time = this.opening_time;
       newDeal.days = this.days;
+      newDeal.dealfor = this.dealModel;
+      newDeal.deal = this.fnMarkerLabel(this.deal);
       console.log('new_deal:', newDeal);
       axios.post('http://localhost:3000/deals/create', newDeal)
         .then(() => {

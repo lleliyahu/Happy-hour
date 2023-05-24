@@ -142,10 +142,10 @@
               <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
                 <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150"></q-parallax>
                 <q-card-section>
-                  <q-chip dense color="red" text-color="white" label="40" icon="percent" />
-                  <div class="text-h6">{{ deal._id }}</div>
+                  <q-chip dense color="red" text-color="white" :label=deal.deal  />
+                  <div class="text-h6">{{ deal.dealfor[0] }}</div>
                   <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart"></q-btn></div>
-                  <div class="text-subtitle2">by John Doe</div>
+                  <div class="text-subtitle2">{{deal.days[0].from}}-{{deal.days[0].to}}</div>
                   <div class="text-subtitle2">Price:</div>
                 </q-card-section>
               </q-card>
@@ -372,7 +372,6 @@ export default {
           this.menu = [];
         } else {
           this.menu = response.data[0].menu;
-          console.log('aaaaaaaaaaaaaaaaaaa', this.menu);
         }
       });
       this.getdeals();
