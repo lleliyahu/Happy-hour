@@ -89,7 +89,7 @@
         <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12">
           <q-card class="q-pa-sm flex flex-center text-center box-shadow bg-red-6 text-white" style="margin: 40px;">
             <q-card-section>
-              <q-icon size="110px" name="percent" :style="'color:' + theme_color" />
+              <q-icon size="110px" name="local_fire_department" :style="'color:' + theme_color" />
               <div class="text-h6">&#128293;Deal Breaker&#128293;</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
