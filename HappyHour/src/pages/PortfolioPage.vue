@@ -3,17 +3,128 @@
   <div class="q-pa-md">
     <q-carousel animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
       transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
-      <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg">
+      <q-carousel-slide :name="1"
+        img-src="https://img.freepik.com/free-vector/happy-hour-neon-sign-with-cocktails_23-2148271154.jpg?w=2000">
         <div class="absolute-center custom-caption">
           <div class="text-h2">First stop</div>
           <div class="text-subtitle1">Mountains</div>
         </div>
       </q-carousel-slide>
 
-      <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-      <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-      <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
+      <q-carousel-slide :name="2"
+        img-src="https://img.freepik.com/free-vector/happy-hour-lettering-chalkboard_23-2148279304.jpg" />
+      <q-carousel-slide :name="3"
+        img-src="https://cloudfront-us-east-1.images.arcpublishing.com/dmn/4JPFCIIXM5AMHJMS72NFHJXGFA.jpg" />
+      <q-carousel-slide :name="4" img-src="https://s.hdnux.com/photos/01/21/05/64/21257525/4/rawImage.jpg" />
     </q-carousel>
+  </div>
+  <div class="shadow-15 animated fadeIn q-card">
+    <div class="q-pa-lg q-pa-md-xl q-card__section q-card__section--vert">
+      <div class="text-h4 q-mb-md">
+        <div>
+          <div class="q-pb-none">About Us</div>
+        </div>
+      </div>
+      <div class="lead">
+        <div>
+          <div class="q-pb-md">Hi there! I'm Nick Zuccarelli</div>
+          <div class="q-pb-md">I've had a passion for website development for many years. I remember first learning HTML
+            and CSS by looking at site code for a game and slowly changing it around and seeing the result. It was
+            intriguing stuff for a 14 year old!</div>
+          <div class="q-pb-md">Now however, I have a particular interest in responsive front-end development but also have
+            a keen interest in fullstack development.</div>
+          <div class="q-pb-md">I graduated from RMIT University, Melbourne at the end of 2017 with a distinction. Since
+            then, I've done a few small freelance jobs, but right now I've been working for Infestation Tracking Systems
+            on a product called Pest Register.</div>
+          <div class="q-pb-none">We are a small team, so I've had the opportunity to see how development and managerial
+            roles come together when compared to working in a larger company where many people have their set tasks and
+            don't interact directly with each other.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container full-width relative-position flex column q-mt-xl">
+    <div style="background-color: rgba(0, 0, 0, 0.68) !important;">
+      <div class=" content q-px-md q-py-xl">
+        <div class="text-center">
+          <div class="text-h4">
+            <div>
+              <div class="q-pb-none text-white">Our Specialities</div>
+            </div>
+          </div>
+          <div class="lead condensed">
+            <div>
+              <div class="q-pb-none text-grey">I've worked with numerous frameworks over many years. I am a keen learner
+                and love
+                keeping up-to-date with the latest web trends.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12">
+          <q-card class="q-pa-sm flex flex-center text-center box-shadow bg-cyan-8 text-white" style="margin: 40px;">
+            <q-card-section>
+              <q-icon size="110px" name="restaurant" :style="'color:' + theme_color" />
+              <div class="text-h6">Restaurants</div>
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt.
+            </q-card-section>
+            <q-btn size="lg" rounded dense class="text-white" icon="arrow_forward_ios" to="/Restaurants"></q-btn>
+          </q-card>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12 ">
+          <q-card class="q-pa-sm flex flex-center text-center box-shadow bg-cyan-8 text-white" style="margin: 40px;">
+            <q-card-section>
+              <q-icon size="110px" name="store" :style="'color:' + theme_color" />
+              <div class="text-h6">Stores</div>
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt.
+            </q-card-section>
+            <q-btn size="lg" rounded dense class="text-white" icon="arrow_forward_ios" to="/Stores"></q-btn>
+          </q-card>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12">
+          <q-card class="q-pa-sm flex flex-center text-center box-shadow bg-red-6 text-white" style="margin: 40px;">
+            <q-card-section>
+              <q-icon size="110px" name="percent" :style="'color:' + theme_color" />
+              <div class="text-h6">&#128293;Deal Breaker&#128293;</div>
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt.
+            </q-card-section>
+            <q-btn size="lg" rounded dense class="text-white" icon="arrow_forward_ios" to="/DealBreaker"></q-btn>
+          </q-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container full-width relative-position flex column bg-grey-10 dark">
+    <div class="content q-px-md q-py-xl">
+      <div class="text-center">
+        <div class="text-h4">
+          <div>
+            <div class="text-white q-pb-none">Want to contact us?</div>
+          </div>
+        </div>
+      </div>
+      <div class="q-gutter-md q-mt-lg text-center"><a tabindex="0" role="link"
+          class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle q-btn--rounded bg-grey-9 text-white q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--wrap q-btn--dense"
+          style="font-size: 20px;">
+          <span class="q-focus-helper">
+          </span>
+          <span class="q-btn__wrapper col row q-anchor--skip" style="padding: 8px 24px; min-width: 0px; min-height: 0px;">
+            <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+              <span class="block">Email
+              </span>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 

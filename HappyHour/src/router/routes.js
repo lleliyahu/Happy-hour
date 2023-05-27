@@ -8,7 +8,7 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('src/pages/DealsPage.vue') },
+      // { path: '', component: () => import('src/pages/DealsPage.vue') },
       { path: 'Profile', component: () => import('src/pages/Profile.vue') },
       { path: 'ShoppingCart', component: () => import('src/pages/ShoppingCart.vue') },
       { path: 'Restaurants', component: () => import('src/pages/DealsPage.vue') },
@@ -19,7 +19,7 @@ const routes = [
         component: () => import('src/pages/AllStorePageDetails.vue'),
       },
       { path: 'DealBreaker', component: () => import('src/pages/DealBreaker.vue') },
-      { path: 'Portfolio', component: () => import('src/pages/PortfolioPage.vue') },
+      { path: '', component: () => import('src/pages/PortfolioPage.vue') },
       {
         path: 'EditStore/:storeName',
         name: 'EditStore',
