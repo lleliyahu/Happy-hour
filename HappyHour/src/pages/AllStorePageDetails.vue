@@ -1,5 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
+  <div>
   <div class="image-container" style="height:250px;">
     <q-img class="image" src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
       <div class="absolute-bottom text-subtitle1 text-center">
@@ -115,6 +116,7 @@
 
     </q-layout>
   </div>
+</div>
 </template>
 
 <script>
