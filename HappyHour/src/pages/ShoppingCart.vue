@@ -7,7 +7,7 @@
         <q-card class="bg-grey-2 no-shadow" bordered>
           <q-card-section class="text-center text-h6 text-black ">
             <q-icon name="shopping_cart" class="q-mr-sm"/>
-            Order Summary
+            Deals Summary
           </q-card-section>
           <q-card-section horizontal>
             <q-card-section class="col-5 flex flex-center">
