@@ -27,6 +27,7 @@ const routes = [
         component: () => import('src/pages/StoreEditPage.vue'),
       },
       { path: 'EditDeal', component: () => import('src/pages/DealEditPage.vue') },
+      { path: 'StoreData', component: () => import('src/pages/StoreDataBar.vue') },
       { path: 'EditDealBreaker', component: () => import('src/pages/DealBreakerEditPage.vue') },
     ],
   },
