@@ -82,6 +82,7 @@ export default {
       menu.name = this.itemName;
       menu.des = this.descreption;
       menu.price = this.price;
+      menu.orders = 0;
       this.addItem(menu);
       return true;
     },

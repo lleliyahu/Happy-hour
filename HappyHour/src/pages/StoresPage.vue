@@ -1,8 +1,5 @@
 <!-- eslint-disable max-len -->
 <template>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@700&display=swap" rel="stylesheet">
   <div>
     <div class="q-pa-md gt-sm">
       <div class="q-pa-md q-gutter-sm row justify-center">
@@ -27,7 +24,7 @@
     <div class="q-pa-md">
       <div class="row q-col-gutter-sm">
         <div class="col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal.store">
-          <cardDeal :store="deal.store" :message="deal.message"></cardDeal>
+          <cardDeal :store="deal.storename" :message="deal.message"></cardDeal>
         </div>
       </div>
     </div>
