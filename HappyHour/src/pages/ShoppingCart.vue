@@ -19,6 +19,7 @@
             <q-card-section class="">
               <div class="text-subtitle2 q-mt-sm">Product 1</div>
               <div class="text-subtitle2  q-mb-xs">$10.99</div>
+              <q-btn flat rounded icon="delete"></q-btn>
             </q-card-section>
           </q-card-section>
           <q-separator/>
@@ -32,6 +33,7 @@
             <q-card-section class="">
               <div class="text-subtitle2 q-mt-md">Product 2</div>
               <div class="text-subtitle2  q-mb-xs">$19.99</div>
+              <q-btn flat rounded icon="delete"></q-btn>
             </q-card-section>
           </q-card-section>
           <q-separator/>
@@ -45,6 +47,7 @@
             <q-card-section class="">
               <div class="text-subtitle2 q-mt-md">Product 3</div>
               <div class="text-subtitle2 q-mb-xs">$78.99</div>
+              <q-btn flat rounded icon="delete"></q-btn>
             </q-card-section>
           </q-card-section>
           <q-separator/>
@@ -56,10 +59,23 @@
               />
             </q-card-section>
             <q-card-section class="">
-              <div class="text-subtitle2 q-mt-md">Product 4
-              </div>
-              <div class="text-subtitle2 q-mb-xs">$178.99
-              </div>
+              <div class="text-subtitle2 q-mt-md">Product 4</div>
+              <div class="text-subtitle2 q-mb-xs">$178.99</div>
+              <q-btn flat rounded icon="delete"></q-btn>
+            </q-card-section>
+          </q-card-section>
+          <q-separator/>
+          <q-card-section horizontal class="q-pa-none">
+            <q-card-section class="col-5 flex flex-center">
+              <q-img height="80px"
+                     class="rounded-borders"
+                     src="https://cdn.quasar.dev/img/parallax2.jpg"
+              />
+            </q-card-section>
+            <q-card-section class="">
+              <div class="text-subtitle2 q-mt-md">Product 5</div>
+              <div class="text-subtitle2 q-mb-xs">$199.99</div>
+              <q-btn flat rounded icon="delete"></q-btn>
             </q-card-section>
           </q-card-section>
 
@@ -91,29 +107,32 @@
             <div class="row">
               <div class="col-6">
                 <q-item>
-                  <q-input dense outlined class="full-width" v-model="address_detail.first_name" label="First Name *"/>
+                  <q-input dense autogrow outlined v-model="address_details.first_name" class="full-width" label="First Name"
+                      :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-input dense outlined class="full-width" v-model="address_detail.last_name" label="Last Name *"/>
+                  <q-input dense autogrow outlined v-model="address_details.last_name" class="full-width" label="Last Name"
+                      :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-12">
                 <q-item>
-                  <q-input dense autogrow outlined v-model="address_detail.address_line_1" class="full-width"
-                           label="Address line 1*"/>
+                  <q-input dense autogrow outlined v-model="address_details.address" class="full-width" label="Address"
+                      :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-12">
                 <q-item>
                   <q-input dense autogrow outlined v-model="address_detail.address_line_2" class="full-width"
-                           label="Address line 2*"/>
+                           label="More Address details"/>
                 </q-item>
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-input dense outlined class="full-width" v-model="address_detail.city" label="City *"/>
+                  <q-input dense autogrow outlined v-model="address_details.city" class="full-width" label="City"
+                      :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-6">
@@ -128,19 +147,20 @@
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-input dense outlined class="full-width" v-model="address_detail.country" label="Country *"/>
+                  <q-input dense autogrow outlined v-model="address_details.country" class="full-width" label="Country"
+                      :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-checkbox dense outlined class="full-width" v-model="address_detail.checkbox"
-                              label="Use this address for payment details"/>
+                  <q-checkbox color="blue" dense outlined class="full-width" v-model="address_detail.checkbox"
+                              label="Save this address ?"/>
                 </q-item>
               </div>
             </div>
 
             <q-stepper-navigation>
-              <q-btn rounded @click="() => { done1 = true; step = 2 }" class="float-right q-mr-md q-mb-md" color="blue"
+              <q-btn rounded @click="() => { done1 = true; step = 2 }" class="float-right q-mr-md q-mb-md" color="cyan-8"
                      label="Next"/>
             </q-stepper-navigation>
           </q-step>
@@ -156,38 +176,35 @@
             <div class="row">
               <div class="col-6">
                 <q-item>
-                  <q-input dense outlined class="full-width" v-model="card_detail.name" label="Name on Card*"/>
+                  <q-input dense autogrow outlined class="full-width" v-model="card_details.name" label="Name on Card" :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-input dense outlined class="full-width" v-model="address_detail.card_number"
-                           label="Card Number *"/>
+                  <q-input dense autogrow outlined class="full-width" v-model="card_details.card_number" label="Card Number" :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-input dense autogrow outlined v-model="address_detail.expiry_date" class="full-width"
-                           label="Expiry Date *"/>
+                  <q-input dense autogrow outlined v-model="card_details.expiry_date" class="full-width" label="Expiry Date" :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-input dense autogrow outlined v-model="address_detail.cvv" class="full-width" label="CVV*"/>
+                  <q-input dense autogrow outlined v-model="card_details.cvv" class="full-width" label="CVV" :rules="[val => !!val || 'This field is required']"/>
                 </q-item>
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-checkbox dense outlined class="full-width" v-model="address_detail.checkbox"
-                              label="Remember credit card details for next time"/>
+                  <q-checkbox color="blue" dense outlined class="full-width" v-model="address_detail.checkbox"
+                              label="Save Credit Card details ?"/>
                 </q-item>
               </div>
             </div>
 
             <q-stepper-navigation>
-              <q-btn rounded @click="() => { done2 = true; step = 3 }" class="float-right q-mr-md q-mb-md" color="blue"
-                     label="Next"/>
-              <q-btn flat @click="step = 1" color="primary" rounded label="Back" class="q-mr-sm float-right"/>
+              <q-btn rounded @click="() => { done2 = true; step = 3 }" color="cyan-8" label="Next" class="float-right q-mr-md q-mb-md"/>
+              <q-btn rounded @click="step = 1" color="blue-grey-9" label="Back" class="q-mr-sm float-right"/>
             </q-stepper-navigation>
           </q-step>
 
@@ -240,6 +257,16 @@
                   </q-item-section>
                 </q-item>
                 <q-separator></q-separator>
+                <q-item class="full-width">
+                  <q-item-section>
+                    <q-item-label lines="1">Product 5</q-item-label>
+                    <q-item-label caption>Caption Product 2</q-item-label>
+                  </q-item-section>
+                  <q-item-section side>
+                    $19.99
+                  </q-item-section>
+                </q-item>
+                <q-separator></q-separator>
 
                 <q-item class="full-width">
                   <q-item-section>
@@ -283,9 +310,8 @@
 
             <q-stepper-navigation>
 
-              <q-btn rounded @click="done3 = true" class="float-right q-mr-md q-mb-md" color="blue"
-                     label="Place Order"/>
-              <q-btn flat @click="step = 2" color="primary" rounded label="Back" class="q-mr-sm float-right"/>
+              <q-btn rounded @click="done3 = true"  color="cyan-8" label="Place Order" class="float-right q-mr-md q-mb-md"/>
+              <q-btn rounded @click="step = 2" color="blue-grey-9" label="Back" class="q-mr-sm float-right"/>
             </q-stepper-navigation>
           </q-step>
         </q-stepper>
@@ -303,11 +329,37 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'CheckOut',
+  methods: {
+    submitForm() {
+      if (this.$refs.form.validate()) {
+      // Le formulaire est valide, vous pouvez passer à l'étape suivante
+      } else {
+      // Le formulaire est invalide, ne permettez pas de passer à l'étape suivante
+      }
+    },
+  },
   setup() {
     return {
       step: ref(1),
       address_detail: ref({}),
       card_detail: ref({}),
+    };
+  },
+  data() {
+    return {
+      address_details: {
+        address: '',
+        first_name: '',
+        last_name: '',
+        city: '',
+        country: '',
+      },
+      card_details: {
+        name: '',
+        card_number: '',
+        expiry_date: '',
+        cvv: '',
+      },
     };
   },
 });
