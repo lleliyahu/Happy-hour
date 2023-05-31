@@ -197,12 +197,14 @@
 import { defineComponent, ref } from 'vue';
 import CreateStore from 'components/CreateStore.vue';
 import ChooseDealType from 'src/components/ChooseDealType.vue';
+// import ChooseStoreType from 'src/components/ChooseStoreType.vue';
 import axios from 'axios';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
     CreateStore,
+    // ChooseStoreType,
     ChooseDealType,
   },
   data: () => ({
