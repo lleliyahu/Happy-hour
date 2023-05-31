@@ -8,12 +8,18 @@
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
-            <q-btn size="lg" class="full-width" label="Store" icon="store" to="EditDeal"></q-btn>
+            <q-btn size="lg" class="full-width" color="cyan-8" label="Store" icon="store"
+              @click="createstordialog = true">
+            </q-btn>
+            <q-dialog v-model="createstordialog">
+              <CreateStore :refreshStore="refreshStore"></CreateStore>
+            </q-dialog>
           </q-form>
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
-            <q-btn size="lg" class="full-width" label="Resturant" icon="restaurant" to="EditDealBreaker"></q-btn>
+            <q-btn size="lg" class="full-width" color="cyan-8" label="Resturant" icon="restaurant"
+              to="EditDealBreaker"></q-btn>
           </q-form>
         </q-card-section>
         <q-card-section class="text-center q-pa-sm">
@@ -24,19 +30,39 @@
 </template>
 
 <script>
+import CreateStore from 'components/CreateStore.vue';
+import ref from 'vue';
+import axios from 'axios';
 
 export default {
   name: 'RegistraTion',
-
+  components: {
+    CreateStore,
+  },
   data() {
     return {
       storename: '',
     };
   },
+  setup() {
+    return {
+      createstordialog: ref(false),
+    };
+  },
   methods: {
-    ChooseDealType() {
-      console.log('hey');
+    refreshStore() {
+      const body = {};
+      body.username = localStorage.getItem('user');
+      console.log('body', body);
+      axios.post('http://localhost:3000/store/getStore', body).then((response) => {
+        this.stores = response.data;
+        console.log('test', response.data);
+      });
     },
+  },
+  mounted() {
+    this.refreshStore();
+    // console.log(this.deals);
   },
 };
 </script>

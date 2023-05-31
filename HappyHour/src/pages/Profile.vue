@@ -71,7 +71,7 @@
             <q-item-section>
               <q-card-actions align="center">
                 <q-btn label="New store" class="text-capitalize" rounded color="cyan-8" icon="add"
-                  style="max-width: 120px" @click="createstordialog = true"></q-btn>
+                  style="max-width: 120px" @click="choosestoredialog = true"></q-btn>
               </q-card-actions>
             </q-item-section>
             <q-card-section>
@@ -92,9 +92,12 @@
               </div>
             </q-card-section>
           </q-card>
-          <q-dialog v-model="createstordialog">
-            <CreateStore :refreshStore="refreshStore"></CreateStore>
+          <q-dialog v-model="choosestoredialog">
+            <ChooseStoreType></ChooseStoreType>
           </q-dialog>
+          <!-- <q-dialog v-model="createstordialog">
+            <CreateStore :refreshStore="refreshStore"></CreateStore>
+          </q-dialog> -->
         </div>
         <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
           <q-card class="bg-blue-grey-9 card-bg text-white no-shadow" bordered>
@@ -195,16 +198,16 @@
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
-import CreateStore from 'components/CreateStore.vue';
+// import CreateStore from 'components/CreateStore.vue';
 import ChooseDealType from 'src/components/ChooseDealType.vue';
-// import ChooseStoreType from 'src/components/ChooseStoreType.vue';
+import ChooseStoreType from 'src/components/ChooseStoreType.vue';
 import axios from 'axios';
 
 export default defineComponent({
   name: 'UserProfile',
   components: {
-    CreateStore,
-    // ChooseStoreType,
+    // CreateStore,
+    ChooseStoreType,
     ChooseDealType,
   },
   data: () => ({
@@ -214,7 +217,8 @@ export default defineComponent({
     return {
       user_details: {},
       password_dict: {},
-      createstordialog: ref(false),
+      // createstordialog: ref(false),
+      choosestoredialog: ref(false),
       choseedealtypedialog: ref(false),
     };
   },
