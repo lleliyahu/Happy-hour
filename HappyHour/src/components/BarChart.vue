@@ -20,40 +20,37 @@
 import { defineComponent } from 'vue';
 import ECharts from 'vue-echarts';
 import 'echarts';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'BarChart',
+  props: ['storename'],
+  data: () => ({
+    options: {
+      legend: {
+        bottom: 10,
+      },
+      tooltip: {},
+      dataset: {
+        source: [],
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '20%',
+        top: '5%',
+        containLabel: true,
+      },
+      xAxis: { type: 'category' },
+      yAxis: {},
+      series: [
+        { type: 'bar' },
+      ],
+    },
+  }),
   setup() {
     return {
-      options: {
-        legend: {
-          bottom: 10,
-        },
-        tooltip: {},
-        dataset: {
-          source: [
-            ['product', 'Number of Orders'],
-            ['Matcha Latte', 93.3],
-            ['Milk Tea', 83.1],
-            ['Cheese Cocoa', 86.4],
-            ['Walnut Brownie', 75.4],
-          ],
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '20%',
-          top: '5%',
-          containLabel: true,
-        },
-        xAxis: { type: 'category' },
-        yAxis: {},
-        // Declare several bar series, each will be mapped
-        // to a column of dataset.source by default.
-        series: [
-          { type: 'bar' },
-        ],
-      },
+
     };
   },
   components: {
@@ -69,6 +66,42 @@ export default defineComponent({
       downloadLink.download = 'BarChart.png';
       downloadLink.click();
     },
+    get_data() {
+      const body = {};
+      body.username = localStorage.getItem('user');
+      body.storename = this.storename;
+      console.log('bodydddddd', body);
+      axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
+        let menu;
+        console.log('ddddddddddd', response.data[0].menu);
+        if (response.data[0].menu === undefined) {
+          this.options.dataset.source = [];
+        } else {
+          // this.bar_data = response.data[0].menu;
+          menu = response.data[0].menu.map((x) => {
+            const { name, orders } = x;
+            return [name, parseInt(orders, 10)];
+          });
+
+          const source = [
+            ['product', 'Number of Orders'],
+          ];
+          menu.forEach((element) => {
+            source.push(element);
+          });
+          console.log('menu', source);
+          this.options.dataset.source = source;
+        }
+      });
+    },
+  },
+  mounted() {
+    setInterval(
+      () => {
+        this.get_data();
+      },
+      3000,
+    );
   },
 });
 </script>
