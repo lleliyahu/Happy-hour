@@ -4,7 +4,7 @@
     <q-card class="no-shadow" style="background: linear-gradient(135deg, rgb(58, 96, 115) 25%, rgb(44, 52, 60) 80%);"
       bordered>
       <q-card-section class="text-h6 text-white">
-        My Store Data
+        My Store Orders Data
         <q-btn icon="fa fa-download" color="white" class="float-right" @click="SaveImage" flat dense>
           <q-tooltip>Download PNG</q-tooltip>
         </q-btn>
@@ -33,7 +33,7 @@ export default defineComponent({
         dataset: {
           source: [
             ['product', 'Number of Orders'],
-            ['Matcha Latte', 43.3],
+            ['Matcha Latte', 93.3],
             ['Milk Tea', 83.1],
             ['Cheese Cocoa', 86.4],
             ['Walnut Brownie', 75.4],
