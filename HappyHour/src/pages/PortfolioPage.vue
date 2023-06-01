@@ -27,18 +27,11 @@
       </div>
       <div class="lead">
         <div>
-          <div class="q-pb-md">Hi there! I'm Nick Zuccarelli</div>
-          <div class="q-pb-md">I've had a passion for website development for many years. I remember first learning HTML
-            and CSS by looking at site code for a game and slowly changing it around and seeing the result. It was
-            intriguing stuff for a 14 year old!</div>
-          <div class="q-pb-md">Now however, I have a particular interest in responsive front-end development but also have
-            a keen interest in fullstack development.</div>
-          <div class="q-pb-md">I graduated from RMIT University, Melbourne at the end of 2017 with a distinction. Since
-            then, I've done a few small freelance jobs, but right now I've been working for Infestation Tracking Systems
-            on a product called Pest Register.</div>
-          <div class="q-pb-none">We are a small team, so I've had the opportunity to see how development and managerial
-            roles come together when compared to working in a larger company where many people have their set tasks and
-            don't interact directly with each other.</div>
+          <div class="q-pb-md">Hi there! We are the happy hour team!</div>
+          <div class="q-pb-md">Welcome to Happy Hour - the website that brings the ever-changing joy of temporary deals directly to you!</div>
+          <div class="q-pb-md">We specialize in finding the best and most cost-effective deals from small and large businesses across the country. Every happy hour on our site will present you with a range of amazing products at surprising prices.</div>
+          <div class="q-pb-md">We believe that our diverse audience can enjoy a unique shopping experience while supporting local businesses that offer their incredible creations and local products.</div>
+          <div class="q-pb-none">Join us now and start collecting the amazing deals of Happy Hour!</div>
         </div>
       </div>
     </div>
@@ -54,9 +47,7 @@
           </div>
           <div class="lead condensed">
             <div>
-              <div class="q-pb-none text-grey">I've worked with numerous frameworks over many years. I am a keen learner
-                and love
-                keeping up-to-date with the latest web trends.</div>
+              <div class="q-pb-none text-grey">Discover Our Unforgettable Deals!</div>
             </div>
           </div>
         </div>
@@ -67,8 +58,7 @@
               <div class="text-h6">Restaurants</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+              Indulge in Culinary Delights: Explore Our Exquisite Restaurant Selection!"
             </q-card-section>
             <q-btn size="lg" rounded dense class="text-white" icon="arrow_forward_ios" to="/Restaurants"></q-btn>
           </q-card>
@@ -80,8 +70,7 @@
               <div class="text-h6">Stores</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+              Unlock Retail Bliss: Explore an Array of Captivating Stores!
             </q-card-section>
             <q-btn size="lg" rounded dense class="text-white" icon="arrow_forward_ios" to="/Stores"></q-btn>
           </q-card>
@@ -93,8 +82,7 @@
               <div class="text-h6">&#128293;Deal Breaker&#128293;</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+             the Deal Breaker: Unbelievable Discounts of 40%-90% Off Await!
             </q-card-section>
             <q-btn size="lg" rounded dense class="text-white" icon="arrow_forward_ios" to="/DealBreaker"></q-btn>
           </q-card>
