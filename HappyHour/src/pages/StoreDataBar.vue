@@ -1,65 +1,69 @@
 <!-- eslint-disable max-len -->
 <template>
-  <q-page class="q-pa-md bg-grey-2 ">
-    <q-card>
-      <q-card-section>
-        <div class="text-h6 text-grey-8 text-weight-bolder">
-          Bar Chart
-        </div>
-      </q-card-section>
-      <q-card-section class="q-pa-none echarts">
-        <IEcharts :option="barChartOption" :resizable="true" />
-      </q-card-section>
-    </q-card>
+  <q-page class="q-pa-sm">
+    <h2>My Store Data</h2>
+    <div class="row q-col-gutter-sm q-py-sm">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <bar-chart :storename=storeName ></bar-chart>
+      </div>
+    </div>
+    <div>Total number of orders:</div>
+    <div>Total sales:</div>
+    <div>Number of deals:</div>
   </q-page>
 </template>
-<script>
-import IEcharts from 'vue-echarts-v3/src/full.js';
 
-export default {
-  name: "charts",
-  data() {
-    return {
-      barChartOption: {
-        grid: {
-          bottom: '25%'
-        },
-        legend: {},
-        tooltip: {},
-        dataset: {
-          dimensions: ['product', '2015', '2016', '2017'],
-          source: [
-            { product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7 },
-            { product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1 },
-            { product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5 },
-            { product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1 }
-          ]
-        },
-        xAxis: {
-          type: 'category',
-          axisLabel: {
-            rotate: 45
-          }
-        },
-        yAxis: {},
-        // Declare several bar series, each will be mapped
-        // to a column of dataset.source by default.
-        series: [
-          { type: 'bar' },
-          { type: 'bar' },
-          { type: 'bar' }
-        ]
-      },
-    }
-  },
+<script>
+import { defineComponent, defineAsyncComponent } from 'vue';
+import axios from 'axios';
+
+export default defineComponent({
+  name: 'ChartsBar',
+  props: ['storeName'],
   components: {
-    IEcharts
+    BarChart: defineAsyncComponent(() => import('components/BarChart.vue')),
   },
-}
+  data: () => ({
+    bar_data: [
+      // ['product', 'Number of Orders'],
+      // ['Matcha Latte', 93.3],
+      // ['Milk Tea', 200.1],
+      // ['Cheese Cocoa', 86.4],
+      // ['Walnut Brownie', 75.4],
+    ],
+  }),
+  methods: {
+    get_data() {
+      const body = {};
+      body.username = localStorage.getItem('user');
+      body.storename = this.storeName;
+      console.log('bodydddddd', body);
+      axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
+        console.log('ddddddddddd', response.data[0].menu);
+        if (response.data[0].menu === undefined) {
+          this.bar_data = [];
+        } else {
+          // this.bar_data = response.data[0].menu;
+          this.bar_data = [
+            ['product', 'Number of Orders'],
+            ['Matcha Latte', 93.3],
+            ['Milk Tea', 100000.1],
+            ['Cheese Cocoa', 86.4],
+            ['Walnut Brownie', 75.4],
+          ];
+        }
+      });
+    },
+  },
+  mounted() {
+    this.get_data();
+  },
+  setup() {
+    return {
+
+    };
+  },
+});
 </script>
-<style scoped>
-.echarts {
-  width: 400px;
-  height: 400px;
-}
-</style>
+
+<style scoped></style>

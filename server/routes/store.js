@@ -129,4 +129,28 @@ router.post("/addMenuItem", function (req, res, next) {
   res.send(JSON.stringify(req.body));
 });
 
+
+router.post("/addOrders", function (req, res, next) {
+  var myobj = req.body;
+  console.log('req : ', req);
+  console.log('myobj : ', myobj);
+  var myquery = { 'storename': myobj.storename , 'menu.name': myobj.menuitem };
+  var newvalues = { $inc: { 'menu.$.orders' : 1 } };
+  console.log('myquery : ', myquery);
+  
+  db.getDb()
+    .collection("store")
+    .updateOne(myquery, newvalues, function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log(res);
+        console.log("1 document updated");
+      }
+
+    });
+  res.send(JSON.stringify(req.body));
+});
+
 module.exports = router;

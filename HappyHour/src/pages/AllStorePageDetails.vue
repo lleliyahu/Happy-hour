@@ -55,7 +55,7 @@
             <q-card-section>
               <q-chip dense color="red" text-color="white" :label=deal.deal />
               <div class="text-h6">{{ deal.dealfor[0] }}</div>
-              <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart"></q-btn></div>
+              <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart" @click="addToBasket(deal.dealfor[0])"></q-btn></div>
               <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
               <div class="text-blue-grey-8 text-subtitle2">Price:</div>
             </q-card-section>
@@ -71,7 +71,7 @@
 
           <q-card-section>
             <div class="text-h6">{{ item.name }}</div>
-            <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart"></q-btn></div>
+            <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart" @click="addToBasket(item.name)"></q-btn></div>
             <div class="text-grey-8 text-subtitle2">{{ item.des }}</div>
             <div class="text-blue-grey-8 text-subtitle2">{{ item.price }}$</div>
           </q-card-section>
@@ -300,6 +300,14 @@ export default {
       axios.get('http://localhost:3000/deals/storeDeals', { params: { store } }).then((response) => {
         this.deals = response.data.valueOf();
         console.log('this.dealseeeeeeee', this.deals);
+      });
+    },
+    addToBasket(mnueitem) {
+      const body = {};
+      body.storename = this.storeName;
+      body.menuitem = mnueitem;
+      axios.post('http://localhost:3000/store/addOrders', body).then((response) => {
+        console.log('addToBasket', response.data);
       });
     },
   },

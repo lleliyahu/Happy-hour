@@ -210,6 +210,8 @@
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click="updateStore">
                 Update Store Info</q-btn>
+              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note"
+                :to="{ path: `/StoreData/${storename}` }" >My store data</q-btn>
             </q-card-actions>
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
