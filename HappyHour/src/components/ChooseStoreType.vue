@@ -12,7 +12,7 @@
               @click="createstordialog = true">
             </q-btn>
             <q-dialog v-model="createstordialog">
-              <CreateStore :refreshStore="refreshStore"></CreateStore>
+              <CreateStore :refreshStore="backToProfile"></CreateStore>
             </q-dialog>
           </q-form>
         </q-card-section>
@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import CreateStore from 'components/CreateStore.vue';
-import ref from 'vue';
-import axios from 'axios';
+// import ref from 'vue';
+// import axios from 'axios';
+import CreateStore from './CreateStore.vue';
 
 export default {
   name: 'RegistraTion',
@@ -42,22 +42,24 @@ export default {
   data() {
     return {
       storename: '',
+      createstordialog: false,
     };
   },
-  setup() {
-    return {
-      createstordialog: ref(false),
-    };
+  // setup() {
+  //   return {
+  //     createstordialog: ref(false),
+  //   };
+  // },
+  props: {
+    refreshStore:
+    {
+      type: Function,
+      default() { return console.log('Default function aa'); },
+    },
   },
   methods: {
-    refreshStore() {
-      const body = {};
-      body.username = localStorage.getItem('user');
-      console.log('body', body);
-      axios.post('http://localhost:3000/store/getStore', body).then((response) => {
-        this.stores = response.data;
-        console.log('test', response.data);
-      });
+    backToProfile() {
+      this.refreshStore();
     },
   },
   mounted() {

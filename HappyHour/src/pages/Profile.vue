@@ -93,7 +93,7 @@
             </q-card-section>
           </q-card>
           <q-dialog v-model="choosestoredialog">
-            <ChooseStoreType></ChooseStoreType>
+            <ChooseStoreType :refreshStore="refreshStore"></ChooseStoreType>
           </q-dialog>
           <!-- <q-dialog v-model="createstordialog">
             <CreateStore :refreshStore="refreshStore"></CreateStore>

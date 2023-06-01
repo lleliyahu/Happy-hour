@@ -17,7 +17,7 @@
         </q-card-section>
         <q-card-actions class="q-px-lg">
           <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="createstore"
-          v-close-popup />
+            v-close-popup="2" />
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
         </q-card-section>
