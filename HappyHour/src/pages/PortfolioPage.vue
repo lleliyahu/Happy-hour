@@ -28,9 +28,13 @@
       <div class="lead">
         <div>
           <div class="q-pb-md">Hi there! We are the happy hour team!</div>
-          <div class="q-pb-md">Welcome to Happy Hour - the website that brings the ever-changing joy of temporary deals directly to you!</div>
-          <div class="q-pb-md">We specialize in finding the best and most cost-effective deals from small and large businesses across the country. Every happy hour on our site will present you with a range of amazing products at surprising prices.</div>
-          <div class="q-pb-md">We believe that our diverse audience can enjoy a unique shopping experience while supporting local businesses that offer their incredible creations and local products.</div>
+          <div class="q-pb-md">Welcome to Happy Hour - the website that brings the ever-changing joy of temporary deals
+            directly to you!</div>
+          <div class="q-pb-md">We specialize in finding the best and most cost-effective deals from small and large
+            businesses across the country. Every happy hour on our site will present you with a range of amazing products
+            at surprising prices.</div>
+          <div class="q-pb-md">We believe that our diverse audience can enjoy a unique shopping experience while
+            supporting local businesses that offer their incredible creations and local products.</div>
           <div class="q-pb-none">Join us now and start collecting the amazing deals of Happy Hour!</div>
         </div>
       </div>
@@ -58,7 +62,7 @@
               <div class="text-h6">Restaurants</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-              Indulge in Culinary Delights: Explore Our Exquisite Restaurant Selection!"
+              Indulge in Culinary Delights: Explore Our Exquisite Restaurant Selection!
             </q-card-section>
             <q-btn size="lg" rounded dense class="text-white" icon="arrow_forward_ios" to="/Restaurants"></q-btn>
           </q-card>
@@ -82,7 +86,7 @@
               <div class="text-h6">&#128293;Deal Breaker&#128293;</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-             the Deal Breaker: Unbelievable Discounts of 40%-90% Off Await!
+              THE DEAL BREAKER: Unbelievable Discounts of 40%-90% Off Await!
             </q-card-section>
             <q-btn size="lg" rounded dense class="text-white" icon="arrow_forward_ios" to="/DealBreaker"></q-btn>
           </q-card>
