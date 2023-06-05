@@ -47,6 +47,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 
 export default {
   name: 'AddItemMenu',
@@ -83,8 +84,21 @@ export default {
       menu.des = this.descreption;
       menu.price = this.price;
       menu.orders = 0;
-      this.addItem(menu);
-      return true;
+
+      const body = {};
+      body.name = this.itemName;
+      body.price = this.price;
+      axios.post('http://localhost:3000/store/checkMenuItemPrice', body).then((response) => {
+        console.log('checkMenuItemPrice  ', response.data);
+        if (response.data === 'ok') {
+          this.addItem(menu);
+        } else {
+          const answer = window.confirm('The price is higher than average, are you sure you want to continue?');
+          if (answer) {
+            this.addItem(menu);
+          }
+        }
+      });
     },
   },
 };

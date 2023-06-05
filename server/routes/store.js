@@ -153,4 +153,32 @@ router.post("/addOrders", function (req, res, next) {
   res.send(JSON.stringify(req.body));
 });
 
+
+router.post("/checkMenuItemPrice", function (req, res, next) {
+  var myobj = req.body;
+  var myquery = { 'menu.name': myobj.name };
+  console.log('myquery : ', myquery);
+
+  db.getDb()
+    .collection("store")
+    .find(myquery)
+    .toArray(function (err, result) {
+    if (err) {
+      res.status(400).send("Error fetching listing");
+    } else {
+      
+      const prices = result.map( (x) => parseInt(x.menu.find( item => item.name === myobj.name ).price) )
+      const total = prices.reduce((acc, c) => acc + c, 0);
+      const avg = total / prices.length;
+
+      if ( avg < myobj.price ){
+        res.status(200).send("failed");
+      }
+      else {
+        res.status(200).send("ok"); 
+      }
+    }
+  });
+});
+
 module.exports = router;
