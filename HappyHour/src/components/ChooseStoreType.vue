@@ -19,7 +19,10 @@
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
             <q-btn size="lg" class="full-width" color="cyan-8" label="Resturant" icon="restaurant"
-              to="EditDealBreaker"></q-btn>
+              @click="createrestaurantdialog"></q-btn>
+            <q-dialog>
+              <CreateRestaurant :refreshrestaurant="backToProfile"></CreateRestaurant>
+            </q-dialog>
           </q-form>
         </q-card-section>
         <q-card-section class="text-center q-pa-sm">
@@ -33,25 +36,28 @@
 // import ref from 'vue';
 // import axios from 'axios';
 import CreateStore from './CreateStore.vue';
+import CreateRestaurant from './CreateRestaurant.vue';
 
 export default {
   name: 'RegistraTion',
   components: {
     CreateStore,
+    CreateRestaurant,
   },
   data() {
     return {
       storename: '',
       createstordialog: false,
+      createrestaurantdialog: false,
     };
   },
-  // setup() {
-  //   return {
-  //     createstordialog: ref(false),
-  //   };
-  // },
   props: {
     refreshStore:
+    {
+      type: Function,
+      default() { return console.log('Default function aa'); },
+    },
+    refreshRestaurant:
     {
       type: Function,
       default() { return console.log('Default function aa'); },
@@ -60,11 +66,12 @@ export default {
   methods: {
     backToProfile() {
       this.refreshStore();
+      this.refreshRestaurant();
     },
   },
   mounted() {
     this.refreshStore();
-    // console.log(this.deals);
+    this.refreshRestaurant();
   },
 };
 </script>
