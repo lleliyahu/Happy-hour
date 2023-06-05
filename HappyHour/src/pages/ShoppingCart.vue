@@ -9,7 +9,7 @@
             <q-icon name="shopping_cart" class="q-mr-sm"/>
                 Deals Summary
           </q-card-section>
-          <q-card v-if="showCard">
+          <q-card v-if="showCard1" class="bg-grey-2 no-shadow" bordered>
                 <q-card-section horizontal>
                   <q-card-section class="col-5 flex flex-center">
                     <q-img height="80px"
@@ -22,15 +22,16 @@
                         <div class="text-subtitle2  q-mb-xs">$10.99</div>
                     </div>
                     <div class="flex justify-end">
-                        <q-btn flat rounded icon="delete" @click="deleteCard"></q-btn>
+                        <q-btn flat rounded icon="delete" @click="deleteCard(1)"></q-btn>
                     </div>
                   </q-card-section>
                 </q-card-section>
           </q-card>
-          <div v-if="!showCard">
+          <div v-if="!showCard1">
               <!-- Contenu sous "Deals Summary" lorsque la carte est supprimée -->
           </div>
           <q-separator/>
+          <q-card v-if="showCard2" class="bg-grey-2 no-shadow" bordered>
           <q-card-section horizontal class="q-pa-none">
             <q-card-section class="col-5 flex flex-center">
               <q-img height="80px"
@@ -44,11 +45,16 @@
                   <div class="text-subtitle2  q-mb-xs">$79.99</div>
               </div>
               <div class="flex justify-end">
-                  <q-btn flat rounded icon="delete"></q-btn>
+                  <q-btn flat rounded icon="delete" @click="deleteCard(2)"></q-btn>
               </div>
             </q-card-section>
           </q-card-section>
+          </q-card>
+          <div v-if="!showCard2">
+              <!-- Contenu sous "Deals Summary" lorsque la carte est supprimée -->
+          </div>
           <q-separator/>
+          <q-card v-if="showCard3" class="bg-grey-2 no-shadow" bordered>
           <q-card-section horizontal class="q-pa-none">
             <q-card-section class="col-5 flex flex-center">
               <q-img height="80px"
@@ -62,11 +68,16 @@
                   <div class="text-subtitle2  q-mb-xs">$129.99</div>
               </div>
               <div class="flex justify-end">
-                  <q-btn flat rounded icon="delete"></q-btn>
+                  <q-btn flat rounded icon="delete" @click="deleteCard(3)"></q-btn>
               </div>
             </q-card-section>
           </q-card-section>
+          </q-card>
+          <div v-if="!showCard3">
+              <!-- Contenu sous "Deals Summary" lorsque la carte est supprimée -->
+          </div>
           <q-separator/>
+          <q-card v-if="showCard4" class="bg-grey-2 no-shadow" bordered>
           <q-card-section horizontal class="q-pa-none">
             <q-card-section class="col-5 flex flex-center">
               <q-img height="80px"
@@ -80,11 +91,16 @@
                   <div class="text-subtitle2  q-mb-xs">$159.99</div>
               </div>
               <div class="flex justify-end">
-                  <q-btn flat rounded icon="delete"></q-btn>
+                  <q-btn flat rounded icon="delete" @click="deleteCard(4)"></q-btn>
               </div>
             </q-card-section>
           </q-card-section>
+          </q-card>
+          <div v-if="!showCard4">
+              <!-- Contenu sous "Deals Summary" lorsque la carte est supprimée -->
+          </div>
           <q-separator/>
+          <q-card v-if="showCard5" class="bg-grey-2 no-shadow" bordered>
           <q-card-section horizontal class="q-pa-none">
             <q-card-section class="col-5 flex flex-center">
               <q-img height="80px"
@@ -98,11 +114,14 @@
                   <div class="text-subtitle2  q-mb-xs">$190.99</div>
               </div>
               <div class="flex justify-end">
-                  <q-btn flat rounded icon="delete"></q-btn>
+                  <q-btn flat rounded icon="delete" @click="deleteCard(5)"></q-btn>
               </div>
             </q-card-section>
           </q-card-section>
-
+          </q-card>
+          <div v-if="!showCard5">
+              <!-- Contenu sous "Deals Summary" lorsque la carte est supprimée -->
+          </div>
           <q-separator></q-separator>
           <q-card-section class="row">
             <div class="  col-12 text-h6 full-width">
@@ -369,11 +388,20 @@ export default defineComponent({
     validateCardDetailsForm() {
       // Optional: You can perform additional validation or modifications here
     },
-    deleteCard() {
-    // Supprimer la carte du modèle de données
-    // Par exemple, vous pouvez utiliser splice() pour supprimer la carte d'un tableau
-      this.showCard = false;
+    deleteCard(index) {
+      if (index === 1) {
+        this.showCard1 = false;
+      } else if (index === 2) {
+        this.showCard2 = false;
+      } else if (index === 3) {
+        this.showCard3 = false;
+      } else if (index === 4) {
+        this.showCard4 = false;
+      } else if (index === 5) {
+        this.showCard5 = false;
+      }
     },
+
   },
   computed: {
     isFormValid() {
@@ -406,7 +434,11 @@ export default defineComponent({
       // steps: 1,
       done2: true,
 
-      showCard: true,
+      showCard1: true,
+      showCard2: true,
+      showCard3: true,
+      showCard4: true,
+      showCard5: true,
 
       card_details: {
         name: '',
