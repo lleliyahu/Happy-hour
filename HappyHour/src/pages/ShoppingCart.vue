@@ -205,7 +205,7 @@
             <q-stepper-navigation>
               <q-btn rounded @click="() => { done1 = true; step = 2 }" class="float-right q-mr-md q-mb-md" color="cyan-8"
                      label="Next" :disabled="!isFormValid"/>
-              </q-stepper-navigation>
+            </q-stepper-navigation>
           </q-step>
 
           <q-step
@@ -250,14 +250,10 @@
             </div>
 
             <q-stepper-navigation>
-              <q-btn rounded @click="() => { done2 = true; step = 3 }" color="cyan-8" label="Next" class="float-right q-mr-md q-mb-md"/>
+              <q-btn rounded @click="() => { done2 = true; step = 3 }" color="cyan-8" label="Next" class="float-right q-mr-md q-mb-md" :disabled="!isCardDetailsValid"/>
               <q-btn rounded @click="step = 1" color="blue-grey-9" label="Back" class="q-mr-sm float-right"/>
             </q-stepper-navigation>
 
-            <!-- <q-stepper-navigation>
-              <q-btn rounded @click="() => { done2 = true; step = 3 }" color="cyan-8" label="Next" class="float-right q-mr-md q-mb-md" :disabled="!isCardDetailsValid"/>
-              <q-btn rounded @click="step = 1" color="blue-grey-9" label="Back" class="q-mr-sm float-right"/>
-            </q-stepper-navigation> -->
           </q-step>
 
           <q-step
@@ -410,7 +406,7 @@ export default defineComponent({
              && !!this.address_details.country;
     },
     isCardDetailsValid() {
-      return !!this.card_details.name && !!this.car_details.card_number
+      return !!this.card_details.name && !!this.card_details.card_number
              && !!this.card_details.expiry_date && !!this.card_details.cvv;
     },
   },
@@ -432,7 +428,7 @@ export default defineComponent({
       },
       done1: false,
       // steps: 1,
-      done2: true,
+      done2: false,
 
       showCard1: true,
       showCard2: true,
