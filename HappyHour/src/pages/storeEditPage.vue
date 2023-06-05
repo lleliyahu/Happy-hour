@@ -19,9 +19,13 @@
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <q-item-section>
-                <q-input dark color="white" dense v-model="city_address" label="City Address" style="max-width: 600px" />
-              </q-item-section>
+              <div class="q-pa-md">
+                <q-select filled bg-color="white" color="cyan-8" v-model="cityModel" use-input use-chips
+                  input-debounce="1" @new-value="createCityValue" :options="citiesOptions" transition-show="jump-up"
+                  transition-hide="jump-up" @filter="filterCityFn" style="max-width: 600px" label="City">
+                  <q-icon name="cancel" @click.stop.prevent="dealModel = null" class="cursor-pointer" />
+                </q-select>
+              </div>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
@@ -137,8 +141,8 @@
     </q-table> -->
               <q-table title="Menu" class="no-shadow" :rows="menu" :columns="column" hide-bottom>
                 <template v-slot:top>
-                  <q-btn color="green-8" :disable="loading" label="Add row" @click="AddItemMenudialog = true" />
-                  <q-btn class="q-ml-sm" color="red-8" :disable="loading" label="Remove row" @click="removeRow" />
+                  <q-btn color="green-8" :disable="loading" label="Add Item" @click="AddItemMenudialog = true" />
+                  <!-- <q-btn class="q-ml-sm" color="red-8" :disable="loading" label="Remove Item" @click="removeRow" /> -->
                   <q-space />
                   <q-input borderless dense debounce="300" color="black-8" v-model="filter">
                     <template v-slot:append>
@@ -211,7 +215,7 @@
               <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click="updateStore">
                 Update Store Info</q-btn>
               <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note"
-                :to="{ path: `/StoreData/${storename}` }" >My store data</q-btn>
+                :to="{ path: `/StoreData/${storename}` }">My store data</q-btn>
             </q-card-actions>
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="red-8" icon="delete">Delete Store</q-btn>
@@ -251,15 +255,20 @@ const column = [
     name: 'Price', label: 'Price', field: 'price', sortable: true, align: 'left',
   },
   {
-    name: 'Rating', label: 'Rating', field: 'rating', sortable: true, align: 'left',
-  },
-  {
     name: 'Ordes', label: 'Orders', field: 'orders', sortable: true, align: 'left',
   },
   {
     name: 'Remove Item', label: 'Remove Item', field: 'remove item', align: 'left',
   },
 
+];
+
+const citiesOptions = [
+  'Beni Barak', 'Rishon Letsiyon', "Ra'annana", 'Tel Aviv', 'Petach Tikva',
+];
+
+const stringOptions = [
+  'Alcohol', 'Florist', 'General Merchandise', 'Grocery', 'Health & Beauty', 'Pet Supply', 'Pharmacy',
 ];
 
 export default defineComponent({
@@ -279,6 +288,8 @@ export default defineComponent({
     storeModel: {},
   }),
   setup() {
+    const filtercitiesOptions = ref(citiesOptions);
+    const filterOptions = ref(stringOptions);
     return {
       store_details: {},
       password_dict: {},
@@ -287,6 +298,10 @@ export default defineComponent({
       time2: ref('00:00'),
       date: ref('2023/04/01'),
       days: ref(['2023/01/01', '2023/12/31']),
+      cityModel: ref(null),
+      // storeModel: ref(null),
+      citiesOptions,
+      filterOptions,
       EditMenudialog: ref(false),
       AddItemMenudialog: ref(false),
       column,
@@ -298,6 +313,48 @@ export default defineComponent({
           return 'blue';
         }
         return 'red';
+      },
+      createValue(val, done) {
+        if (val.length > 0) {
+          if (!stringOptions.includes(val)) {
+            stringOptions.push(val);
+          }
+          done(val, 'toggle');
+        }
+      },
+
+      filterFn(val, update) {
+        update(() => {
+          if (val === '') {
+            filterOptions.value = stringOptions;
+          } else {
+            const needle = val.toLowerCase();
+            filterOptions.value = stringOptions.filter(
+              (v) => v.toLowerCase().indexOf(needle) > -1,
+            );
+          }
+        });
+      },
+      createCityValue(cityVal, done) {
+        if (cityVal.length > 0) {
+          if (!citiesOptions.includes(cityVal)) {
+            citiesOptions.push(cityVal);
+          }
+          done(cityVal, 'toggle');
+        }
+      },
+
+      filterCityFn(cityVal, update) {
+        update(() => {
+          if (cityVal === '') {
+            filtercitiesOptions.value = citiesOptions;
+          } else {
+            const needle = cityVal.toLowerCase();
+            filtercitiesOptions.value = citiesOptions.filter(
+              (v) => v.toLowerCase().indexOf(needle) > -1,
+            );
+          }
+        });
       },
       // columns,
       // rows,
