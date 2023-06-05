@@ -124,11 +124,16 @@
           </div>
           <q-separator></q-separator>
           <q-card-section class="row">
-            <div class="  col-12 text-h6 full-width">
-              <div class="float-right q-mr-md">
-                Total : <span class="text-blue">$288.96</span></div>
+            <div class="col-12 text-h6 full-width">
+              <span class="q-mr-sm q-mt-lg">
+                <q-btn flat icon="delete" @click="showConfirmationDialog" />
+              </span>
+            <div class="float-right">
+              Total : <span class="text-blue">$288.96</span>
             </div>
+          </div>
           </q-card-section>
+
 <!-- ------------------------------------------------------------------------------------------------------ -->
         </q-card>
       </div>
@@ -396,6 +401,27 @@ export default defineComponent({
       } else if (index === 5) {
         this.showCard5 = false;
       }
+    },
+    showConfirmationDialog() {
+      this.$q.dialog({
+        title: 'Confirmation',
+        message: 'Delete all the deals?',
+        cancel: true,
+        persistent: true,
+      })
+        .onOk(() => {
+          this.clearCart();
+        })
+        .show(); // Ajoutez cette ligne pour afficher la boîte de dialogue
+    },
+    clearCart() {
+      // Ajoutez ici la logique pour supprimer tous les deals
+      // Par exemple, vous pouvez réinitialiser les variables ou vider les tableaux de deals
+      this.showCard1 = false;
+      this.showCard2 = false;
+      this.showCard3 = false;
+      this.showCard4 = false;
+      this.showCard5 = false;
     },
 
   },
