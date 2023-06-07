@@ -10,7 +10,15 @@
           </div>
         </q-card-section>
         <div class="q-pa-sm">
-          <h6>Cuisine or Store:</h6>
+          <h6>Restaurant or Store:</h6>
+          <q-select filled color="red-8" v-model="model" use-input use-chips multiple input-debounce="1"
+            @new-value="createChoiceValue" :options="mainFilter" transition-show="jump-up" transition-hide="jump-up"
+            @filter="filterFn" style="max-width: 340px" label="Filter By:" class="q-mb-sm">
+            <q-icon name="cancel" @click.stop.prevent="mainModel = null" class="cursor-pointer" />
+          </q-select>
+
+          <div style="margin-bottom: 50px;"></div>
+
           <q-select filled color="red-8" v-model="model" use-input use-chips multiple input-debounce="1"
             @new-value="createValue" :options="filterOptions" transition-show="jump-up" transition-hide="jump-up"
             @filter="filterFn" style="max-width: 340px" label="Filter By:">
@@ -44,6 +52,10 @@
 <script>
 import { ref } from 'vue';
 
+const restaurantOrStore = [
+  'Restaurants', 'Stores',
+];
+
 const stringOptions = [
   'Alcohol', 'Asian', 'American', 'Bakery', 'BBQ', 'Bowl', 'Breakfast', 'Florist', 'General Merchandise', 'Grocery', 'Health & Beauty', 'Pet Supply', 'Pharmacy',
 ];
@@ -61,14 +73,56 @@ export default {
     const filterOptions = ref(stringOptions);
     const filterPriceOptions = ref(priceOptions);
     const filterDealOptions = ref(dealOptions);
+    const mainFilter = ref(restaurantOrStore);
 
     return {
+      mainModel: ref(null),
       model: ref(null),
       priceModel: ref(null),
       dealModel: ref(null),
+      mainFilter,
       filterOptions,
       priceOptions,
       dealOptions,
+
+      createChoiceValue(val, done) {
+        // Calling done(var) when new-value-mode is not set or "add",
+        // or done(var, "add") adds "var" content to the model
+        // and it resets the input textbox to empty string
+        // ----
+        // Calling done(var) when new-value-mode is "add-unique",
+        // or done(var, "add-unique") adds "var" content to the model
+        // only if is not already set
+        // and it resets the input textbox to empty string
+        // ----
+        // Calling done(var) when new-value-mode is "toggle",
+        // or done(var, "toggle") toggles the model with "var" content
+        // (adds to model if not already in the model, removes from model if already has it)
+        // and it resets the input textbox to empty string
+        // ----
+        // If "var" content is undefined/null, then it doesn't tampers with the model
+        // and only resets the input textbox to empty string
+
+        if (val.length > 0) {
+          if (!restaurantOrStore.includes(val)) {
+            restaurantOrStore.push(val);
+          }
+          done(val, 'toggle');
+        }
+      },
+
+      filterMainFn(val, update) {
+        update(() => {
+          if (val === '') {
+            mainFilter.value = restaurantOrStore;
+          } else {
+            const needle = val.toLowerCase();
+            mainFilter.value = restaurantOrStore.filter(
+              (v) => v.toLowerCase().indexOf(needle) > -1,
+            );
+          }
+        });
+      },
 
       createValue(val, done) {
         // Calling done(var) when new-value-mode is not set or "add",
