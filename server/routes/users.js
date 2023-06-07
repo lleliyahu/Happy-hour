@@ -42,4 +42,47 @@ router.get("/Checkuser", async (req, res, next) => {
     });
 });
 
+router.post("/updatePersonalData", function (req, res, next) {
+  var myobj = req.body;
+  console.log('personalData', myobj);
+  var myquery = {'username': myobj.username };
+  var newvalues = { $set: myobj };
+  console.log('myquery : ', myquery);
+  console.log('myobj : ', myobj);
+  console.log('newvalues', newvalues);
+  db.getDb()
+    .collection("users")
+    .updateOne(myquery, newvalues, function (err, respons) {
+      if (err) {
+        console.log('errrrrrrrrrrr');
+        res.send(JSON.stringify(respons));
+      }
+      else {
+        console.log('seeeeeeee');
+        console.log("1 document updated");
+        res.send(JSON.stringify(respons));
+      }
+
+    });
+ 
+});
+
+
+router.get("/personalData", async (req, res, next) => {
+  var query = JSON.parse(req.query.body);
+  db.getDb()
+    .collection("users")
+    .find(query)
+    .toArray(function (err, result) {
+      if (result.length === 0) {
+        res.status(404);
+        res.send("the user not valid");
+      } else {
+        res.status(200);
+        res.send(result);
+      }
+    });
+});
+
+
 module.exports = router;

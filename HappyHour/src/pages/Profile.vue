@@ -20,43 +20,44 @@
                 </q-item>
                 <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <q-item-section>
-                    <q-input dark color="white" dense v-model="user_details.user_name" label="User Name" />
+                    <q-input dark color="white" dense v-model="user_name" label="User Name" />
                   </q-item-section>
                 </q-item>
                 <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <q-item-section>
-                    <q-input dark color="white" dense v-model="user_details.email" label="Email Address" />
+                    <q-input dark color="white" dense v-model="email" label="Email Address" />
                   </q-item-section>
                 </q-item>
                 <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <q-item-section>
-                    <q-input dark color="white" dense v-model="user_details.first_name" label="First Name" />
+                    <q-input dark color="white" dense v-model="first_name" label="First Name" />
                   </q-item-section>
                 </q-item>
                 <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <q-item-section>
-                    <q-input dark color="white" dense v-model="user_details.last_name" label="Last Name" />
+                    <q-input dark color="white" dense v-model="last_name" label="Last Name" />
                   </q-item-section>
                 </q-item>
                 <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <q-item-section>
-                    <q-input dark color="white" autogrow dense v-model="user_details.address" label="Address" />
+                    <q-input dark color="white" autogrow dense v-model="address" label="Address" />
                   </q-item-section>
                 </q-item>
                 <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <q-item-section>
-                    <q-input dark color="white" dense v-model="user_details.city" label="City" />
+                    <q-input dark color="white" dense v-model="city" label="City" />
                   </q-item-section>
                 </q-item>
                 <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                   <q-item-section>
-                    <q-input dark color="white" dense v-model="user_details.post_code" label="Postal Code" />
+                    <q-input dark color="white" dense v-model="post_code" label="Postal Code" />
                   </q-item-section>
                 </q-item>
               </q-list>
             </q-card-section>
             <q-card-actions align="right">
-              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note">Update User Info</q-btn>
+              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click=updatePersonalData>
+                Update User Info</q-btn>
             </q-card-actions>
           </q-card>
         </div>
@@ -212,6 +213,13 @@ export default defineComponent({
   },
   data: () => ({
     stores: [],
+    user_name: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    address: '',
+    city: '',
+    post_code: '',
   }),
   setup() {
     return {
@@ -232,9 +240,40 @@ export default defineComponent({
         console.log('test', response.data);
       });
     },
+    getPersonalData() {
+      const body = {};
+      body.username = localStorage.getItem('user');
+      console.log('body', body);
+      axios.get('http://localhost:3000/users/personalData', { params: { body } }).then((response) => {
+        console.log('personalData', response.data);
+        this.user_name = response.data[0].username;
+        this.email = response.data[0].email;
+        this.first_name = response.data[0].first_name;
+        this.last_name = response.data[0].last_name;
+        this.address = response.data[0].address;
+        this.city = response.data[0].city;
+        this.post_code = response.data[0].post_code;
+      });
+    },
+    updatePersonalData() {
+      const body = {};
+      body.username = localStorage.getItem('user');
+      body.email = this.email;
+      body.first_name = this.first_name;
+      body.last_name = this.last_name;
+      body.address = this.address;
+      body.city = this.city;
+      body.post_code = this.post_code;
+      console.log('body', body);
+      axios.post('http://localhost:3000/users/updatePersonalData', body).then((response) => {
+        console.log('getPersonalData', response.data);
+        this.getPersonalData();
+      });
+    },
   },
   mounted() {
     this.refreshStore();
+    this.getPersonalData();
     // console.log(this.deals);
   },
 });
