@@ -34,7 +34,9 @@
           </q-form>
         </q-card-section>
         <div class="q-pa-md">
-          <q-uploader :factory="factoryFn" multiple style="max-width: 300px" color="cyan-8" />
+          <q-uploader url="http://localhost/api/upload" field-name="photo" flat bordered square no-thumbnails batch
+            accept="image/*" @rejected="onRejected" auto-upload :factory="factoryFn" multiple style="max-width: 300px"
+            color="cyan-8" />
         </div>
         <q-card-actions class="q-px-lg">
           <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="AddMenuItem"
@@ -100,6 +102,9 @@ export default {
         }
       });
     },
+  },
+  onRejected(rejectedEntries) {
+    console.log(rejectedEntries);
   },
 };
 

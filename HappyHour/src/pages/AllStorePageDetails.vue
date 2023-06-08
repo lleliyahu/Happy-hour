@@ -1,88 +1,91 @@
 <!-- eslint-disable max-len -->
 <template>
   <div>
-  <div class="image-container" style="height:250px;">
-    <q-img class="image" src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
-      <div class="absolute-bottom text-subtitle1 text-center">
-        {{ storeName }}
-      </div>
-    </q-img>
-
-  </div>
-  <div class="q-pa-md">
-    <q-layout view="lHh lpr lFf" container style="height: 800px" class="shadow-2 rounded-borders">
-      <q-header elevated>
-        <q-bar>
-          <q-icon name="schedule" color="blue-grey-8" />
-          <div style="color: #36486b;">Open until</div>
-          <div class="q-pa-md q-gutter-sm">
-            <q-btn label="See more information" color="blue-grey-8" icon="info" @click="moreinfodialog = true" />
-            <q-dialog v-model="moreinfodialog">
-              <seeMoreInfo></seeMoreInfo>
-            </q-dialog>
-          </div>
-
-          <q-space />
-          <div class="q-pa-md gt-xs" color="blue-grey-8" style="max-width: 300px;max-height: 120px;">
-            <div class="q-gutter-md">
-              <q-input color="blue-grey-8" v-model="search" debounce="1000" borderless placeholder="Search">
-                <template v-slot:append>
-                  <q-icon color="blue-grey-8" name="search" />
-                </template>
-              </q-input>
-            </div>
-          </div>
-
-        </q-bar>
-        <div class="q-pa-sm q-pl-md row items-center lt-sm">
-          <div class="q-pa-md" style="max-width: 300px;max-height: 50px;">
-            <div class="q-gutter-md">
-              <q-input v-model="search" debounce="1000" borderless placeholder="Search in {{ storeName }}">
-                <template v-slot:append>
-                  <q-icon name="search" />
-                </template>
-              </q-input>
-            </div>
-          </div>
+    <div class="image-container" style="height:250px;">
+      <q-img class="image" src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
+        <div class="absolute-bottom text-subtitle1 text-center">
+          {{ storeName }}
         </div>
-      </q-header>
-      <h2>Store Deals</h2>
-      <div class="q-pa-md">
+      </q-img>
 
+    </div>
+    <div class="q-pa-md">
+      <q-layout view="lHh lpr lFf" container style="height: 800px" class="shadow-2 rounded-borders">
+        <q-header elevated>
+          <q-bar>
+            <q-icon name="schedule" color="blue-grey-8" />
+            <div style="color: #36486b;">Open until</div>
+            <div class="q-pa-md q-gutter-sm">
+              <q-btn label="See more information" color="blue-grey-8" icon="info" @click="moreinfodialog = true" />
+              <q-dialog v-model="moreinfodialog">
+                <seeMoreInfo></seeMoreInfo>
+              </q-dialog>
+            </div>
+
+            <q-space />
+            <div class="q-pa-md gt-xs" color="blue-grey-8" style="max-width: 300px;max-height: 120px;">
+              <div class="q-gutter-md">
+                <q-input color="blue-grey-8" v-model="search" debounce="1000" borderless placeholder="Search">
+                  <template v-slot:append>
+                    <q-icon color="blue-grey-8" name="search" />
+                  </template>
+                </q-input>
+              </div>
+            </div>
+
+          </q-bar>
+          <div class="q-pa-sm q-pl-md row items-center lt-sm">
+            <div class="q-pa-md" style="max-width: 300px;max-height: 50px;">
+              <div class="q-gutter-md">
+                <q-input v-model="search" debounce="1000" borderless placeholder="Search in {{ storeName }}">
+                  <template v-slot:append>
+                    <q-icon name="search" />
+                  </template>
+                </q-input>
+              </div>
+            </div>
+          </div>
+        </q-header>
+        <h2>Store Deals</h2>
+        <div class="q-pa-md">
+
+          <div class="row q-col-gutter-sm">
+            <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
+              <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150"></q-parallax>
+              <q-card-section>
+                <q-chip dense color="red" text-color="white" :label=deal.deal />
+                <div class="text-h6">{{ deal.dealfor[0] }}</div>
+                <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart"
+                    @click="addToBasket(deal.dealfor[0])"></q-btn></div>
+                <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
+                <div class="text-blue-grey-8 text-subtitle2">Price:</div>
+              </q-card-section>
+            </q-card>
+            <q-space />
+          </div>
+
+        </div>
+        <h2>Store Menu</h2>
         <div class="row q-col-gutter-sm">
-          <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
-            <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150"></q-parallax>
+          <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="item in menu" :key="item.name">
+            <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150" />
+
             <q-card-section>
-              <q-chip dense color="red" text-color="white" :label=deal.deal />
-              <div class="text-h6">{{ deal.dealfor[0] }}</div>
-              <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart" @click="addToBasket(deal.dealfor[0])"></q-btn></div>
-              <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
-              <div class="text-blue-grey-8 text-subtitle2">Price:</div>
+              <div class="text-h6">{{ item.name }}</div>
+              <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart" @click="addToBasket(item.name)"></q-btn>
+              </div>
+              <div class="text-grey-8 text-subtitle2">{{ item.des }}</div>
+              <div class="text-blue-grey-8 text-subtitle2">{{ item.price }}$</div>
             </q-card-section>
           </q-card>
-          <q-space />
         </div>
+        <h2>Customer Review</h2>
+        <br>
+        <br>
+        <br>
+        <br>
 
-      </div>
-      <h2>Store Menu</h2>
-      <div class="row q-col-gutter-sm">
-        <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="item in menu" :key="item.name">
-          <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150" />
-
-          <q-card-section>
-            <div class="text-h6">{{ item.name }}</div>
-            <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart" @click="addToBasket(item.name)"></q-btn></div>
-            <div class="text-grey-8 text-subtitle2">{{ item.des }}</div>
-            <div class="text-blue-grey-8 text-subtitle2">{{ item.price }}$</div>
-          </q-card-section>
-        </q-card>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <!-- <div class="q-pa-md">
+        <!-- <div class="q-pa-md">
           <q-table flat bordered title="Treats" :rows="rows" :columns="columns" row-key="name">
 
             <template v-slot:header="props">
@@ -114,9 +117,9 @@
           </q-table>
         </div> -->
 
-    </q-layout>
+      </q-layout>
+    </div>
   </div>
-</div>
 </template>
 
 <script>

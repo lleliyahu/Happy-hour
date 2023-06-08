@@ -5,10 +5,10 @@
       transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
       <q-carousel-slide :name="1"
         img-src="https://img.freepik.com/free-vector/happy-hour-neon-sign-with-cocktails_23-2148271154.jpg?w=2000">
-        <div class="absolute-center custom-caption">
+        <!-- <div class="absolute-center custom-caption">
           <div class="text-h2">First stop</div>
           <div class="text-subtitle1">Mountains</div>
-        </div>
+        </div> -->
       </q-carousel-slide>
 
       <q-carousel-slide :name="2"
