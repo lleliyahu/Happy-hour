@@ -8,8 +8,11 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var dealsRouter = require("./routes/deals");
 var storeRouter = require("./routes/store");
+const cors = require('cors');
 
 var app = express();
+
+app.use(cors());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
