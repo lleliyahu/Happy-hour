@@ -51,7 +51,7 @@
 
           <div class="row q-col-gutter-sm">
             <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
-              <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150"></q-parallax>
+              <q-parallax :src="deal.image"></q-parallax>
               <q-card-section>
                 <q-chip dense color="red" text-color="white" :label=deal.deal />
                 <div class="text-h6">{{ deal.dealfor[0] }}</div>
@@ -68,7 +68,7 @@
         <h2>Store Menu</h2>
         <div class="row q-col-gutter-sm">
           <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="item in menu" :key="item.name">
-            <q-parallax src="https://cdn.quasar.dev/img/parallax1.jpg" :height="150" />
+            <q-parallax :src="item.image" :height="150" />
 
             <q-card-section>
               <div class="text-h6">{{ item.name }}</div>

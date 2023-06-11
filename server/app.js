@@ -13,6 +13,8 @@ const cors = require('cors');
 var app = express();
 
 app.use(cors());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

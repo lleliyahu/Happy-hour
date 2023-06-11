@@ -34,9 +34,21 @@
           </q-form>
         </q-card-section>
         <div class="q-pa-md">
-          <q-uploader url="http://localhost/api/upload" field-name="photo" flat bordered square no-thumbnails batch
+          <!-- <q-uploader url="http://localhost/api/upload" field-name="photo" flat bordered square no-thumbnails batch
             accept="image/*" @rejected="onRejected" auto-upload :factory="factoryFn" multiple style="max-width: 300px"
-            color="cyan-8" />
+            color="cyan-8" /> -->
+            <q-file
+              v-model="image"
+              label="Pick one file"
+              filled
+              style="max-width: 300px"
+              @change="updateFile()"
+            />
+            <q-img
+              :src="fileUrl"
+              spinner-color="white"
+              style="height: 140px; max-width: 150px"
+            />
         </div>
         <q-card-actions class="q-px-lg">
           <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="AddMenuItem"
@@ -50,6 +62,7 @@
 </template>
 <script>
 import axios from 'axios';
+import { ref } from 'vue';
 
 export default {
   name: 'AddItemMenu',
@@ -77,27 +90,56 @@ export default {
       descreption: '',
       price: '',
       prefix: '$ ',
+      image: ref(null),
+      image1Url: ref(''),
     };
   },
+  setup() {
+  },
+  computed: {
+    fileUrl() {
+      let url = '';
+      if (this.image !== null) {
+        url = URL.createObjectURL(this.image);
+        console.log('image gggggggggggggggggggggggg', url);
+      }
+      return url;
+    },
+  },
   methods: {
+    blobToBase64(blob) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
+    },
+    updateFile() {
+      console.log('image gggggggggggggggggggggggg');
+    },
     AddMenuItem() {
       const menu = {};
       menu.name = this.itemName;
       menu.des = this.descreption;
       menu.price = this.price;
       menu.orders = 0;
-
       const body = {};
       body.name = this.itemName;
       body.price = this.price;
       axios.post('http://localhost:3000/store/checkMenuItemPrice', body).then((response) => {
         console.log('checkMenuItemPrice  ', response.data);
         if (response.data === 'ok') {
-          this.addItem(menu);
+          this.blobToBase64(this.image).then((x) => {
+            menu.image = x;
+            this.addItem(menu);
+          });
         } else {
           const answer = window.confirm('The price is higher than average, are you sure you want to continue?');
           if (answer) {
-            this.addItem(menu);
+            this.blobToBase64(this.image).then((x) => {
+              menu.image = x;
+              this.addItem(menu);
+            });
           }
         }
       });

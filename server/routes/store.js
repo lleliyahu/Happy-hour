@@ -91,7 +91,7 @@ router.post("/update", function (req, res, next) {
   var myquery = { 'storename': myobj.storename, 'username': myobj.usstorename };
   var newvalues = { $set: myobj };
   console.log('myquery : ', myquery);
-  console.log('myobj : ', myobj);
+  console.log('myobj : ', myobj.menu);
   db.getDb()
     .collection("store")
     .updateOne(myquery, newvalues, function (err, res) {
