@@ -80,6 +80,34 @@
           </q-card>
         </div>
         <h2>Customer Review</h2>
+        <h4>Add Your Review</h4>
+        <div class="q-pa-md">
+          <q-uploader url="http://localhost/api/upload" field-name="photo" flat multipale bordered square no-thumbnails
+            batch accept="image/*" @rejected="onRejected" auto-upload :factory="factoryFn" multiple
+            style="max-width: 300px" color="cyan-8" />
+        </div>
+        <div class="q-pa-md row justify-center bg-grey-3 shadow">
+          <div style="width: 100%; max-width: 400px">
+            <q-chat-message name="Ana" avatar="https://cdn.quasar.dev/img/avatar3.jpg" text-color="white"
+              bg-color="blue-grey-8" label="8th June 2023" size="1000">
+
+              <div>
+                <img style="width: 100%;max-with:100px;"
+                  src="https://images.squarespace-cdn.com/content/v1/5f9decf1e529e27a4705d448/1681676661420-MZGRIQXRH7H87EH70AB9/MacBook+Pro+-+22banner-17.png?format=2500w"
+                  class="my-emoticon" />
+              </div>
+            </q-chat-message>
+
+            <q-chat-message name="Rivka" avatar="https://cdn.quasar.dev/img/avatar5.jpg" label="11th June 2023"
+              bg-color="cyan-8">
+              <div>
+                <img style="width: 100%;max-with:100px;"
+                  src="https://images.squarespace-cdn.com/content/v1/5f9decf1e529e27a4705d448/1620862138307-26QRRXQ0MJUHA7UCFRDR/Callie+Restaurant+319.jpg?format=2500w"
+                  class="my-emoticon" />
+              </div>
+            </q-chat-message>
+          </div>
+        </div>
         <br>
         <br>
         <br>
