@@ -2,7 +2,7 @@
 <template>
   <div class="column q-pa-md bg-blue-grey-9">
     <div class="row">
-      <q-card square class="shadow-24" style="width:380px;height:750px;">
+      <q-card square class="shadow-24" style="width:380px;height:900px;">
         <q-card-section class="bg-red-9">
           <h4 class="text-h5 text-white q-my-md">&#128293;Filter&#128293;</h4>
           <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">

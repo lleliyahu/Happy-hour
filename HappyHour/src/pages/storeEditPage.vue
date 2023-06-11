@@ -29,18 +29,29 @@
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="street_address" label="Street Address"
+                <q-input dark color="white" dense :rules="[
+                    val => !!val || '* Required',
+                    val => val.length > 2 && val.length < 40 || 'Please use minimum 2 character',
+                  ]" lazy-rules v-model="store_desc" filled autogrow label="Store Description"
                   style="max-width: 600px" />
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="post_code" label="Postal Code" style="max-width: 600px" />
+                <q-input dark color="white" dense v-model="street_address" type="text" label="Street Address"
+                  style="max-width: 600px" />
               </q-item-section>
             </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <q-item-section>
-                <q-input dark color="white" dense v-model="store_phone" label="Store Phone" style="max-width: 600px" />
+                <q-input dark color="white" dense v-model="post_code" type="number" label="Postal Code"
+                  style="max-width: 600px" />
+              </q-item-section>
+            </q-item>
+            <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <q-item-section>
+                <q-input dark color="white" dense v-model="store_phone" type="number" fill-mask mask="(###) - ### - ####"
+                  hint="Mask: (###) ### - ####" label="Store Phone" style="max-width: 600px" />
               </q-item-section>
             </q-item>
             <q-item>
@@ -232,6 +243,10 @@
       <AddItemMenu :addItem='addItem' :storename=storename></AddItemMenu>
     </q-dialog>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
   <!-- <q-dialog v-model="choseedealtypedialog">
     <ChooseDealType></ChooseDealType>
                                                                                                       </q-dialog> -->
@@ -267,7 +282,7 @@ const citiesOptions = [
   'Beni Barak', 'Rishon Letsiyon', "Ra'annana", 'Tel Aviv', 'Petach Tikva',
 ];
 
-const stringOptions = [
+const storeOptions = [
   'Alcohol', 'Florist', 'General Merchandise', 'Grocery', 'Health & Beauty', 'Pet Supply', 'Pharmacy',
 ];
 
@@ -289,7 +304,7 @@ export default defineComponent({
   }),
   setup() {
     const filtercitiesOptions = ref(citiesOptions);
-    const filterOptions = ref(stringOptions);
+    const filterStoreOptions = ref(storeOptions);
     return {
       store_details: {},
       password_dict: {},
@@ -301,7 +316,7 @@ export default defineComponent({
       cityModel: ref(null),
       // storeModel: ref(null),
       citiesOptions,
-      filterOptions,
+      storeOptions,
       EditMenudialog: ref(false),
       AddItemMenudialog: ref(false),
       column,
@@ -316,8 +331,8 @@ export default defineComponent({
       },
       createValue(val, done) {
         if (val.length > 0) {
-          if (!stringOptions.includes(val)) {
-            stringOptions.push(val);
+          if (!storeOptions.includes(val)) {
+            storeOptions.push(val);
           }
           done(val, 'toggle');
         }
@@ -326,10 +341,10 @@ export default defineComponent({
       filterFn(val, update) {
         update(() => {
           if (val === '') {
-            filterOptions.value = stringOptions;
+            filterStoreOptions.value = storeOptions;
           } else {
             const needle = val.toLowerCase();
-            filterOptions.value = stringOptions.filter(
+            filterStoreOptions.value = storeOptions.filter(
               (v) => v.toLowerCase().indexOf(needle) > -1,
             );
           }
