@@ -409,8 +409,8 @@ export default defineComponent({
           console.log(error);
         });
     },
-    addItem(item) {
-      const blob = await fetch(item.image).then(res => res.blob())
+    async addItem(item) {
+      const blob = await fetch(item.image).then((res) => res.blob());
       console.log('item    ', blob);
       this.menu.push(item);
     },

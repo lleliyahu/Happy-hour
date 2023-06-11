@@ -79,7 +79,7 @@
 
                   <!-- <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div> -->
 
-                  <q-btn color="blue-grey-8" label="Logout" push size="md" v-close-popup />
+                  <q-btn color="blue-grey-8" label="Logout" push size="md" v-close-popup @click="logout" />
                 </div>
               </div>
             </q-btn-dropdown>
@@ -226,6 +226,13 @@ export default defineComponent({
     };
   },
   methods: {
+    logout() {
+      // logic of diconnect method
+      this.logindialog = true;
+      this.isNotUserConnect = true;
+      this.username = '';
+      localStorage.removeItem('user');
+    },
     goReg() {
       this.logindialog = false;
       this.regdialog = true;
