@@ -1,8 +1,5 @@
 <!-- eslint-disable max-len -->
 <template>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@700&display=swap" rel="stylesheet">
   <div>
     <div class="q-pa-md gt-sm">
       <div class="q-pa-md q-gutter-sm row justify-center">
@@ -52,9 +49,12 @@ export default {
 
   },
   mounted() {
-    axios.get('http://localhost:3000/store/getallStore').then((response) => {
-      this.deals = response.data;
-    });
+     const dd = {};
+      dd.storetype = 'Resturant';
+
+    // axios.get('http://localhost:3000/store/getallStore', { params: { dd } }).then((response) => {
+    //   this.deals = response.data;
+    // });
     // console.log(this.deals);
   },
   setup() {

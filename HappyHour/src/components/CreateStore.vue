@@ -38,6 +38,10 @@ export default {
       type: Function,
       default() { return console.log('Default function aa'); },
     },
+    storeType:
+    {
+      type: String,
+    },
   },
   data() {
     return {
@@ -49,6 +53,7 @@ export default {
       const newStor = {};
       newStor.storename = this.storename;
       newStor.username = localStorage.getItem('user');
+      newStor.storetype = this.storeType;
       console.log('new store', newStor);
       axios.post('http://localhost:3000/store/create', newStor).then(() => {
         alert('Store created');

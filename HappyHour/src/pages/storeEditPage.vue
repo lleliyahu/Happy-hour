@@ -403,6 +403,7 @@ export default defineComponent({
       console.log('newStoreDetails:', newStoreDetails);
       axios.post('http://localhost:3000/store/update', newStoreDetails)
         .then(() => {
+          alert('the store is update');
           this.refreshStore();
         })
         .catch((error) => {
@@ -410,8 +411,6 @@ export default defineComponent({
         });
     },
     async addItem(item) {
-      const blob = await fetch(item.image).then((res) => res.blob());
-      console.log('item    ', blob);
       this.menu.push(item);
     },
   },

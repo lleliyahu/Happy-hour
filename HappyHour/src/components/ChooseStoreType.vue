@@ -12,16 +12,16 @@
               @click="createstordialog = true">
             </q-btn>
             <q-dialog v-model="createstordialog">
-              <CreateStore :refreshStore="backToProfile"></CreateStore>
+              <CreateStore :refreshStore="backToProfile" storeType="Store"></CreateStore>
             </q-dialog>
           </q-form>
         </q-card-section>
         <q-card-section>
           <q-form class="q-px-sm q-pt-xl">
             <q-btn size="lg" class="full-width" color="cyan-8" label="Resturant" icon="restaurant"
-              @click="createrestaurantdialog"></q-btn>
-            <q-dialog>
-              <CreateRestaurant :refreshrestaurant="backToProfile"></CreateRestaurant>
+              @click="createrestaurantdialog= true"></q-btn>
+            <q-dialog v-model="createrestaurantdialog">
+              <CreateStore :refreshStore="backToProfile" storeType="Resturant"></CreateStore>
             </q-dialog>
           </q-form>
         </q-card-section>
@@ -36,13 +36,11 @@
 // import ref from 'vue';
 // import axios from 'axios';
 import CreateStore from './CreateStore.vue';
-import CreateRestaurant from './CreateRestaurant.vue';
 
 export default {
   name: 'RegistraTion',
   components: {
     CreateStore,
-    CreateRestaurant,
   },
   data() {
     return {

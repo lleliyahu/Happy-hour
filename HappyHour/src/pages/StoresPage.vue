@@ -51,10 +51,12 @@ export default {
     },
   },
   mounted() {
-    axios.get('http://localhost:3000/deals/all').then((response) => {
+    const params = {};
+    params.storetype = 'Store';
+
+    axios.get('http://localhost:3000/store/getallStore', { params: { params } }).then((response) => {
       this.deals = response.data;
     });
-    // console.log(this.deals);
   },
   setup() {
     return {

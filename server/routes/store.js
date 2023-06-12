@@ -20,15 +20,17 @@ router.post("/getStore", function (req, res, next) {
 });
 
 router.get("/getallStore", async (req, res, next) => {
+   var query = JSON.parse(req.query.params);
+   console.log('ffff', query);
   db.getDb()
     .collection("store")
-    .find()
+    .find(query)
     .toArray(function (err, result) {
       if (err) {
         res.status(400).send("Error fetching listing");
       } else {
         res.send(result);
-        console.log(result);
+        //console.log(result);
       }
     });
 });

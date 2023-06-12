@@ -50,7 +50,10 @@ export default {
 
   },
   mounted() {
-    axios.get('http://localhost:3000/store/getallStore').then((response) => {
+    const params = {};
+    params.storetype = 'Resturant';
+
+    axios.get('http://localhost:3000/store/getallStore', { params: { params } }).then((response) => {
       this.deals = response.data;
     });
     // console.log(this.deals);

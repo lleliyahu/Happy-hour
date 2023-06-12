@@ -160,41 +160,14 @@
                   @click="choseedealtypedialog = true"></q-btn>
               </q-card-actions>
             </q-item-section>
-            <q-card-section>
-              <div class="text-body2 text-justify">
-                <div class="q-pa-md" style="max-width: 600px">
-                  <q-list dense bordered padding class="rounded-borders">
-                    <q-item clickable v-ripple to="/EditDeal">
-                      <q-item-section>
-                        Deal 1
-                      </q-item-section>
-                      <q-btn flat rounded icon="edit" to="/EditDeal"></q-btn>
-                      <q-btn flat rounded icon="delete"></q-btn>
-                    </q-item>
-                    <q-item clickable v-ripple to="/EditDealBreaker">
-                      <q-item-section>
-                        DealBreaker 1
-                      </q-item-section>
-                      <q-btn flat rounded icon="edit" to="/EditDealBreaker"></q-btn>
-                      <q-btn flat rounded icon="delete"></q-btn>
-                    </q-item>
-                  </q-list>
-                  <q-dialog v-model="choseedealtypedialog">
+            <q-dialog v-model="choseedealtypedialog">
                     <ChooseDealType></ChooseDealType>
-                  </q-dialog>
-                </div>
-                <q-dialog v-model="choseedealtypedialog">
-                  <ChooseDealType></ChooseDealType>
-                </q-dialog>
-              </div>
-              <q-dialog v-model="choseedealtypedialog">
-                <ChooseDealType></ChooseDealType>
-              </q-dialog>
-            </q-card-section>
+            </q-dialog>
           </q-card>
         </div>
       </div>
     </q-page>
+    <br>   <br>   <br>  <br>  <br>  <br>
   </div>
 </template>
 <script>
