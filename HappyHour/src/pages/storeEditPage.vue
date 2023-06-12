@@ -161,12 +161,17 @@
                     </template>
                   </q-input>
                 </template>
+                <template v-slot:body-cell-RemoveItem>
+                  <q-td auto-width>
+                    <q-btn size="md" color="red-6" round dense icon='delete' />
+                  </q-td>
+                </template>
                 <template v-slot:body-cell-Image="props">
                   <q-td :props="props" style="max-width: 100px">
                     <q-item>
                       <q-item-section avatar>
                         <q-avatar>
-                          <img :src=" props.row.image">
+                          <img :src="props.row.image">
                         </q-avatar>
                       </q-item-section>
                     </q-item>
@@ -225,6 +230,9 @@ import AddItemMenu from 'src/components/AddItemMenu.vue';
 
 const column = [
   {
+    name: 'RemoveItem', label: 'Remove Item', field: 'remove item', align: 'left',
+  },
+  {
     name: 'Image', label: 'Image', field: 'image', sortable: true, align: 'left',
   },
   {
@@ -238,9 +246,6 @@ const column = [
   },
   {
     name: 'Ordes', label: 'Orders', field: 'orders', sortable: true, align: 'left',
-  },
-  {
-    name: 'Remove Item', label: 'Remove Item', field: 'remove item', align: 'left',
   },
 
 ];

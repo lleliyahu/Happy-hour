@@ -38,6 +38,7 @@
         </q-card-actions> -->
       </q-card>
     </router-link>
+    <br>
 
   </div>
 </template>

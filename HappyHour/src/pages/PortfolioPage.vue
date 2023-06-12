@@ -18,7 +18,8 @@
       <q-carousel-slide :name="4" img-src="https://s.hdnux.com/photos/01/21/05/64/21257525/4/rawImage.jpg" />
     </q-carousel>
   </div>
-  <div class="shadow-15 animated fadeIn q-card">
+  <div class="shadow-15 animated fadeIn q-card text-white"
+    style="background: linear-gradient(135deg, rgb(58, 96, 115) 25%, rgb(44, 52, 60) 80%);">
     <div class="q-pa-lg q-pa-md-xl q-card__section q-card__section--vert">
       <div class="text-h4 q-mb-md">
         <div>

@@ -2,7 +2,7 @@
 <template>
   <div class="column q-pa-lg">
     <div class="row">
-      <q-card square class="shadow-24" style="width:400px;height:600px;">
+      <q-card square class="shadow-24" style="width:400px;height:650px;">
         <q-card-section class="bg-blue-grey-9">
           <h4 class="text-h5 text-white q-my-md">Add New Menu Item</h4>
         </q-card-section>
@@ -34,21 +34,8 @@
           </q-form>
         </q-card-section>
         <div class="q-pa-md">
-          <!-- <q-uploader url="http://localhost/api/upload" field-name="photo" flat bordered square no-thumbnails batch
-            accept="image/*" @rejected="onRejected" auto-upload :factory="factoryFn" multiple style="max-width: 300px"
-            color="cyan-8" /> -->
-            <q-file
-              v-model="image"
-              label="Pick one file"
-              filled
-              style="max-width: 300px"
-              @change="updateFile()"
-            />
-            <q-img
-              :src="fileUrl"
-              spinner-color="white"
-              style="height: 140px; max-width: 150px"
-            />
+          <q-file v-model="image" label="Item Photo" filled style="max-width: 300px" @change="updateFile()" />
+          <q-img :src="fileUrl" spinner-color="white" style="height: 140px; max-width: 150px" />
         </div>
         <q-card-actions class="q-px-lg">
           <q-btn unelevated size="lg" color="cyan-8" class="full-width text-white" label="Create" @click="AddMenuItem"

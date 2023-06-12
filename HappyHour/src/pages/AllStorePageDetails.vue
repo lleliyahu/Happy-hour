@@ -82,9 +82,8 @@
         <h2>Customer Review</h2>
         <h4>Add Your Review</h4>
         <div class="q-pa-md">
-          <q-uploader url="http://localhost/api/upload" field-name="photo" flat multipale bordered square no-thumbnails
-            batch accept="image/*" @rejected="onRejected" auto-upload :factory="factoryFn" multiple
-            style="max-width: 300px" color="cyan-8" />
+          <q-file v-model="image" label="Upload Photo" filled style="max-width: 300px" @change="updateFile()" />
+          <q-img :src="fileUrl" spinner-color="white" style="height: 140px; max-width: 150px" />
         </div>
         <div class="q-pa-md row justify-center bg-grey-3 shadow">
           <div style="width: 100%; max-width: 400px">
@@ -153,6 +152,7 @@
 <script>
 import seeMoreInfo from 'src/components/SeeMoreInfo.vue';
 import axios from 'axios';
+import { ref } from 'vue';
 
 const columns = [
   {
@@ -163,27 +163,6 @@ const columns = [
     field: (row) => row.name,
     format: (val) => `${val}`,
     sortable: true,
-  },
-  {
-    name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true,
-  },
-  {
-    name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true,
-  },
-  {
-    name: 'carbs', label: 'Carbs (g)', field: 'carbs',
-  },
-  {
-    name: 'protein', label: 'Protein (g)', field: 'protein',
-  },
-  {
-    name: 'sodium', label: 'Sodium (mg)', field: 'sodium',
-  },
-  {
-    name: 'calcium', label: 'Calcium (%)', field: 'calcium', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
-  },
-  {
-    name: 'iron', label: 'Iron (%)', field: 'iron', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
   },
 ];
 const rows = [
@@ -302,10 +281,22 @@ export default {
     menu: [],
     storeModel: {},
     deals: {},
+    image: ref(null),
+    image1Url: ref(''),
   }),
   methods: {
     changeColor() {
       this.$refs.favoriteButton.color = 'red';
+    },
+    blobToBase64(blob) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
+    },
+    updateFile() {
+      console.log('image gggggggggggggggggggggggg');
     },
     getStoreDetails() {
       const body = {};
@@ -355,6 +346,16 @@ export default {
       columns,
       rows,
     };
+  },
+  computed: {
+    fileUrl() {
+      let url = '';
+      if (this.image !== null) {
+        url = URL.createObjectURL(this.image);
+        console.log('image gggggggggggggggggggggggg', url);
+      }
+      return url;
+    },
   },
 };
 </script>
