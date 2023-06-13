@@ -71,7 +71,6 @@ export default {
   border: 1px solid rgba(86,61,124,.2)
 .fav-icon
   display: block
-  position: absolute
-  left: 33%
-  bottom: 43%
+  position: relative
+  top: -116px
 </style>
