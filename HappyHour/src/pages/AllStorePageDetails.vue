@@ -303,11 +303,11 @@ export default {
   mounted() {
     this.getStoreDetails();
   },
-  // watch: {
-  //   isFavorite(val) {
-  //     this.$refs.favoriteButton.color = val ? 'red' : 'black';
-  //   },
-  // },
+  watch: {
+    isFavorite(val) {
+      this.$refs.favoriteButton.color = val ? 'red' : 'black';
+    },
+  },
   setup() {
     return {
       // columns,
