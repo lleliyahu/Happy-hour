@@ -86,9 +86,18 @@
             <div class="q-px-sm q-py-lg">
               <div class="column items-center">
                 <q-fab color="blue-grey-8" icon="keyboard_arrow_down" direction="down">
-                  <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
-                  <q-btn class="bg-cyan-8" flat round icon="shopping_cart" to="/ShoppingCart"></q-btn>
-                  <q-btn class="bg-cyan-8" flat round icon="logout" @click="logout"></q-btn>
+                  <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"><q-tooltip class="bg-indigo"
+                      :offset="[10, 10]" anchor="center left">
+                      Profile
+                    </q-tooltip></q-btn>
+                  <q-btn class="bg-cyan-8" flat round icon="shopping_cart" to="/ShoppingCart"><q-tooltip class="bg-indigo"
+                      :offset="[10, 10]" anchor="center left">
+                      Shooping Cart
+                    </q-tooltip></q-btn>
+                  <q-btn class="bg-cyan-8" flat round icon="logout" @click="logout"><q-tooltip class="bg-indigo"
+                      :offset="[10, 10]" anchor="center left">
+                      Logout
+                    </q-tooltip></q-btn>
                 </q-fab>
               </div>
 
