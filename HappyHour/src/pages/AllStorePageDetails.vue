@@ -55,7 +55,7 @@
               <q-card-section>
                 <q-chip dense color="red" text-color="white" :label=deal.deal />
                 <div class="text-h6">{{ deal.dealfor[0] }}</div>
-                <div class="float-right"><q-btn color="cyan-8" :icon=getIcon()
+                <div class="float-right"><q-btn color="cyan-8" :icon=getIcon(deal)
                     @click="addToBasket(deal.dealfor[0])"></q-btn></div>
                 <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
                 <div class="text-blue-grey-8 text-subtitle2">Price:</div>
