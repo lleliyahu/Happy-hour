@@ -6,9 +6,10 @@ var db = require("../DB/DbClient.js");
 router.post("/getStore", function (req, res, next) {
   var query = {};
   query.username = req.body.username;
+  const projection = { _id: 0, storename: 1, store_desc: 1, menu: { name: 1} };
   db.getDb()
     .collection("store")
-    .find(query)
+    .find(query).project(projection)
     .toArray(function (err, result) {
       if (err) {
         res.status(400).send("Error fetching listing");
@@ -20,11 +21,12 @@ router.post("/getStore", function (req, res, next) {
 });
 
 router.get("/getallStore", async (req, res, next) => {
+  const projection = { _id: 0, storename: 1, store_desc: 1 };
    var query = JSON.parse(req.query.params);
    console.log('ffff', query);
   db.getDb()
     .collection("store")
-    .find(query)
+    .find(query).project(projection)
     .toArray(function (err, result) {
       if (err) {
         res.status(400).send("Error fetching listing");
@@ -36,7 +38,8 @@ router.get("/getallStore", async (req, res, next) => {
 });
 
 router.get("/getDealBrekerStore", async (req, res, next) => {
-    var query = { 'del_type': "dealBreaker"}; 
+    var query = { del_type: "dealBreaker"}; 
+    console.log(query);
     db.getDb()
       .collection("Deals")
       .find(query)
@@ -44,28 +47,23 @@ router.get("/getDealBrekerStore", async (req, res, next) => {
         if (err) {
           res.status(400).send("Error fetching listing");
         } else {
+          const stores = result.map( (x) => x.storename );
+          var query_stores = { storename: { $in: stores }}; 
+          const projection = { _id: 0, storename: 1 };
 
+          db.getDb()
+          .collection("store")
+          .find(query_stores).project(projection)
+          .toArray(function (err, result) {
+            if (err) {
+              res.status(400).send("Error fetching listing");
+            } else {
+              res.send(result);
+            }
+          });
           
-          res.send(result);
-
         }
       });
-   
-
-
-
-
- db.getDb()
-   .collection("store")
-   .find(query)
-   .toArray(function (err, result) {
-     if (err) {
-       res.status(400).send("Error fetching listing");
-     } else {
-       res.send(result);
-       //console.log(result);
-     }
-   });
 });
 
 router.post("/getStoreData", function (req, res, next) {
