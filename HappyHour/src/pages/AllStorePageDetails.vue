@@ -18,7 +18,9 @@
             <div class="q-pa-md q-gutter-sm">
               <q-btn label="See more information" color="blue-grey-8" icon="info" @click="moreinfodialog = true" />
               <q-dialog v-model="moreinfodialog">
-                <seeMoreInfo></seeMoreInfo>
+                <seeMoreInfo>
+
+                </seeMoreInfo>
               </q-dialog>
             </div>
 
@@ -137,6 +139,7 @@ export default {
     deals: {},
     image: ref(null),
     image1Url: ref(''),
+    moreinfodialog: ref(false),
   }),
   methods: {
     getIcon(deal) {
