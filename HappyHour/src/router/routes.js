@@ -13,6 +13,7 @@ const routes = [
       { path: 'ShoppingCart', component: () => import('src/pages/ShoppingCart.vue') },
       { path: 'Restaurants', component: () => import('src/pages/RestaurantsPage.vue') },
       { path: 'Stores', component: () => import('src/pages/StoresPage.vue') },
+      { path: 'Search', component: () => import('src/pages/SearchPage.vue') },
       {
         path: 'StoreDetailsPage/:storeName',
         props: true,

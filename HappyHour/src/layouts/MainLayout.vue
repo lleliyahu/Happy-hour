@@ -17,8 +17,6 @@
               <PlacesSelection></PlacesSelection>
             </q-dialog>
           </q-btn>
-          <!-- <span>Delviery to</span>
-                                                                                                                                <q-btn flat round icon="arrow_drop_down"></q-btn> -->
         </div>
         <q-space class="lt-md"></q-space>
         <q-toolbar-title class="lt-md">
@@ -90,6 +88,7 @@
                 <q-fab color="blue-grey-8" icon="keyboard_arrow_down" direction="down">
                   <q-btn class="bg-cyan-8" flat round icon="account_circle" to="/Profile"></q-btn>
                   <q-btn class="bg-cyan-8" flat round icon="shopping_cart" to="/ShoppingCart"></q-btn>
+                  <q-btn class="bg-cyan-8" flat round icon="logout" @click="logout"></q-btn>
                 </q-fab>
               </div>
 
@@ -117,7 +116,7 @@
                 <q-route-tab to="/Restaurants" name="restaurants" label="Restaurants" icon="restaurant" />
                 <q-route-tab to="/Stores" name="stores" label="Stores" icon="store" />
                 <q-route-tab to="/DealBreaker" name="dealbreaker" label="Deal Breaker" icon="local_fire_department" />
-                <q-tab name="search" label="Search" icon="search" />
+                <q-route-tab to="/Search" name="search" label="Search" icon="search" />
                 <q-tab name="Profile" label="Profile" icon="account_circle" @click="logindialog = true" />
                 <q-dialog v-model="logindialog">
                   <logIn :UserConnect="UserConnect" :goReg="goReg"></logIn>
