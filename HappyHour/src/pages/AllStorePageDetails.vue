@@ -51,11 +51,11 @@
 
           <div class="row q-col-gutter-sm">
             <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
-              <q-parallax :src="deal.image"></q-parallax>
+              <q-parallax :src="deal.image" :height="150"></q-parallax>
               <q-card-section>
                 <q-chip dense color="red" text-color="white" :label=deal.deal />
                 <div class="text-h6">{{ deal.dealfor[0] }}</div>
-                <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart"
+                <div class="float-right"><q-btn color="cyan-8" :icon=getIcon()
                     @click="addToBasket(deal.dealfor[0])"></q-btn></div>
                 <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
                 <div class="text-blue-grey-8 text-subtitle2">Price:</div>
@@ -121,119 +121,6 @@ import seeMoreInfo from 'src/components/SeeMoreInfo.vue';
 import axios from 'axios';
 import { ref } from 'vue';
 
-// const columns = [
-//   {
-//     name: 'name',
-//     required: true,
-//     label: 'Dessert (100g serving)',
-//     align: 'left',
-//     field: (row) => row.name,
-//     format: (val) => `${val}`,
-//     sortable: true,
-//   },
-// ];
-// const rows = [
-//   {
-//     name: 'Frozen Yogurt',
-//     calories: 159,
-//     fat: 6.0,
-//     carbs: 24,
-//     protein: 4.0,
-//     sodium: 87,
-//     calcium: '14%',
-//     iron: '1%',
-//   },
-//   {
-//     name: 'Ice cream sandwich',
-//     calories: 237,
-//     fat: 9.0,
-//     carbs: 37,
-//     protein: 4.3,
-//     sodium: 129,
-//     calcium: '8%',
-//     iron: '1%',
-//   },
-//   {
-//     name: 'Eclair',
-//     calories: 262,
-//     fat: 16.0,
-//     carbs: 23,
-//     protein: 6.0,
-//     sodium: 337,
-//     calcium: '6%',
-//     iron: '7%',
-//   },
-//   {
-//     name: 'Cupcake',
-//     calories: 305,
-//     fat: 3.7,
-//     carbs: 67,
-//     protein: 4.3,
-//     sodium: 413,
-//     calcium: '3%',
-//     iron: '8%',
-//   },
-//   {
-//     name: 'Gingerbread',
-//     calories: 356,
-//     fat: 16.0,
-//     carbs: 49,
-//     protein: 3.9,
-//     sodium: 327,
-//     calcium: '7%',
-//     iron: '16%',
-//   },
-//   {
-//     name: 'Jelly bean',
-//     calories: 375,
-//     fat: 0.0,
-//     carbs: 94,
-//     protein: 0.0,
-//     sodium: 50,
-//     calcium: '0%',
-//     iron: '0%',
-//   },
-//   {
-//     name: 'Lollipop',
-//     calories: 392,
-//     fat: 0.2,
-//     carbs: 98,
-//     protein: 0,
-//     sodium: 38,
-//     calcium: '0%',
-//     iron: '2%',
-//   },
-//   {
-//     name: 'Honeycomb',
-//     calories: 408,
-//     fat: 3.2,
-//     carbs: 87,
-//     protein: 6.5,
-//     sodium: 562,
-//     calcium: '0%',
-//     iron: '45%',
-//   },
-//   {
-//     name: 'Donut',
-//     calories: 452,
-//     fat: 25.0,
-//     carbs: 51,
-//     protein: 4.9,
-//     sodium: 326,
-//     calcium: '2%',
-//     iron: '22%',
-//   },
-//   {
-//     name: 'KitKat',
-//     calories: 518,
-//     fat: 26.0,
-//     carbs: 65,
-//     protein: 7,
-//     sodium: 54,
-//     calcium: '12%',
-//     iron: '6%',
-//   },
-// ];
 export default {
   name: 'cardDeal',
   components: {
@@ -252,6 +139,13 @@ export default {
     image1Url: ref(''),
   }),
   methods: {
+    getIcon(deal) {
+      let icon = 'shopping_cart';
+      if (deal.del_type === 'dealBreaker') {
+        icon = 'thumb_up';
+      }
+      return icon;
+    },
     changeColor() {
       this.$refs.favoriteButton.color = 'red';
     },
@@ -279,16 +173,22 @@ export default {
           this.menu = [];
         } else {
           this.menu = response.data[0].menu;
+          this.getdeals(response.data[0].menu);
         }
       });
-      this.getdeals();
     },
-    getdeals() {
+    getdeals(menu) {
       const store = {};
       store.storename = this.storeName;
       axios.get('http://localhost:3000/deals/storeDeals', { params: { store } }).then((response) => {
         this.deals = response.data.valueOf();
-        console.log('this.dealseeeeeeee', this.deals);
+        this.deals.forEach((element) => {
+          const newobject = element;
+          const menuitem = menu.findIndex(({ name }) => name === element.dealfor[0]);
+          const itemimage = menu[menuitem].image;
+          newobject.image = itemimage;
+          element = newobject;
+        });
       });
     },
     addToBasket(mnueitem) {

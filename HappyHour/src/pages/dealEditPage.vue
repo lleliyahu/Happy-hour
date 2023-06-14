@@ -209,6 +209,7 @@ export default defineComponent({
       newDeal.days = this.days;
       newDeal.dealfor = this.dealModel;
       newDeal.deal = this.fnMarkerLabel(this.deal);
+      newDeal.del_type = 'normalDeal';
       console.log('new_deal:', newDeal);
       axios.post('http://localhost:3000/deals/create', newDeal)
         .then(() => {

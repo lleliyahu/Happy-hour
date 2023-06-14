@@ -55,7 +55,7 @@ export default {
     },
   },
   mounted() {
-    axios.get('http://localhost:3000/deals/all').then((response) => {
+    axios.get('http://localhost:3000/store/getDealBrekerStore').then((response) => {
       this.deals = response.data;
     });
     // console.log(this.deals);
