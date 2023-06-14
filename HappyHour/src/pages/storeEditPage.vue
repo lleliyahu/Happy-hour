@@ -18,6 +18,15 @@
                 <q-input dark color="white" dense v-model="storename" label="Store Name" style="max-width: 600px" />
               </q-item-section>
             </q-item>
+            <q-item>
+              <q-item-section>
+                <div class="q-pa-md">
+                  <q-file v-model="image" bg-color="white" label="Store Logo" text-color="cyan-8" filled
+                    style="max-width: 300px" @change="updateFile()" />
+                  <q-img :src="fileUrl" spinner-color="cyan-8" style="height: 140px; max-width: 150px" />
+                </div>
+              </q-item-section>
+            </q-item>
             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="q-pa-md">
                 <q-select filled bg-color="white" color="cyan-8" v-model="cityModel" use-input use-chips
@@ -271,9 +280,27 @@ export default defineComponent({
     store_phone: '',
     post_code: '',
     street_address: '',
+    store_desc: '',
     menu: [],
     storeModel: {},
+    image: ref(null),
+    image1Url: ref(''),
   }),
+  computed: {
+    fileUrl() {
+      let url = '';
+      console.log('the type is', typeof this.image);
+      if (this.image !== null) {
+        if (typeof this.image === 'string') {
+          url = this.image;
+        } else {
+          url = URL.createObjectURL(this.image);
+          console.log('image gggggggggggggggggggggggg', url);
+        }
+      }
+      return url;
+    },
+  },
   setup() {
     const filtercitiesOptions = ref(citiesOptions);
     const filterStoreOptions = ref(storeOptions);
@@ -385,9 +412,11 @@ export default defineComponent({
       console.log('body', body);
       axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
         this.storename = response.data[0].storename;
+        this.image = response.data[0].image;
         this.city_address = response.data[0].city_address;
         this.store_phone = response.data[0].store_phone;
         this.post_code = response.data[0].post_code;
+        this.store_desc = response.data[0].store_desc;
         this.street_address = response.data[0].street_address;
         if (response.data[0].menu === undefined) {
           this.menu = [];
@@ -396,24 +425,38 @@ export default defineComponent({
         }
       });
     },
+    blobToBase64(blob) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
+    },
+    updateFile() {
+      console.log('image gggggggggggggggggggggggg');
+    },
     updateStore() {
-      const newStoreDetails = {};
-      newStoreDetails.usstorename = localStorage.getItem('user');
-      newStoreDetails.storename = this.storeName;
-      newStoreDetails.city_address = this.city_address;
-      newStoreDetails.post_code = this.post_code;
-      newStoreDetails.store_phone = this.store_phone;
-      newStoreDetails.menu = this.menu;
-      newStoreDetails.street_address = this.street_address;
-      console.log('newStoreDetails:', newStoreDetails);
-      axios.post('http://localhost:3000/store/update', newStoreDetails)
-        .then(() => {
-          alert('the store is update');
-          this.refreshStore();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.blobToBase64(this.image).then((x) => {
+        const newStoreDetails = {};
+        newStoreDetails.usstorename = localStorage.getItem('user');
+        newStoreDetails.storename = this.storeName;
+        newStoreDetails.image = x;
+        newStoreDetails.city_address = this.city_address;
+        newStoreDetails.post_code = this.post_code;
+        newStoreDetails.store_desc = this.store_desc;
+        newStoreDetails.store_phone = this.store_phone;
+        newStoreDetails.menu = this.menu;
+        newStoreDetails.street_address = this.street_address;
+        console.log('newStoreDetails:', newStoreDetails);
+        axios.post('http://localhost:3000/store/update', newStoreDetails)
+          .then(() => {
+            alert('the store is update');
+            this.refreshStore();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
     },
     async addItem(item) {
       this.menu.push(item);
@@ -422,6 +465,7 @@ export default defineComponent({
   mounted() {
     this.refreshStore();
     this.storename = this.storeName;
+    console.log('image src', this.image);
   },
 });
 </script>

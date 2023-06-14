@@ -24,12 +24,12 @@
     <div class="q-pa-md">
       <div class="row q-col-gutter-sm">
         <div class="col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal.store">
-          <cardDeal :store="deal.storename" :message="deal.message"></cardDeal>
+          <cardDeal :store="deal.storename" :image="deal.image" :description="deal.store_desc" :message="deal.message">
+          </cardDeal>
         </div>
       </div>
     </div>
   </div>
-
 </template>
 <script>
 import { ref } from 'vue';
