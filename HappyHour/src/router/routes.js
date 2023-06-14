@@ -11,7 +11,7 @@ const routes = [
       // { path: '', component: () => import('src/pages/DealsPage.vue') },
       { path: 'Profile', component: () => import('src/pages/Profile.vue') },
       { path: 'ShoppingCart', component: () => import('src/pages/ShoppingCart.vue') },
-      { path: 'Restaurants', component: () => import('src/pages/DealsPage.vue') },
+      { path: 'Restaurants', component: () => import('src/pages/RestaurantsPage.vue') },
       { path: 'Stores', component: () => import('src/pages/StoresPage.vue') },
       {
         path: 'StoreDetailsPage/:storeName',

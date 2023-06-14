@@ -29,6 +29,7 @@
       </div>
     </div>
   </div>
+
 </template>
 <script>
 import { ref } from 'vue';
@@ -49,12 +50,12 @@ export default {
 
   },
   mounted() {
-     const dd = {};
-      dd.storetype = 'Resturant';
+    const params = {};
+    params.storetype = 'Resturant';
 
-    // axios.get('http://localhost:3000/store/getallStore', { params: { dd } }).then((response) => {
-    //   this.deals = response.data;
-    // });
+    axios.get('http://localhost:3000/store/getallStore', { params: { params } }).then((response) => {
+      this.deals = response.data;
+    });
     // console.log(this.deals);
   },
   setup() {

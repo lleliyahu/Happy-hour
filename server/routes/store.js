@@ -35,6 +35,39 @@ router.get("/getallStore", async (req, res, next) => {
     });
 });
 
+router.get("/getDealBrekerStore", async (req, res, next) => {
+    var query = { 'del_type': "dealBreaker"}; 
+    db.getDb()
+      .collection("Deals")
+      .find(query)
+      .toArray(function (err, result) {
+        if (err) {
+          res.status(400).send("Error fetching listing");
+        } else {
+
+          
+          res.send(result);
+
+        }
+      });
+   
+
+
+
+
+ db.getDb()
+   .collection("store")
+   .find(query)
+   .toArray(function (err, result) {
+     if (err) {
+       res.status(400).send("Error fetching listing");
+     } else {
+       res.send(result);
+       //console.log(result);
+     }
+   });
+});
+
 router.post("/getStoreData", function (req, res, next) {
   var query = {};
   query.storename = req.body.storename;
@@ -69,23 +102,23 @@ router.post("/create", function (req, res, next) {
     });
 });
 
-router.get("/Checkuser", async (req, res, next) => {
-  var query = JSON.parse(req.query.user);
+// router.get("/Checkuser", async (req, res, next) => {
+//   var query = JSON.parse(req.query.user);
 
-  db.getDb()
-    .collection("users")
-    .find(query)
-    .toArray(function (err, result) {
-      console.log(result);
-      if (result.length === 0) {
-        res.status(404);
-        res.send("the user not valid");
-      } else {
-        res.status(200);
-        res.send(result);
-      }
-    });
-});
+//   db.getDb()
+//     .collection("users")
+//     .find(query)
+//     .toArray(function (err, result) {
+//       console.log(result);
+//       if (result.length === 0) {
+//         res.status(404);
+//         res.send("the user not valid");
+//       } else {
+//         res.status(200);
+//         res.send(result);
+//       }
+//     });
+// });
 
 
 router.post("/update", function (req, res, next) {
