@@ -3,7 +3,7 @@
   <div>
     <router-link :to="{ path: `/StoreDetailsPage/${store}` }">
       <q-card class="my-card" @click="handleImageClick">
-        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
+        <q-img :src=image style="height: 250px; max-width: 500px" />
         <q-card-section>
           <div class="row no-wrap items-center justify-start">
             <div class="col text-h6 ellipsis">
@@ -23,7 +23,7 @@
             $10 {{message}}
           </div> -->
           <div class="text-caption text-grey">
-            Small plates, salads & sandwiches in an intimate setting.
+            {{ description }}
           </div>
         </q-card-section>
 
@@ -48,6 +48,8 @@ export default {
   name: 'cardDeal',
   props: {
     store: String,
+    description: String,
+    image: String,
     message: Number,
   },
   methods: {
@@ -72,5 +74,5 @@ export default {
 .fav-icon
   display: block
   position: relative
-  top: -116px
+  top: -124px
 </style>
