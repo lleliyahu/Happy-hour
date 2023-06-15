@@ -55,8 +55,8 @@ export default {
 
     axios.get('http://localhost:3000/store/getallStore', { params: { params } }).then((response) => {
       this.deals = response.data;
+      console.log('rrrrrrrrrrrrrrr ', this.deals);
     });
-    // console.log(this.deals);
   },
   setup() {
     return {

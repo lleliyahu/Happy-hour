@@ -21,7 +21,7 @@ router.post("/getStore", function (req, res, next) {
 });
 
 router.get("/getallStore", async (req, res, next) => {
-  const projection = { _id: 0, storename: 1, store_desc: 1 };
+  const projection = { _id: 0, storename: 1, store_desc: 1, image: 1 };
    var query = JSON.parse(req.query.params);
    console.log('ffff', query);
   db.getDb()
