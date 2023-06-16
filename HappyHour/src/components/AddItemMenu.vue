@@ -88,7 +88,6 @@ export default {
       let url = '';
       if (this.image !== null) {
         url = URL.createObjectURL(this.image);
-        console.log('image gggggggggggggggggggggggg', url);
       }
       return url;
     },
@@ -114,7 +113,6 @@ export default {
       body.name = this.itemName;
       body.price = this.price;
       axios.post('http://localhost:3000/store/checkMenuItemPrice', body).then((response) => {
-        console.log('checkMenuItemPrice  ', response.data);
         if (response.data === 'ok') {
           this.blobToBase64(this.image).then((x) => {
             menu.image = x;

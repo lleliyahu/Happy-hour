@@ -70,10 +70,8 @@ export default defineComponent({
       const body = {};
       body.username = localStorage.getItem('user');
       body.storename = this.storename;
-      console.log('bodydddddd', body);
       axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
         let menu;
-        console.log('ddddddddddd', response.data[0].menu);
         if (response.data[0].menu === undefined) {
           this.options.dataset.source = [];
         } else {
@@ -89,7 +87,6 @@ export default defineComponent({
           menu.forEach((element) => {
             source.push(element);
           });
-          console.log('menu', source);
           this.options.dataset.source = source;
         }
       });

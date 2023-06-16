@@ -54,7 +54,6 @@ export default {
       newStor.storename = this.storename;
       newStor.username = localStorage.getItem('user');
       newStor.storetype = this.storeType;
-      console.log('new store', newStor);
       axios.post('http://localhost:3000/store/create', newStor).then(() => {
         alert('Store created');
         this.refreshStore();

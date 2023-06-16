@@ -37,7 +37,6 @@ export default defineComponent({
       const body = {};
       body.username = localStorage.getItem('user');
       body.storename = this.storeName;
-      console.log('bodydddddd', body);
       axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
         console.log('ddddddddddd', response.data[0].menu);
         if (response.data[0].menu === undefined) {

@@ -48,9 +48,7 @@ export default {
       const newStor = {};
       newStor.storename = this.storename;
       newStor.username = localStorage.getItem('user');
-      console.log('new store', newStor);
       axios.post('http://localhost:3000/store/create', newStor).then((response) => {
-        console.log('User add', response);
         alert('You have successfully registered');
       });
       return true;

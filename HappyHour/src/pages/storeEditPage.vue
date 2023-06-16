@@ -295,7 +295,6 @@ export default defineComponent({
           url = this.image;
         } else {
           url = URL.createObjectURL(this.image);
-          console.log('image gggggggggggggggggggggggg', url);
         }
       }
       return url;
@@ -447,7 +446,6 @@ export default defineComponent({
         newStoreDetails.store_phone = this.store_phone;
         newStoreDetails.menu = this.menu;
         newStoreDetails.street_address = this.street_address;
-        console.log('newStoreDetails:', newStoreDetails);
         axios.post('http://localhost:3000/store/update', newStoreDetails)
           .then(() => {
             alert('the store is update');

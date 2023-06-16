@@ -78,13 +78,11 @@ router.post("/getStoreData", function (req, res, next) {
         res.status(400).send("Error fetching listing");
       } else {
         res.send(result);
-        console.log(result);
       }
     });
 });
 
 router.post("/create", function (req, res, next) {
-  console.log(req.body);
   var myobj = req.body;
   db.getDb()
     .collection("store")
@@ -123,8 +121,6 @@ router.post("/update", function (req, res, next) {
   var myobj = req.body;
   var myquery = { 'storename': myobj.storename, 'username': myobj.usstorename };
   var newvalues = { $set: myobj };
-  console.log('myquery : ', myquery);
-  console.log('myobj : ', myobj.menu);
   db.getDb()
     .collection("store")
     .updateOne(myquery, newvalues, function (err, res) {
@@ -142,11 +138,8 @@ router.post("/update", function (req, res, next) {
 
 router.post("/addMenuItem", function (req, res, next) {
   var myobj = req.body;
-  console.log('myobj : ', myobj);
   var myquery = { 'storename': myobj.storename, 'username': myobj.username };
   var newvalues = { $addFields: { "menu": myobj.menu } };
-  console.log('myquery : ', myquery);
-  console.log('newvalues : ', newvalues);
   db.getDb()
     .collection("store")
     .updateOne(myquery, newvalues, function (err, res) {
@@ -165,11 +158,8 @@ router.post("/addMenuItem", function (req, res, next) {
 
 router.post("/addOrders", function (req, res, next) {
   var myobj = req.body;
-  console.log('req : ', req);
-  console.log('myobj : ', myobj);
   var myquery = { 'storename': myobj.storename , 'menu.name': myobj.menuitem };
   var newvalues = { $inc: { 'menu.$.orders' : 1 } };
-  console.log('myquery : ', myquery);
   
   db.getDb()
     .collection("store")
@@ -190,8 +180,6 @@ router.post("/addOrders", function (req, res, next) {
 router.post("/checkMenuItemPrice", function (req, res, next) {
   var myobj = req.body;
   var myquery = { 'menu.name': myobj.name };
-  console.log('myquery : ', myquery);
-
   db.getDb()
     .collection("store")
     .find(myquery)

@@ -9,7 +9,6 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/add", function (req, res, next) {
-  console.log(req.body);
   var myobj = req.body;
   db.getDb()
     .collection("users")
@@ -44,12 +43,8 @@ router.get("/Checkuser", async (req, res, next) => {
 
 router.post("/updatePersonalData", function (req, res, next) {
   var myobj = req.body;
-  console.log('personalData', myobj);
   var myquery = {'username': myobj.username };
   var newvalues = { $set: myobj };
-  console.log('myquery : ', myquery);
-  console.log('myobj : ', myobj);
-  console.log('newvalues', newvalues);
   db.getDb()
     .collection("users")
     .updateOne(myquery, newvalues, function (err, respons) {
@@ -58,7 +53,6 @@ router.post("/updatePersonalData", function (req, res, next) {
         res.send(JSON.stringify(respons));
       }
       else {
-        console.log('seeeeeeee');
         console.log("1 document updated");
         res.send(JSON.stringify(respons));
       }

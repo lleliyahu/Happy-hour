@@ -174,8 +174,7 @@ export default {
       if (this.isValidEmail(this.email) === 'Invalid email') {
         return false;
       }
-      axios.post('http://localhost:3000/users/add', newUser).then((response) => {
-        console.log('User add', response);
+      axios.post('http://localhost:3000/users/add', newUser).then(() => {
         alert('You have successfully registered');
       });
       return true;

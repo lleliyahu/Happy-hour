@@ -57,8 +57,17 @@
               <q-card-section>
                 <q-chip dense color="red" text-color="white" :label=deal.deal />
                 <div class="text-h6">{{ deal.dealfor[0] }}</div>
-                <div class="float-right"><q-btn color="cyan-8" :icon=getIcon(deal)
-                    @click="addToBasket(deal.dealfor[0])"></q-btn></div>
+                <div class="float-right">
+                  <div v-if="getIcon(deal) === 'thumb_up'">
+                    <span>{{ deal.like_counter }}/{{ deal.like }}</span> <br>
+                    <q-btn color="cyan-8" :icon=getIcon(deal)
+                    @click="addlike(deal)"></q-btn>
+                  </div>
+                  <div v-else>
+                    <q-btn color="cyan-8" :icon=getIcon(deal)
+                    @click="addToBasket(deal.dealfor[0])"></q-btn>
+                  </div>
+                </div>
                 <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
                 <div class="text-blue-grey-8 text-subtitle2">Price:</div>
               </q-card-section>
@@ -145,7 +154,9 @@ export default {
     getIcon(deal) {
       let icon = 'shopping_cart';
       if (deal.del_type === 'dealBreaker') {
-        icon = 'thumb_up';
+        if (deal.like_counter < deal.like) {
+          icon = 'thumb_up';
+        }
       }
       return icon;
     },
@@ -165,7 +176,6 @@ export default {
     getStoreDetails() {
       const body = {};
       body.storename = this.storeName;
-      console.log('body', body);
       axios.post('http://localhost:3000/store/getStoreData', body).then((response) => {
         console.log('data', response.data);
         this.city_address = response.data[0].city_address;
@@ -194,12 +204,22 @@ export default {
         });
       });
     },
-    addToBasket(mnueitem) {
+    addToBasket(menuitem) {
       const body = {};
       body.storename = this.storeName;
-      body.menuitem = mnueitem;
+      body.menuitem = menuitem;
       axios.post('http://localhost:3000/store/addOrders', body).then((response) => {
         console.log('addToBasket', response.data);
+      });
+    },
+    addlike(deal) {
+      const body = {};
+      const { _id } = deal;
+      console.log('deal', _id);
+      body.deal_id = _id;
+      axios.post('http://localhost:3000/deals/addlike', body).then((response) => {
+        console.log('addlike', response.data);
+        this.getStoreDetails();
       });
     },
   },
