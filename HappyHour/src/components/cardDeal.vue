@@ -3,7 +3,7 @@
   <div>
     <router-link :to="{ path: `/StoreDetailsPage/${store}` }">
       <q-card class="my-card" @click="handleImageClick">
-        <q-img :src=image style="height: 250px; max-width: 500px" />
+        <q-img :src=image style="height: 250px; max-width: 625px" />
         <q-card-section>
           <div class="row no-wrap items-center justify-start">
             <div class="col text-h6 ellipsis">

@@ -91,8 +91,19 @@
           </q-card>
         </div>
         <h2>Customer Review</h2>
-        <h4>Add Your Review</h4>
+        <h4>Picture Your Experience</h4>
         <div class="q-pa-md">
+          <h5>Your Name</h5>
+          <q-input rounded outlined v-model="avatarname" style="max-width: 300px;" />
+        </div>
+        <div class="q-pa-md">
+          <h5>Your Photo</h5>
+          <q-file v-model="avatarImage" label="Upload Photo" filled style="max-width: 300px"
+            @change="updateAvatarFile()" />
+          <q-img :src="fileAvatarUrl" spinner-color="white" style="height: 140px; max-width: 150px" />
+        </div>
+        <div class="q-pa-md">
+          <h5>Your Review Photo</h5>
           <q-file v-model="image" label="Upload Photo" filled style="max-width: 300px" @change="updateFile()" />
           <q-img :src="fileUrl" spinner-color="white" style="height: 140px; max-width: 150px" />
         </div>
@@ -108,12 +119,9 @@
               </div>
             </q-chat-message>
 
-            <q-chat-message name="Rivka" avatar="https://cdn.quasar.dev/img/avatar5.jpg" label="11th June 2023"
-              bg-color="cyan-8">
+            <q-chat-message :name="avatarname" :avatar="fileAvatarUrl" label="11th June 2023" bg-color="cyan-8">
               <div>
-                <img style="width: 100%;max-with:100px;"
-                  src="https://images.squarespace-cdn.com/content/v1/5f9decf1e529e27a4705d448/1620862138307-26QRRXQ0MJUHA7UCFRDR/Callie+Restaurant+319.jpg?format=2500w"
-                  class="my-emoticon" />
+                <img style="width: 100%;max-with:100px;" :src="fileUrl" class="my-emoticon" />
               </div>
             </q-chat-message>
           </div>
@@ -148,6 +156,8 @@ export default {
     deals: {},
     image: ref(null),
     image1Url: ref(''),
+    avatarImage: ref(null),
+    image2Url: ref(''),
     moreinfodialog: ref(false),
   }),
   methods: {
@@ -171,6 +181,9 @@ export default {
       });
     },
     updateFile() {
+      console.log('image gggggggggggggggggggggggg');
+    },
+    updateAvatarFile() {
       console.log('image gggggggggggggggggggggggg');
     },
     getStoreDetails() {
@@ -245,6 +258,14 @@ export default {
         console.log('image gggggggggggggggggggggggg', url);
       }
       return url;
+    },
+    fileAvatarUrl() {
+      let avatarUrl = '';
+      if (this.avatarImage !== null) {
+        avatarUrl = URL.createObjectURL(this.avatarImage);
+        console.log('image gggggggggggggggggggggggg', avatarUrl);
+      }
+      return avatarUrl;
     },
   },
 };
