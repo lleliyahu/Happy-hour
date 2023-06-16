@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="image-container" style="height:250px;">
-      <q-img class="image" src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
+      <q-img class="image" :src=store_image no-native-menu>
         <div class="absolute-bottom text-subtitle1 text-center">
           {{ storeName }}
         </div>
@@ -53,9 +53,9 @@
 
           <div class="row q-col-gutter-sm">
             <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="deal in deals" :key="deal._id">
-              <q-parallax :src="deal.image" :height="150"></q-parallax>
+              <q-img :src=deal.image style="height: 250px; max-width: 625px" />
               <q-card-section>
-                <q-chip dense color="red" text-color="white" :label=deal.deal />
+                <q-chip dense color="red" text-color="white" :label="`${deal.deal}%`" />
                 <div class="text-h6">{{ deal.dealfor[0] }}</div>
                 <div class="float-right">
                   <div v-if="getIcon(deal) === 'thumb_up'">
@@ -69,7 +69,7 @@
                   </div>
                 </div>
                 <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
-                <div class="text-blue-grey-8 text-subtitle2">Price:</div>
+                <div class="text-blue-grey-8 text-subtitle2">Price: {{ deal.price  }}</div>
               </q-card-section>
             </q-card>
             <q-space />
@@ -79,8 +79,7 @@
         <h2>Store Menu</h2>
         <div class="row q-col-gutter-sm">
           <q-card class="my-card col-xs-12 col-sm-6 col-md-4" v-for="item in menu" :key="item.name">
-            <q-parallax :src="item.image" :height="150" />
-
+            <q-img :src=item.image style="height: 250px; max-width: 625px" />
             <q-card-section>
               <div class="text-h6">{{ item.name }}</div>
               <div class="float-right"><q-btn color="cyan-8" icon="shopping_cart" @click="addToBasket(item.name)"></q-btn>
@@ -149,6 +148,7 @@ export default {
   data: () => ({
     city_address: '',
     store_phone: '',
+    store_image: '',
     post_code: '',
     street_address: '',
     menu: [],
@@ -195,6 +195,7 @@ export default {
         this.store_phone = response.data[0].store_phone;
         this.post_code = response.data[0].post_code;
         this.street_address = response.data[0].street_address;
+        this.store_image = response.data[0].image;
         if (response.data[0].menu === undefined) {
           this.menu = [];
         } else {
@@ -212,7 +213,10 @@ export default {
           const newobject = element;
           const menuitem = menu.findIndex(({ name }) => name === element.dealfor[0]);
           const itemimage = menu[menuitem].image;
+          const { price } = menu[menuitem];
           newobject.image = itemimage;
+          newobject.price = (
+            parseInt(price, 10) - ((parseInt(price, 10) / 100) * parseInt(newobject.deal, 10)));
           element = newobject;
         });
       });

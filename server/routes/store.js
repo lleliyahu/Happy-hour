@@ -23,7 +23,6 @@ router.post("/getStore", function (req, res, next) {
 router.get("/getallStore", async (req, res, next) => {
   const projection = { _id: 0, storename: 1, store_desc: 1, image: 1 };
    var query = JSON.parse(req.query.params);
-   console.log('ffff', query);
   db.getDb()
     .collection("store")
     .find(query).project(projection)
@@ -49,7 +48,7 @@ router.get("/getDealBrekerStore", async (req, res, next) => {
         } else {
           const stores = result.map( (x) => x.storename );
           var query_stores = { storename: { $in: stores }}; 
-          const projection = { _id: 0, storename: 1 };
+          const projection = { _id: 0, storename: 1, store_desc: 1, image: 1 };
 
           db.getDb()
           .collection("store")
@@ -97,24 +96,6 @@ router.post("/create", function (req, res, next) {
       }
     });
 });
-
-// router.get("/Checkuser", async (req, res, next) => {
-//   var query = JSON.parse(req.query.user);
-
-//   db.getDb()
-//     .collection("users")
-//     .find(query)
-//     .toArray(function (err, result) {
-//       console.log(result);
-//       if (result.length === 0) {
-//         res.status(404);
-//         res.send("the user not valid");
-//       } else {
-//         res.status(200);
-//         res.send(result);
-//       }
-//     });
-// });
 
 
 router.post("/update", function (req, res, next) {

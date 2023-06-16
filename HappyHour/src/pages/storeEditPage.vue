@@ -203,7 +203,7 @@
             <q-card-actions align="right">
               <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note" @click="updateStore">
                 Update Store Info</q-btn>
-              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="edit_note"
+              <q-btn class="text-capitalize text-white" rounded color="cyan-8" icon="leaderboard"
                 :to="{ path: `/StoreData/${storename}` }">My store data</q-btn>
             </q-card-actions>
             <q-card-actions align="right">
@@ -369,38 +369,6 @@ export default defineComponent({
           }
         });
       },
-      // columns,
-      // rows,
-
-      // loading,
-      // filter,
-      // rowCount,
-
-      // // emulate fetching data from server
-      // addRow() {
-      //   loading.value = true;
-      //   setTimeout(() => {
-      //     const index = Math.floor(Math.random() * (rows.value.length + 1));
-      //     const row = originalRows[Math.floor(Math.random() * originalRows.length)];
-      //     if (rows.value.length === 0) {
-      //       rowCount.value = 0;
-      //     }
-
-      //     row.id = rowCount.value + 1;
-      //     const newRow = { ...row }; // extend({}, row, { name: `${row.name} (${row.__count})` })
-      //     rows.value = [...rows.value.slice(0, index), newRow, ...rows.value.slice(index)];
-      //     loading.value = false;
-      //   }, 500);
-      // },
-
-      // removeRow() {
-      //   loading.value = true;
-      //   setTimeout(() => {
-      //     const index = Math.floor(Math.random() * rows.value.length);
-      //     rows.value = [...rows.value.slice(0, index), ...rows.value.slice(index + 1)];
-      //     loading.value = false;
-      //   }, 500);
-      // },
     };
   },
   methods: {
@@ -426,9 +394,13 @@ export default defineComponent({
     },
     blobToBase64(blob) {
       return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.readAsDataURL(blob);
+        if (typeof this.image === 'string') {
+          resolve(blob);
+        } else {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        }
       });
     },
     updateFile() {

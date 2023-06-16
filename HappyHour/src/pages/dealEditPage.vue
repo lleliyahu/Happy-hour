@@ -208,12 +208,13 @@ export default defineComponent({
       newDeal.opening_time = this.opening_time;
       newDeal.days = this.days;
       newDeal.dealfor = this.dealModel;
-      newDeal.deal = this.fnMarkerLabel(this.deal);
+      newDeal.deal = (parseInt(this.deal, 36) * 10);
       newDeal.del_type = 'normalDeal';
       console.log('new_deal:', newDeal);
       axios.post('http://localhost:3000/deals/create', newDeal)
         .then(() => {
-          console.log('deal created');
+          alert('deal created');
+          this.$router.back();
         })
         .catch((error) => {
           console.log(error);
