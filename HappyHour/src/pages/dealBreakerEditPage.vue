@@ -17,8 +17,8 @@
               <!-- <q-input dark color="white" dense v-model="store_details.store_name" label="Deal For {{ Item }}"
                                                                                       style="max-width: 600px" /> -->
               <div class="q-pa-md">
-                <q-select filled bg-color="red" color="cyan-8" v-model="storeModel" use-input use-chips
-                  input-debounce="1" @new-value="createStoreValue" :options="storeOptions" transition-show="jump-up"
+                <q-select filled bg-color="red" color="cyan-8" v-model="storeModel" use-input use-chips input-debounce="1"
+                  @new-value="createStoreValue" :options="storeOptions" transition-show="jump-up"
                   transition-hide="jump-up" style="max-width: 600px;" label="Choose Store:">
                   <q-icon name="cancel" @click.stop.prevent="storeModel = null" class="cursor-pointer" />
                 </q-select>
@@ -43,9 +43,9 @@
               <!-- <q-input dark color="white" dense v-model="store_details.store_name" label="Deal For {{ Item }}"
                                                                                       style="max-width: 600px" /> -->
               <div class="q-pa-md">
-                <q-select filled bg-color="red" color="cyan-8" v-model="likeModel" use-input use-chips
-                  input-debounce="1" @new-value="createlikeValue" :options="likeOptions" transition-show="jump-up"
-                  transition-hide="jump-up" @filter="filterDealFn" style="max-width: 600px;" label="likes:">
+                <q-select filled bg-color="red" color="cyan-8" v-model="likeModel" use-input use-chips input-debounce="1"
+                  @new-value="createlikeValue" :options="likeOptions" transition-show="jump-up" transition-hide="jump-up"
+                  @filter="filterDealFn" style="max-width: 600px;" label="likes:">
                   <!-- <q-icon name="cancel" @click.stop.prevent="dealModel = null" class="cursor-pointer" /> -->
                 </q-select>
               </div>
@@ -53,13 +53,14 @@
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-slider class="q-mt-xl" v-model="deal" color="cyan-8" markers :marker-labels="fnMarkerLabel" :min="1"
-                :max="4" />
+              <q-slider class="q-mt-xl" v-model="deal" color="red-6" markers :marker-labels="fnMarkerLabel" :min="5"
+                :max="9" />
             </q-item-section>
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-input dark color="white" dense v-model="opening_time" label="Set Opening Deal Hour" style="max-width: 600px">
+              <q-input dark color="white" dense v-model="opening_time" label="Set Opening Deal Hour"
+                style="max-width: 600px">
                 <template #append>
                   <q-icon class="cursor-pointer" name="access_time">
                     <q-popup-proxy cover>
@@ -77,7 +78,8 @@
           </q-item>
           <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <q-item-section>
-              <q-input dark color="white" dense v-model="closing_time" label="Set Closing Deal Hour" style="max-width: 600px">
+              <q-input dark color="white" dense v-model="closing_time" label="Set Closing Deal Hour"
+                style="max-width: 600px">
                 <template #append>
                   <q-icon class="cursor-pointer" name="access_time">
                     <q-popup-proxy cover>
@@ -117,8 +119,7 @@
             </div>
                                                                                                                                                     </q-item-section>                                                                                                                                                          </q-item> -->
           <q-card-actions align="right">
-            <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done"
-              @click="create_deal">Start Deal
+            <q-btn class="text-capitalize text-white" rounded color="green-8" icon="done" @click="create_deal">Start Deal
             </q-btn>
           </q-card-actions>
           <q-card-actions align="right">
@@ -135,6 +136,11 @@
       <DeleteDeal></DeleteDeal>
     </q-dialog>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </template>
 <script>
 import { defineComponent, ref } from 'vue';

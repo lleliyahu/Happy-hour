@@ -18,7 +18,8 @@
             <div class="q-pa-md q-gutter-sm">
               <q-btn label="See more information" color="blue-grey-8" icon="info" @click="moreinfodialog = true" />
               <q-dialog v-model="moreinfodialog">
-                <seeMoreInfo>
+                <seeMoreInfo :store=storeName :description=store_desc :store_phone=store_phone
+                  :street_address=street_address :post_code=post_code>
 
                 </seeMoreInfo>
               </q-dialog>
@@ -60,16 +61,14 @@
                 <div class="float-right">
                   <div v-if="getIcon(deal) === 'thumb_up'">
                     <span>{{ deal.like_counter }}/{{ deal.like }}</span> <br>
-                    <q-btn color="cyan-8" :icon=getIcon(deal)
-                    @click="addlike(deal)"></q-btn>
+                    <q-btn color="cyan-8" :icon=getIcon(deal) @click="addlike(deal)"></q-btn>
                   </div>
                   <div v-else>
-                    <q-btn color="cyan-8" :icon=getIcon(deal)
-                    @click="addToBasket(deal.dealfor[0])"></q-btn>
+                    <q-btn color="cyan-8" :icon=getIcon(deal) @click="addToBasket(deal.dealfor[0])"></q-btn>
                   </div>
                 </div>
                 <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
-                <div class="text-blue-grey-8 text-subtitle2">Price: {{ deal.price  }}</div>
+                <div class="text-blue-grey-8 text-subtitle2">Price: {{ deal.price }}</div>
               </q-card-section>
             </q-card>
             <q-space />
@@ -147,6 +146,7 @@ export default {
   props: ['storeName'],
   data: () => ({
     city_address: '',
+    store_desc: '',
     store_phone: '',
     store_image: '',
     post_code: '',
@@ -196,6 +196,7 @@ export default {
         this.post_code = response.data[0].post_code;
         this.street_address = response.data[0].street_address;
         this.store_image = response.data[0].image;
+        this.store_desc = response.data[0].store_desc;
         if (response.data[0].menu === undefined) {
           this.menu = [];
         } else {
