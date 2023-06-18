@@ -68,7 +68,7 @@
                   </div>
                 </div>
                 <div class="text-grey-8 text-subtitle2">{{ deal.days[0].from }}-{{ deal.days[0].to }}</div>
-                <div class="text-blue-grey-8 text-subtitle2">Price: {{ deal.price }}</div>
+                <div class="text-blue-grey-8 text-subtitle2">Price: {{ deal.price }}$</div>
               </q-card-section>
             </q-card>
             <q-space />
