@@ -290,7 +290,7 @@ export default defineComponent({
     fileUrl() {
       let url = '';
       console.log('the type is', typeof this.image);
-      if (this.image !== null) {
+      if (this.image !== null && this.image !== undefined) {
         if (typeof this.image === 'string') {
           url = this.image;
         } else {
