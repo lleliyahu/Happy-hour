@@ -4,12 +4,12 @@
     <h2>My Store Data</h2>
     <div class="row q-col-gutter-sm q-py-sm">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <bar-chart :storename=storeName ></bar-chart>
+        <bar-chart :storename=storeName></bar-chart>
       </div>
     </div>
-    <div>Total number of orders:</div>
+    <!-- <div>Total number of orders:</div>
     <div>Total sales:</div>
-    <div>Number of deals:</div>
+    <div>Number of deals:</div> -->
   </q-page>
 </template>
 

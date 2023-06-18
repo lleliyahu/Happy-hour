@@ -14,7 +14,7 @@
         <q-header elevated>
           <q-bar>
             <q-icon name="schedule" color="blue-grey-8" />
-            <div style="color: #36486b;">Open until</div>
+            <div style="color: #36486b;">Open until 22:00</div>
             <div class="q-pa-md q-gutter-sm">
               <q-btn label="See more information" color="blue-grey-8" icon="info" @click="moreinfodialog = true" />
               <q-dialog v-model="moreinfodialog">
@@ -117,7 +117,7 @@
               </div>
             </q-chat-message>
 
-            <q-chat-message :name="avatarname" :avatar="fileAvatarUrl" label="11th June 2023" bg-color="cyan-8">
+            <q-chat-message :name="avatarname" :avatar="fileAvatarUrl" label="18th June 2023" bg-color="cyan-8">
               <div>
                 <img style="width: 100%;max-with:100px;" :src="fileUrl" class="my-emoticon" />
               </div>
